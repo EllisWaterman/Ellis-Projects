@@ -1,8 +1,7 @@
-import { setCanvas, drawCircle, drawLine, drawText, drawFilledRect, width, height } from './graphics.js';
+import { setCanvas, drawLine, drawText, width, height } from './graphics.js';
 const canvas = document.getElementById('screen')
 setCanvas(canvas);
 
-drawCircle(width / 2, height / 2, 100, 'black');
 
 let clickCount = 0;
 let isGameOver = false;
@@ -74,10 +73,15 @@ const winner = () => {
 }
 
 canvas.onclick= (e) =>{
-    const {x,y} = e;
+    const {offsetX,offsetY} = e;
+    let x = offsetX
+    let y = offsetY
   if (isGameOver) {
     return;
   }
+  console.log(x,y);
+  console.log(e)
+
   let col = Math.floor(x / width * 3);
   let row = Math.floor(y / height * 3);
   if (xs[row][col] != null) {
@@ -104,7 +108,7 @@ canvas.onclick= (e) =>{
 };
 
 const endGame = (message) => {
-  drawFilledRect(0, 0, width, height, '#000000aa');
+  
   drawText(message, width / 4, height / 2, colour, size);
   isGameOver = true;
 
