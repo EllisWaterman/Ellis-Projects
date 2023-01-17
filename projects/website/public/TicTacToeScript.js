@@ -1,4 +1,4 @@
-import { setCanvas, drawLine, drawText, width, height } from './graphics.js';
+import { setCanvas, drawLine, drawText, width, height, drawFilledRect } from './graphics.js';
 const canvas = document.getElementById('screen')
 setCanvas(canvas);
 
@@ -108,10 +108,8 @@ canvas.onclick= (e) =>{
 };
 
 const endGame = (message) => {
-  
   drawText(message, width / 4, height / 2, colour, size);
   isGameOver = true;
-
 }
 
 const drawFrame = () => {
