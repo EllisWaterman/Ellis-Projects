@@ -5,9 +5,13 @@ const body = document.querySelector('body');
 const q1 = document.createElement('h1');
 const q2 = document.createElement('h1');
 const q3 = document.createElement('h1');
+const q4 = document.createElement('h1')
+// list
+const l = document.createElement('ol');
 
 
-
+//image
+const im = document.createElement('img')
 // Add the new H1 element to the body.
 body.append(q1);
 
@@ -15,6 +19,7 @@ body.append(q1);
 const a1 = document.createElement('p');
 const a2 = document.createElement('p');
 const a3 = document.createElement('p');
+const a4 = document.createElement('p')
 
 
 // Create a text node and add it to the P element. Note the use of `` rather
@@ -90,92 +95,51 @@ a3.append(
 );
 
 body.append(a3)
+l1.append(document.createTextNode(`<html>: This is the root element of an HTML document, and it contains all of the other elements.`));
+l2.append(document.createTextNode(`<head>: This element contains information about the document, such as the title of the page, which is displayed in the browser's title bar or tab.`))
+l3.append(document.createTextNode(`<body>: This element contains the content of the document that is displayed in the browser window.`))
+l4.append(document.createTextNode(`<h1> to <h6>: These elements are used for headings and subheadings. <h1> is the highest level heading, while <h6> is the lowest.
+`))
+l5.append(document.createTextNode(`<p>: This element is used for paragraphs of text.`))
+l6.append(document.createTextNode(`<a>: This element is used for hyperlinks, which allow users to navigate between pages on the web.`))
+l7.append(document.createTextNode(`<img>: This element is used to embed images in a web page.`))
+l8.append(document.createTextNode(`<ul> and <ol>: These elements are used for unordered and ordered lists, respectively.`))
+l9.append(document.createTextNode(`<li>: This element is used for list items.`))
+l10.append(document.createTextNode(`<div> and <span>: These elements are used for grouping and applying styles to elements on a web page.`))
 
+l.append(l1);
+l.append(l2);
+l.append(l3);
+l.append(l4);
+l.append(l5);
+l.append(l6);
+l.append(l7);
+l.append(l8);
+l.append(l9);
+l.append(l10);
+body.append(l)
 
-l1.append(
-  document.createTextNode(`
-  <html>: This is the root element of an HTML document, and it contains all of the other elements.
+q4.append(document.createTextNode(`
+Can you find a picture of the inventor of the web?
 `),
 );
+body.append(q4)
 
-body.append(l1)
-
-l1.append(
+im.append(
   document.createTextNode(`
-  <html>: This is the root element of an HTML document, and it contains all of the other elements.
-`),
+  src="/images/tim-berners-lee.jpg" alt="A young Tim Berner-Lee"`
+  )
+  );
+body.append(im)
+
+a4.append(document.createTextNode(`
+I'm sorry, I am a text based model and I am not able to find or show images. However, I can
+      tell you that the inventor of the World Wide Web (WWW) is Sir Tim Berners-Lee. He is a British
+      computer scientist and is considered to be the inventor of the World Wide Web. He proposed and
+      developed the first successful communication between a Hypertext Transfer Protocol (HTTP)
+      client and server via the Internet in 1989. He also created the first web browser, called
+      WorldWideWeb, and the first web server, called httpd. He also wrote the first version of the
+      HTML language, which provided the structure for web pages. He is currently working on a
+      decentralized web project called Solid.`),
 );
-
-body.append(l1)
-
-l2.append(
-  document.createTextNode(`
-  //<head>: This element contains information about the document, such as the title of the page, which is displayed in the browser's title bar or tab.
-  `),
-);
-
-body.append(l2)
-
-l3.append(
-  document.createTextNode(`
-  //<body>: This element contains the content of the document that is displayed in the browser window.
-  `),
-);
-
-body.append(l3)
-
-l4.append(
-  document.createTextNode(`
-  //<h1> to <h6>: These elements are used for headings and subheadings. <h1> is the highest level heading, while <h6> is the lowest.
-  `),
-);
-
-body.append(l4)
-
-l5.append(
-  document.createTextNode(`
-  //<p>: This element is used for paragraphs of text.
-  `),
-);
-
-body.append(l5)
-
-l6.append(
-  document.createTextNode(`
-  //<a>: This element is used for hyperlinks, which allow users to navigate between pages on the web.
-  `),
-);
-
-body.append(l6)
-
-l7.append(
-  document.createTextNode(`
-  //<img>: This element is used to embed images in a web page.
-  `),
-);
-
-body.append(l7)
-
-l8.append(
-  document.createTextNode(`
-  //<ul> and <ol>: These elements are used for unordered and ordered lists, respectively.
-  `),
-);
-
-body.append(l8)
-
-l9.append(
-  document.createTextNode(`
-  //<li>: This element is used for list items.
-  `),
-);
-
-body.append(l9)
-
-l10.append(
-  document.createTextNode(`
-  //<div> and <span>: These elements are used for grouping and applying styles to elements on a web page.`),
-);
-
-body.append(l10)
-
+body.append(a4)
