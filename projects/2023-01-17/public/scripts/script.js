@@ -9,9 +9,9 @@ const q4 = document.createElement('h1')
 // list
 const l = document.createElement('ol');
 
-
 //image
 const im = document.createElement('img')
+im.setAttribute('src', 'https://elliswaterman-symmetrical-telegram-9rww9gr6jg4hp7rx-3000.preview.app.github.dev/images/tim-berners-lee.jpg')
 // Add the new H1 element to the body.
 body.append(q1);
 
@@ -19,8 +19,9 @@ body.append(q1);
 const a1 = document.createElement('p');
 const a2 = document.createElement('p');
 const a3 = document.createElement('p');
-const a4 = document.createElement('p')
-
+const a4 = document.createElement('p');
+const div = document.createElement('div')
+const a5 = document.createElement('p');
 
 // Create a text node and add it to the P element. Note the use of `` rather
 // than '' which allows us to break the string across lines.
@@ -125,11 +126,7 @@ Can you find a picture of the inventor of the web?
 );
 body.append(q4)
 
-im.append(
-  document.createTextNode(`
-  src="/images/tim-berners-lee.jpg" alt="A young Tim Berner-Lee"`
-  )
-  );
+
 body.append(im)
 
 a4.append(document.createTextNode(`
@@ -143,3 +140,9 @@ I'm sorry, I am a text based model and I am not able to find or show images. How
       decentralized web project called Solid.`),
 );
 body.append(a4)
+/*
+div.append(document.createTextNode(`Text from 2023-01-14 conversation with ChatGPT`)
+);
+
+body.append(div)
+*/
