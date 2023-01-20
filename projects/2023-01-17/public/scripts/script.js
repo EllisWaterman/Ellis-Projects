@@ -21,8 +21,15 @@ const a2 = document.createElement('p');
 const a3 = document.createElement('p');
 const a4 = document.createElement('p');
 const div = document.createElement('div')
+div.setAttribute('class', 'credits')
 const a5 = document.createElement('p');
-
+const a6 = document.createElement('p');
+const link = document.createElement('a')
+const link1 = document.createElement('a')
+const link2 = document.createElement('a')
+link.setAttribute('href', 'https://chat.openai.com/chat')
+link1.setAttribute('href', 'https://www.flickr.com/photos/itupictures/16662336315')
+link2.setAttribute('href', 'https://creativecommons.org/licenses/by/2.0/')
 // Create a text node and add it to the P element. Note the use of `` rather
 // than '' which allows us to break the string across lines.
 // Create a text node and add it to the H1
@@ -140,9 +147,16 @@ I'm sorry, I am a text based model and I am not able to find or show images. How
       decentralized web project called Solid.`),
 );
 body.append(a4)
-/*
-div.append(document.createTextNode(`Text from 2023-01-14 conversation with ChatGPT`)
-);
 
+
+a5.append(document.createTextNode(`Text from 2023-01-14 conversation with ChatGPT`),
+);
+a6.append(document.createTextNode('Photo of a young Tim Berners-Lee from Flickr no thanks to ChatGPT. (CC BY 2.0).'))
+link.append(document.createTextNode('ChatGPT '));
+link1.append(document.createTextNode('Flickr '));
+link2.append(document.createTextNode('(CC BY 2.0)'));
+div.append(a5)
+div.append(a6)
+div.append(link, link1, link2)
 body.append(div)
-*/
+

@@ -65,3 +65,9 @@ div.credits p {
   margin: 0.5ex 0;
 }
 
+div.credits a {
+  font-size: 12px;
+  text-align: right;
+  margin: 0.5ex 0;
+}
+
