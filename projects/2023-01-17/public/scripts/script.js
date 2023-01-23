@@ -11,7 +11,7 @@ const l = document.createElement('ol');
 
 //image
 const im = document.createElement('img')
-im.setAttribute('src', 'https://elliswaterman-symmetrical-telegram-9rww9gr6jg4hp7rx-3000.preview.app.github.dev/images/tim-berners-lee.jpg')
+im.setAttribute('src', '/images/tim-berners-lee.jpg')
 // Add the new H1 element to the body.
 body.append(q1);
 
@@ -20,10 +20,12 @@ const a1 = document.createElement('p');
 const a2 = document.createElement('p');
 const a3 = document.createElement('p');
 const a4 = document.createElement('p');
+const endlist = document.createElement('p');
 const div = document.createElement('div')
 div.setAttribute('class', 'credits')
 const a5 = document.createElement('p');
 const a6 = document.createElement('p');
+const a7 = document.createElement('p');
 const link = document.createElement('a')
 const link1 = document.createElement('a')
 const link2 = document.createElement('a')
@@ -126,7 +128,8 @@ l.append(l8);
 l.append(l9);
 l.append(l10);
 body.append(l)
-
+endlist.append(document.createTextNode('These are some of the main elements, but there are many more available, like <header>, <nav>, <main>, <footer>, <form>, <input>, <select>, etc.'));
+body.append(endlist)
 q4.append(document.createTextNode(`
 Can you find a picture of the inventor of the web?
 `),
@@ -149,14 +152,18 @@ I'm sorry, I am a text based model and I am not able to find or show images. How
 body.append(a4)
 
 
-a5.append(document.createTextNode(`Text from 2023-01-14 conversation with ChatGPT`),
-);
-a6.append(document.createTextNode('Photo of a young Tim Berners-Lee from Flickr no thanks to ChatGPT. (CC BY 2.0).'))
+a5.append(document.createTextNode(`Text from 2023-01-14 conversation with `));
+a5.append(link)
+a6.append(document.createTextNode('Photo of a young Tim Berners-Lee from ' ));
+a6.append(link1)
+a6.append(document.createTextNode('no thanks to ChatGPT. '));
+a6.append(link2)
+a6.append(document.createTextNode('.'));
 link.append(document.createTextNode('ChatGPT '));
 link1.append(document.createTextNode('Flickr '));
 link2.append(document.createTextNode('(CC BY 2.0)'));
 div.append(a5)
 div.append(a6)
-div.append(link, link1, link2)
+div.append(a7)
 body.append(div)
 
