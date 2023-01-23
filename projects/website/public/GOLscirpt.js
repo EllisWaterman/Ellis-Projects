@@ -1,7 +1,11 @@
 import { setCanvas, drawFilledRect, width, height } from './graphics.js';
 const canvas = document.getElementById('screen')
 setCanvas(canvas);
+let randomColor = Math.floor(Math.random()*16777215).toString(16);
+document.body.style.backgroundColor = "#" + randomColor;
 
+const color1 = randomColor
+const color2 = 'black'
 const CELLSIZE = 5;
 const rows = Math.floor(height / CELLSIZE)
 const cols = Math.floor(width / CELLSIZE)
@@ -10,18 +14,20 @@ let current =
   Array(rows).fill().map(() =>
     Array(cols).fill().map(() => (false)));
 
+
 let next =
   Array(rows).fill().map(() =>
     Array(cols).fill().map(() => (false)));
 
 const originalCells = () => {
+
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (Math.random() > (1 - .23)) {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, color1);
         current[y][x] = true
       } else {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, color2);
       }
     }
   }
@@ -31,9 +37,9 @@ const drawNext = () => {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (next[y][x]) {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'green');
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, color1);
       } else {
-        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, 'black');
+        drawFilledRect(x * CELLSIZE, y * CELLSIZE, CELLSIZE, CELLSIZE, color2);
       }
     }
   }
