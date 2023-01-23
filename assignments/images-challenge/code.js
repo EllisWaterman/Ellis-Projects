@@ -220,8 +220,8 @@ const drawPyramid = () => {
   }
 }
 //drawPyramid()
-drawPlatformerGameRandomGenLevel();
-// colorfulCurve();
+//drawPlatformerGameRandomGenLevel();
+ colorfulCurve();
 // concentricCircle();
 // lineOfCirclesAlternatingColors();
 // fillWithCircles();
