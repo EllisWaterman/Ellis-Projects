@@ -1,10 +1,7 @@
 import { setCanvas, drawFilledRect, width, height } from './graphics.js';
 const canvas = document.getElementById('screen')
 setCanvas(canvas);
-let randomColor = Math.floor(Math.random()*16777215).toString(16);
-document.body.style.backgroundColor = "#" + randomColor;
-
-const color1 = randomColor
+const color1 = 'green'
 const color2 = 'black'
 const CELLSIZE = 5;
 const rows = Math.floor(height / CELLSIZE)
