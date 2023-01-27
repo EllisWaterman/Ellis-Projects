@@ -81,9 +81,26 @@ button {
   background-color: rgb(96, 104, 100);
   border: 'black';
   color: white;
-  padding: 10px 24px;
+  padding: 9px 15px;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 10px;
   text-align: center;
+}
+
+div.flashcard {
+  width: 10em;
+  height: 6.8em;
+  border: 1px solid rgb(0, 0, 0);
+  background: rgb(0,170,204);
+  background: grey;
+  color: aliceblue;
+}
+
+div.flashcard p {
+ text-align: center;
+}
+
+div.flashcard div.edit a {
+  text-align: right;
 }
