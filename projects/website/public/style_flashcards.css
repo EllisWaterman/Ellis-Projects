@@ -15,9 +15,27 @@ button {
     border: 1px solid rgb(0, 0, 0);
     background: rgb(0,170,204);
     background: rgb(72, 98, 118);
-    color: aliceblue;
+    color: rgb(0, 0, 0);
   }
   
+
+  div.flashcard_side1 {
+    width: 750px;
+    height: 500px;
+    border: 1px solid rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    margin: auto;
+  }
+
+  div.flashcard_side1 p {
+    color: black;
+    text-align: center;
+  }
+
+  div.hidden p {
+    font-size: 0em;
+  }
+
   div.flashcard p {
    text-align: center;
   }
@@ -58,16 +76,7 @@ button {
     font-size: 18px;
   }
   
-  body {
-    width: 50em;
-    margin: 1in auto;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 20px;
-    padding: 20px;
-    background: rgb(0,170,204);
-    background: linear-gradient(90deg, rgb(0, 91, 110) 0%, rgba(4,58,92) 100%);
-    color: aliceblue;
-  }
+
 
 
   h1 {
