@@ -1,7 +1,14 @@
-import {setCanvas} from './graphics.js';
-const canvas = document.getElementById('screen')
-setCanvas(canvas);
+const card = document.getElementsByClassName('card')[0]
 
-canvas.onclick= () =>{
-    g.setAttribute('class', 'hidden')
+card.onclick = (e) => {
+    Array.from(card.getElementsByTagName('div')).forEach(element => {
+        let classes = element.getAttribute('class').split(' ');
+        let index;
+        if ((index = classes.indexOf('hidden')) > -1) {
+            classes.splice(index, 1)
+        } else {
+            classes.push('hidden')
+        }
+        element.setAttribute('class', classes.join(' '))
+    });
 }

@@ -18,8 +18,7 @@ button {
     color: rgb(0, 0, 0);
   }
   
-
-  div.flashcard_side1 {
+  div.flashcard_side {
     width: 750px;
     height: 500px;
     border: 1px solid rgb(0, 0, 0);
@@ -27,13 +26,8 @@ button {
     margin: auto;
   }
 
-  div.flashcard_side1 p {
-    color: black;
-    text-align: center;
-  }
-
-  div.hidden p {
-    font-size: 0em;
+  .hidden {
+    display: none;
   }
 
   div.flashcard p {
@@ -60,7 +54,6 @@ button {
     text-decoration: underline dotted;
   }
   
-
   * {
     padding: 0;
     margin: 0;
@@ -76,16 +69,12 @@ button {
     font-size: 18px;
   }
   
-
-
-
   h1 {
     font-family: sans-serif;
     font-size: 24px;
     font-weight: 600;
     color: rgb(255, 255, 255);
     text-align: center;
-  
   }
   
   h2 {
