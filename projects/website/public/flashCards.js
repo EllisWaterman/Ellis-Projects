@@ -3,7 +3,8 @@ const cards = document.querySelector('.cards')
 cards.onclick = (e) => {
     let activeCard;
     e.path.forEach(element => {
-        if (element.classList && element.classList.contains('card'))
+    
+    if (element.classList && element.classList.contains('card'))
         activeCard = element
     });
     activeCard.querySelectorAll('div').forEach(element => {
@@ -20,9 +21,18 @@ forward.onclick = (e) => {
     let active = document.querySelector('.card.active')
     active.classList.remove('active')
     active.classList.add('hidden')
-    // find the active card
-    // make it not active
 active.nextElementSibling.classList.add('active')
 active.nextElementSibling.classList.remove('hidden')
 
 }
+const backward = document.querySelector('.backward')
+backward.onclick = (e) => {
+    let active = document.querySelector('.card.active')
+    active.classList.remove('active')
+    active.classList.add('hidden')
+active.previousElementSibling.classList.add('active')
+active.previousElementSibling.classList.remove('hidden')
+
+}
+
+
