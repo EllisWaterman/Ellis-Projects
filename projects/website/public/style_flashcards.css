@@ -24,6 +24,7 @@ button {
     border: 1px solid rgb(0, 0, 0);
     background: rgb(255, 255, 255);
     margin: auto;
+    text-align: center;
   }
 
   .hidden {
