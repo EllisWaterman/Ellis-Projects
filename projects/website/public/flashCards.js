@@ -2,7 +2,6 @@ const cards = document.querySelector('.cards')
 
 cards.onclick = (e) => {
     let activeCard = e.target.parentNode
-    console.log(activeCard)
     if (activeCard.classList.contains('cards')) {
         return
     }
