@@ -40,5 +40,22 @@ backward.onclick = (e) => {
         active.previousElementSibling.classList.remove('hidden')
     }
 }
+const FastF = document.querySelector('.fastForward')
+FastF.onclick = (e) => {
+    let active = document.querySelector('.card.active')
+    active.classList.remove('active')
+    active.classList.add('hidden')
+    active.parentElement.firstElementChild.classList.add('active')
+    active.parentElement.firstElementChild.classList.remove('hidden')
+}
+
+const FastB = document.querySelector('.fastBackward')
+FastB.onclick = (e) => {
+    let active = document.querySelector('.card.active')
+    active.classList.remove('active')
+    active.classList.add('hidden')
+    active.parentElement.lastElementChild.classList.add('active')
+    active.parentElement.lastElementChild.classList.remove('hidden')
+}
 
 
