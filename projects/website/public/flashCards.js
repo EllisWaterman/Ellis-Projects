@@ -2,7 +2,7 @@ const cards = document.querySelector('.cards')
 
 cards.onclick = (e) => {
     let activeCard = e.target.parentNode
-    if (activeCard.classList.contains('cards') || activeCard.classList.contains('unclickable')) {
+    if (activeCard.classList.contains('unclickable')) {
         return
     }
     activeCard.querySelectorAll('div').forEach(element => {
@@ -62,6 +62,27 @@ document.querySelectorAll('.known').forEach((known) => {
     known.onclick = (e) => {
         let active = document.querySelector('.card.active')
         active.classList.add('known')
-        console.log('worked!')
+        active.classList.remove('unknown')
+        console.log(active.classList)
     }
 });
+
+const isunknown = (card) => {
+if (card.firstElementChild.classList.contains('unknown')) {
+    return card
+}
+else {return
+}
+}
+const nextukn = document.querySelector('.nextUnknown')
+
+nextukn.onclick = (e) => {
+    let active = document.querySelector('.card.active')
+    active.classList.remove('active')
+    active.classList.add('hidden')
+    let nextUnknowncard = isunknown(active.nextElementSibling)
+    nextUnknowncard.classList.add('active')
+    nextUnknowncard.classList.remove('hidden')
+}
+// for each card, check if it is known or unknown, let nextunknowncard = next unknown
+
