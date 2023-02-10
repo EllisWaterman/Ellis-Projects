@@ -61,28 +61,41 @@ FastB.onclick = (e) => {
 document.querySelectorAll('.known').forEach((known) => {
     known.onclick = (e) => {
         let active = document.querySelector('.card.active')
-        active.classList.add('known')
-        active.classList.remove('unknown')
-        console.log(active.classList)
+        active.firstElementChild.classList.add('known')
+        active.lastElementChild.classList.add('known')
+        active.firstElementChild.classList.remove('unknown')
+        active.lastElementChild.classList.remove('unknown')
+        
     }
 });
 
 const isunknown = (card) => {
-if (card.firstElementChild.classList.contains('unknown')) {
-    return card
-}
-else {return
-}
+   return card.firstElementChild.classList.contains('unknown');
 }
 const nextukn = document.querySelector('.nextUnknown')
 
 nextukn.onclick = (e) => {
+    let nextUnknowncard;
     let active = document.querySelector('.card.active')
     active.classList.remove('active')
     active.classList.add('hidden')
-    let nextUnknowncard = isunknown(active.nextElementSibling)
+    let card = active
+    for (let i = 0; i < cards.childElementCount; i++) {
+        console.log(card)
+        if (isunknown(card)) {
+            nextUnknowncard = card
+            console.log(nextUnknowncard)
+            break
+        }
+        card = card.nextElementSibling;
+    }
+    if (nextUnknowncard) {
     nextUnknowncard.classList.add('active')
     nextUnknowncard.classList.remove('hidden')
+    console.log('found')
+    } else {
+        console.log('none found')
+    }
 }
-// for each card, check if it is known or unknown, let nextunknowncard = next unknown
+
 
