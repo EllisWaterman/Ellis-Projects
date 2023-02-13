@@ -2,6 +2,9 @@ const cards = document.querySelector('.cards')
 
 cards.onclick = (e) => {
     let activeCard = e.target.parentNode
+    if (activeCard.classList.contains('flashcard_side')) {
+        activeCard = e.target.parentNode.parentNode
+    }
     if (activeCard.classList.contains('unclickable')) {
         return
     }

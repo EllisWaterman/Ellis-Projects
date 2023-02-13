@@ -43,10 +43,9 @@ div.card.hidden {
 }
 
 div.flashcard {
+  margin: 2em;
+  background-color: white;
   text-align: left;
-  border-width: 5px;
-  border-color: black;
-  border-style: solid;
   width: 150px;
   height: 100px;
 }
