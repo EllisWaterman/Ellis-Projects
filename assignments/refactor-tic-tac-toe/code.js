@@ -39,6 +39,7 @@ const board = [
   ['', '', ''],
 ];
 
+
 const lines = [
   // Rows
   [[0, 0], [0, 1], [0, 2]],
