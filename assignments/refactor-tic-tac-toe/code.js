@@ -56,13 +56,12 @@ const checkIfWinner = () => {
   let col;
 
   for (let i = 0; i < lines.length; i++) {
-      let m = []
+    let m = []
     for (let j = 0; j < 3; j++) {
       row = lines[i][j][0];
       col = lines[i][j][1];
       m.push(board[row][col])
     }
-    console.log(m)
     if (m[0] !== '' && m[0] === m[1] && m[0] === m[2]) {
       return lines[i];
     }
