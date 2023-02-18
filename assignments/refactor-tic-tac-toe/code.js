@@ -98,7 +98,7 @@ registerOnclick((x, y) => {
 
     // Check if there's a winner now
      winner = checkIfWinner()
-
+console.log(winner)
     if (winner !== undefined) {
       // Draw the line through three in a row
       const [r1, c1] = winner[0];
