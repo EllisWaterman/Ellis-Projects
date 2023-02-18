@@ -67,7 +67,15 @@ const checkIfWinner = () => {
     }
   }
 }
-
+const drawMark = (r, c, move) => {
+  const marker = move % 2 === 0 ? 'X' : 'O';
+  const x = boardLeft + c * cellSize + cellSize / 2;
+  const y = boardTop + r * cellSize + cellSize / 2;
+  const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
+  drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
+  board[r][c] = marker;
+  move++;
+}
 // Draw the board
 const x1 = boardLeft + cellSize;
 const x2 = boardLeft + 2 * cellSize;
@@ -87,18 +95,10 @@ registerOnclick((x, y) => {
   // Only do anything if it's a legal move and the game isn't over.
   if (winner === undefined && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
 
-    // Draw the mark and record the move
-    const marker = move % 2 === 0 ? 'X' : 'O';
-    const x = boardLeft + c * cellSize + cellSize / 2;
-    const y = boardTop + r * cellSize + cellSize / 2;
-    const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
-    drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
-    board[r][c] = marker;
-    move++;
+    drawMark(r, c, move)
 
     // Check if there's a winner now
     winner = checkIfWinner()
-    console.log(winner)
     if (winner !== undefined) {
       // Draw the line through three in a row
       const [r1, c1] = winner[0];
