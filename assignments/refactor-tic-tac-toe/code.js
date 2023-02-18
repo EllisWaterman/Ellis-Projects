@@ -71,7 +71,7 @@ registerOnclick((x, y) => {
   let m = []
   // Check if there's a winner already.
   for (let i = 0; i < lines.length; i++) {
-    for (let j = 0; j < i; j++) {
+    for (let j = 0; j < 3; j++) {
       r = lines[i][j][0];
       c = lines[i][j][1];
       m.push(board[r][c])
