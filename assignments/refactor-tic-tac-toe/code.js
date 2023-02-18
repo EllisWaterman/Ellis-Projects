@@ -86,7 +86,7 @@ console.log(winner)
   let c = Math.floor((x - boardLeft) / cellSize);
 
   // Only do anything if it's a legal move and the game isn't over.
-  if (winner === null && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
+  if (winner === undefined && 0 <= r && r < 3 && 0 <= c && c < 3 && board[r][c] === '') {
 
     // Draw the mark and record the move
     const marker = move % 2 === 0 ? 'X' : 'O';
