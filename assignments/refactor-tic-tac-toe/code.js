@@ -44,7 +44,7 @@ const checkIfWinner = () => {
     for (let j = 0; j < 3; j++) {
       row = lines[i][j][0];
       col = lines[i][j][1];
-      m.push(board[r][c])
+      m.push(board[row][col])
     }
     if (m[0] !== '' && m[0] === m[1] && m[0] === m[2]) {
       return lines[i];
