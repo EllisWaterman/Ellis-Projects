@@ -144,7 +144,6 @@ registerOnclick((x, y) => {
         adjY1 -= (slope * lineEndAdjustment);
         adjY2 += (slope * lineEndAdjustment);
       }
-else{drawText('draw', width/2, height/2, 10)}
       drawLine(adjX1, adjY1, adjX2, adjY2, 'red', 15);
     }
   }
