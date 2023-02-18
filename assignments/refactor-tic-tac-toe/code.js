@@ -33,7 +33,7 @@ const lineEndAdjustment = cellSize * 0.7;
 
 let move = 0;
 
-const board = new Array(3).map(Array(3).fill(''))
+const board = new Array(3).fill('').map(() => new Array(3).fill(''));
 
 
 
