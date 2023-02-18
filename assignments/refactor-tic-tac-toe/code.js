@@ -42,8 +42,8 @@ const checkIfWinner = () => {
   // Check if there's a winner already.
   for (let i = 0; i < lines.length; i++) {
     for (let j = 0; j < 3; j++) {
-      r = lines[i][j][0];
-      c = lines[i][j][1];
+      row = lines[i][j][0];
+      col = lines[i][j][1];
       m.push(board[r][c])
     }
     if (m[0] !== '' && m[0] === m[1] && m[0] === m[2]) {
