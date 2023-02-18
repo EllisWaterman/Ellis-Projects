@@ -80,7 +80,7 @@ drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
 
 registerOnclick((x, y) => {
   let winner = checkIfWinner()
-console.log('e')
+console.log(winner)
 
   let r = Math.floor((y - boardTop) / cellSize);
   let c = Math.floor((x - boardLeft) / cellSize);
