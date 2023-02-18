@@ -35,7 +35,22 @@ let move = 0;
 
 const board = new Array(3).fill('').map(() => new Array(3).fill(''));
 
-
+const checkIfWinner = () => {
+  let r;
+  let c;
+  let m = []
+  // Check if there's a winner already.
+  for (let i = 0; i < lines.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      r = lines[i][j][0];
+      c = lines[i][j][1];
+      m.push(board[r][c])
+    }
+    if (m[0] !== '' && m[0] === m[1] && m[0] === m[2]) {
+      return lines[i];
+    }
+  }
+}
 
 const lines = [
   // Rows
@@ -65,21 +80,7 @@ drawLine(boardLeft, y2, boardLeft + boardSize, y2, 'grey', 2);
 
 registerOnclick((x, y) => {
 
-  let winner = null;
-  let r;
-  let c;
-  let m = []
-  // Check if there's a winner already.
-  for (let i = 0; i < lines.length; i++) {
-    for (let j = 0; j < 3; j++) {
-      r = lines[i][j][0];
-      c = lines[i][j][1];
-      m.push(board[r][c])
-    }
-    if (m[0] !== '' && m[0] === m[1] && m[0] === m[2]) {
-      winner = lines[i];
-    }
-  }
+  let winner = checkIfWinner()
 
   r = Math.floor((y - boardTop) / cellSize);
   c = Math.floor((x - boardLeft) / cellSize);
