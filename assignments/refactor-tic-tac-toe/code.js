@@ -95,7 +95,7 @@ registerOnclick((x, y) => {
     const marker = move % 2 === 0 ? 'X' : 'O';
     const x = boardLeft + c * cellSize + cellSize / 2;
     const y = boardTop + r * cellSize + cellSize / 2;
-    const nudge = marker === 'O' ? cellSize / 9 : cellSize/19;
+    const nudge = marker === 'O' ? cellSize / 9 : cellSize / 19;
     drawText(marker, x - (fontSize * 0.3 + nudge), y + fontSize * 0.3, 'black', fontSize);
     board[r][c] = marker;
     move++;
