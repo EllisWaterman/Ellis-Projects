@@ -34,11 +34,11 @@ const lineEndAdjustment = cellSize * 0.7;
 let move = 0;
 
 const board = new Array(3).fill('').map(() => new Array(3).fill(''));
- let r;
-  let c;
-  let m = []
+
 const checkIfWinner = () => {
- 
+  let row;
+  let col;
+  let m = []
   // Check if there's a winner already.
   for (let i = 0; i < lines.length; i++) {
     for (let j = 0; j < 3; j++) {
