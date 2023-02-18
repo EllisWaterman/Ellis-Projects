@@ -42,13 +42,21 @@ div.card.hidden {
   display: none;
 }
 
-
-div.flashcard p {
-  text-align: center;
+div.flashcard {
+  margin: 2em;
+  background-color: white;
+  text-align: left;
+  width: 150px;
+  height: 100px;
 }
+
 
 div.flashcard div.edit a {
   text-align: right;
+}
+
+div.known {
+  background-color: green;
 }
 
 footer {
