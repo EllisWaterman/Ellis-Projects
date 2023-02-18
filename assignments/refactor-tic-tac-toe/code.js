@@ -54,9 +54,9 @@ const lines = [
 const checkIfWinner = () => {
   let row;
   let col;
-  let m = []
 
   for (let i = 0; i < lines.length; i++) {
+      let m = []
     for (let j = 0; j < 3; j++) {
       row = lines[i][j][0];
       col = lines[i][j][1];
