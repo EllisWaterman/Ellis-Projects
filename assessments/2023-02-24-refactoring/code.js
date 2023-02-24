@@ -1,5 +1,8 @@
-const drawPicture = (horizon, base, size) => {
 
+  drawPicture(height * 0.7, height * 0.9, height * 0.7);
+  const horizon = height * 0.7
+  const base = height * 0.9
+  const size = height * 0.8
   const drawBackground = () => {
     drawFilledRect(0, 0, width, horizon, '#ddeeff');
     drawFilledRect(0, horizon, width, height, 'white');
@@ -82,5 +85,5 @@ const drawPicture = (horizon, base, size) => {
     drawFilledCircle(x, buttY, buttRadius, 'white', 3);
   }
   drawButt(buttSize / 2)
-};
-drawPicture(height * 0.7, height * 0.9, height * 0.7);
+
+
