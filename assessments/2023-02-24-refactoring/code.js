@@ -8,13 +8,10 @@ const drawPicture = (horizon, base, size) => {
   drawBackground()
   // Draw the snowman
   const x = width / 2;
-  const getProportions = () => {
- let proportions = [3, 4, 5];
-  let [headP, torsoP, buttP] = proportions;
-  let total = proportions.reduce((tot, p) => tot + p, 0);
-  }
- 
-getProportions()
+  const proportions = [3, 4, 5];
+  const [headP, torsoP, buttP] = proportions;
+  const total = proportions.reduce((tot, p) => tot + p, 0);
+
   const headSize = size * (headP / total);
   const torsoSize = size * (torsoP / total)
   const buttSize = size * (buttP / total);
