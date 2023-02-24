@@ -32,25 +32,28 @@ const drawPicture = (horizon, base, size) => {
   drawEyes(headRadius * 0.25)
 
 
-const drawNose = (noseLength) => {
-  drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
-}
-drawNose(headRadius * 0.8)
-const drawMouth = () => {
-  for (let i = 0; i < 5; i++) {
-    const dy = -2 * (2.1 ** Math.abs(i - 2));
-    drawFilledCircle(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4, 'black');
+  const drawNose = (noseLength) => {
+    drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
   }
-}
-drawMouth()
-  // Draw the hat
-  const brimTop = headY - headRadius * 0.9;
-  const brimWidth = headRadius * 2.25;
-  const brimHeight = brimWidth * 0.08;
-  const hatWidth = brimWidth * 0.7;
-  const hatHeight = headRadius * 1.25;
-  drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
-  drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+  drawNose(headRadius * 0.8)
+  const drawMouth = () => {
+    for (let i = 0; i < 5; i++) {
+      const dy = -2 * (2.1 ** Math.abs(i - 2));
+      drawFilledCircle(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4, 'black');
+    }
+  }
+  drawMouth()
+  drawHat = (brimTop, brimWidth, hatHeight) => {
+  let brimHeight = brimWidth * 0.08;
+  let hatWidth = brimWidth * 0.7;
+    drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
+    drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+  }
+  drawMouth(headY - headRadius * 0.9,headRadius * 2.25,headRadius * 1.25)
+
+
+
+
 
   // Draw the torso
   const torsoRadius = torsoSize / 2;
