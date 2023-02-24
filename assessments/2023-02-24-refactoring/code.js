@@ -29,7 +29,7 @@ const drawEyes = (eyeSpacing) => {
   drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
   drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 }
-drawEyes((headSize/2) *.25)
+drawEyes(headSize/2 * 0.25)
 
 
   // Draw the nose
