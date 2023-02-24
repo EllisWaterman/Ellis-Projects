@@ -43,7 +43,7 @@ const drawPicture = (horizon, base, size) => {
     }
   }
   drawMouth()
-  drawHat = (brimTop, brimWidth, hatHeight) => {
+  const drawHat = (brimTop, brimWidth, hatHeight) => {
   let brimHeight = brimWidth * 0.08;
   let hatWidth = brimWidth * 0.7;
     drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
