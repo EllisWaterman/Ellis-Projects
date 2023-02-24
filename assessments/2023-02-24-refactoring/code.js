@@ -72,4 +72,4 @@ const drawPicture = (horizon, base, size) => {
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 };
 
-drawPicture(height * 0.7, height * 0.9, height * 0.7);
+drawPicture(height * 1, height * 0.9, height * 0.7);
