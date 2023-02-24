@@ -80,9 +80,10 @@ const drawButtons = () => {
   }
 }
 drawButtons()
-  // Draw the butt
-  const buttRadius = buttSize / 2;
+drawButt = (buttRadius) => {  
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
+}
+drawButt(buttSize / 2)
 };
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
