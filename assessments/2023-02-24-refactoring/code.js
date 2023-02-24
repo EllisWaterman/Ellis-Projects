@@ -20,11 +20,11 @@ drawBackground()
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 
-  // Draw the head
-  const headRadius = headSize / 2;
+drawHead = (headRadius) => {  
   drawCircle(x, headY, headRadius + 2, 'black', 3);
   drawFilledCircle(x, headY, headRadius, 'white', 3);
-
+}
+drawHead(headSize / 2)
 const drawEyes = (eyeSpacing) => {  
   drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
   drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
