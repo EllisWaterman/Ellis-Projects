@@ -53,14 +53,14 @@ const drawPicture = (horizon, base, size) => {
 
 
 
+  const torsoRadius = torsoSize / 2;
 
 
-const drawTorso = (torsoRadius) => {
-
+const drawTorso = () => {
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 }
-drawTorso(torsoSize / 2)
+drawTorso()
 
 
   // Draw the arms
