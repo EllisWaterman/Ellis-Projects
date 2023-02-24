@@ -1,11 +1,11 @@
 const drawPicture = (horizon, base, size) => {
 
-const drawBackground = () => {
-  drawFilledRect(0, 0, width, horizon, '#ddeeff');
-  drawFilledRect(0, horizon, width, height, 'white');
-  drawLine(0, horizon, width, horizon, '#bbb');
-}
-drawBackground()
+  const drawBackground = () => {
+    drawFilledRect(0, 0, width, horizon, '#ddeeff');
+    drawFilledRect(0, horizon, width, height, 'white');
+    drawLine(0, horizon, width, horizon, '#bbb');
+  }
+  drawBackground()
   // Draw the snowman
   const x = width / 2;
   const proportions = [3, 4, 5];
@@ -19,23 +19,23 @@ drawBackground()
   const headY = (base - size) + headSize / 2;
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
-const headRadius = headSize/2
-const drawHead = () => {  
-  drawCircle(x, headY, headRadius + 2, 'black', 3);
-  drawFilledCircle(x, headY, headRadius, 'white', 3);
-}
-drawHead()
-const drawEyes = (eyeSpacing) => {  
-  drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
-  drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
-}
-drawEyes(headRadius * 0.25)
+  const headRadius = headSize / 2
+  const drawHead = () => {
+    drawCircle(x, headY, headRadius + 2, 'black', 3);
+    drawFilledCircle(x, headY, headRadius, 'white', 3);
+  }
+  drawHead()
+  const drawEyes = (eyeSpacing) => {
+    drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
+    drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
+  }
+  drawEyes(headRadius * 0.25)
 
 
-  // Draw the nose
-  const noseLength = headRadius * 0.8;
+const drawNose = (noseLength) => {
   drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
-
+}
+drawNose(headRadius * 0.8)
   // Draw the mouth
   for (let i = 0; i < 5; i++) {
     const dy = -2 * (2.1 ** Math.abs(i - 2));
