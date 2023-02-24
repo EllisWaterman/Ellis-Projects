@@ -13,6 +13,7 @@ const drawPicture = (horizon, base, size) => {
   const total = proportions.reduce((tot, p) => tot + p, 0);
 
   const headSize = size * (headP / total);
+  const torsoSize = size * (torsoP / total)
   const buttSize = size * (buttP / total);
 
   const headY = (base - size) + headSize / 2;
@@ -55,12 +56,11 @@ const drawPicture = (horizon, base, size) => {
   const torsoRadius = torsoSize / 2;
 
 
-const drawTorso = (torsoSize) => {
+const drawTorso = () => {
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 }
-drawTorso(size * (torsoP / total))
-
+drawTorso()
 
 
 const drawArms = (x1, x2) => {  
