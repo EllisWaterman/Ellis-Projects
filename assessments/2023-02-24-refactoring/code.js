@@ -71,5 +71,5 @@ const drawEyes = () => {
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 };
-
+drawEyes()
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
