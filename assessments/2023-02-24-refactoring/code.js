@@ -80,7 +80,7 @@ const drawButtons = () => {
   }
 }
 drawButtons()
-drawButt = (buttRadius) => {  
+const drawButt = (buttRadius) => {  
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }
