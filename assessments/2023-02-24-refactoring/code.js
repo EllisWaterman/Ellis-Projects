@@ -49,7 +49,7 @@ const drawPicture = (horizon, base, size) => {
     drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
     drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
   }
-  drawMouth(headY - headRadius * 0.9,headRadius * 2.25,headRadius * 1.25)
+  drawHat(headY - headRadius * 0.9,headRadius * 2.25,headRadius * 1.25)
 
 
 
