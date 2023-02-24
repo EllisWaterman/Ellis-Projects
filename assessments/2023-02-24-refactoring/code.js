@@ -41,14 +41,12 @@ drawEyes(headRadius * 0.25)
     drawFilledCircle(x - (i - 2.3) * headRadius * 0.21, headY + headRadius * 0.65 + dy, 4, 'black');
   }
 
-  // Draw the hat
-  const brimTop = headY - headRadius * 0.9;
-  const brimWidth = headRadius * 2.25;
-  const brimHeight = brimWidth * 0.08;
-  const hatWidth = brimWidth * 0.7;
-  const hatHeight = headRadius * 1.25;
+const drawHat = (brimTop,brimWidth,brimHeight,hatWidth,hatHeight) => {
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
+ }
+ drawHat(headY - headRadius * 0.9, headRadius * 2.25, brimWidth * 0.08, brimWidth * 0.7, headRadius * 1.25) 
+  
 
   // Draw the torso
   const torsoRadius = torsoSize / 2;
