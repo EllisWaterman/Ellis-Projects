@@ -5,7 +5,7 @@ const drawBackround = () => {
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
 }
-drawBackground()
+drawBackround()
   // Draw the snowman
   const x = width / 2;
   const proportions = [3, 4, 5];
