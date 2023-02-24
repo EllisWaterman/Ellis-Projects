@@ -19,17 +19,17 @@ drawBackground()
   const headY = (base - size) + headSize / 2;
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
-
-const drawHead = (headRadius) => {  
+const headRadius = headSize/2
+const drawHead = () => {  
   drawCircle(x, headY, headRadius + 2, 'black', 3);
   drawFilledCircle(x, headY, headRadius, 'white', 3);
 }
-drawHead(headSize / 2)
+drawHead()
 const drawEyes = (eyeSpacing) => {  
   drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
   drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 }
-drawEyes(headSize/2 * 0.25)
+drawEyes(headRadius * 0.25)
 
 
   // Draw the nose
