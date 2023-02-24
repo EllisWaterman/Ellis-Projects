@@ -1,5 +1,3 @@
-
-  drawPicture(height * 0.7, height * 0.9, height * 0.7);
   const horizon = height * 0.7
   const base = height * 0.9
   const size = height * 0.8
