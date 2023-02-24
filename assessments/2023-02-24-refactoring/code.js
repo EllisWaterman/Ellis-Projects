@@ -1,10 +1,11 @@
 const drawPicture = (horizon, base, size) => {
 
-  // Draw the background
+const drawBackround = () => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
-
+}
+drawBackground()
   // Draw the snowman
   const x = width / 2;
   const proportions = [3, 4, 5];
