@@ -63,13 +63,16 @@ const drawTorso = () => {
 drawTorso()
 
 
-  // Draw the arms
-  let x1 = x + torsoRadius * 0.6;
-  let x2 = x + torsoRadius * 2.35;
+const drawArms = (x1, x2) => {  
   drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
   x1 = x + torsoRadius * 0.6 * -1;
   x2 = x + torsoRadius * 2.35 * -1;
   drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
+}
+drawArms( x + torsoRadius * 0.6,x + torsoRadius * 2.35);
+
+
+  
 
   // Draw the buttons
   for (let i = 0; i < 3; i++) {
