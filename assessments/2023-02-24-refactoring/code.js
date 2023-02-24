@@ -29,6 +29,8 @@ const drawEyes = () => {
   drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
   drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 }
+drawEyes()
+
   // Draw the nose
   const noseLength = headRadius * 0.8;
   drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
@@ -71,5 +73,4 @@ const drawEyes = () => {
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 };
-drawEyes()
 drawPicture(height * 0.7, height * 0.9, height * 0.7);
