@@ -74,11 +74,10 @@ drawArms( x + torsoRadius * 0.6,x + torsoRadius * 2.35);
 
   
 
-  // Draw the buttons
-  for (let i = 0; i < 3; i++) {
+drawButtons = () => {  for (let i = 0; i < 3; i++) {
     drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
   }
-
+}
   // Draw the butt
   const buttRadius = buttSize / 2;
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
