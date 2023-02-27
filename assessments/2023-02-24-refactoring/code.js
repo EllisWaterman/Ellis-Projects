@@ -25,13 +25,13 @@ const torsoRadius = torsoSize / 2;
 
 const drawHead = (headY) => {
   const headRadius = headSize / 2
-  drawHeadCircle(headY)
+  drawHeadCircle(headY,headRadius)
   drawEyes(headRadius * 0.25)
   drawNose(headRadius * 0.8)
   drawMouth()
   drawHat(headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
 }
-const drawHeadCircle = (headY) => {
+const drawHeadCircle = (headY,headRadius) => {
   drawCircle(x, headY, headRadius + 2, 'black', 3);
   drawFilledCircle(x, headY, headRadius, 'white', 3);
 }
