@@ -21,7 +21,6 @@ const headSize = size * (headP / total);
 const torsoSize = size * (torsoP / total)
 const buttSize = size * (buttP / total);
 
-const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 const torsoRadius = torsoSize / 2;
 
 const drawHead = (headY) => {
@@ -58,9 +57,12 @@ const drawHat = (brimTop, brimWidth, hatHeight) => {
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 }
 const drawTorso = (headY) => {
-const torsoY = headY + headSize / 2 + torsoSize / 2;
+  const torsoY = headY + headSize / 2 + torsoSize / 2;
 
-drawTorsoCircle()
+  drawTorsoCircle()
+  drawButtons()
+  drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35);
+
 }
 const drawTorsoCircle = () => {
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
@@ -74,7 +76,6 @@ const drawArms = (x1, x2) => {
   x2 = x + torsoRadius * 2.35 * -1;
   drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
 }
-drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35);
 
 
 
@@ -84,8 +85,11 @@ const drawButtons = () => {
     drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
   }
 }
-drawButtons()
-const drawButt = (buttRadius) => {
+const drawButt = () => {
+  drawButtCircle()
+}
+const drawButtCircle = (buttRadius) => {
+  const buttY = torsoY + torsoSize / 2 + buttSize / 2;
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }
