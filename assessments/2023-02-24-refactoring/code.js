@@ -21,7 +21,6 @@ const headSize = size * (headP / total);
 const torsoSize = size * (torsoP / total)
 const buttSize = size * (buttP / total);
 
-const torsoRadius = torsoSize / 2;
 
 const drawHead = (headY) => {
   const headRadius = headSize / 2
@@ -57,13 +56,14 @@ const drawHat = (brimTop, brimWidth, hatHeight) => {
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 }
 const drawTorso = (headY) => {
+  const torsoRadius = torsoSize / 2;
   const torsoY = headY + headSize / 2 + torsoSize / 2;
-  drawTorsoCircle()
+  drawTorsoCircle(x,torsoY,torsoRadius)
   drawButtons()
   drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35);
 
 }
-const drawTorsoCircle = () => {
+const drawTorsoCircle = (x,torsoY,torsoRadius) => {
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 }
