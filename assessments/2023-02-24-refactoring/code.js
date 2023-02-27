@@ -60,7 +60,7 @@ const drawTorso = (headY) => {
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   drawTorsoCircle(x,torsoY,torsoRadius)
   drawButtons(x,torsoY,torsoRadius)
-  drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35);
+  drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35,x1, x2,torsoY,torsoRadius);
 
 }
 const drawTorsoCircle = (x,torsoY,torsoRadius) => {
@@ -69,7 +69,7 @@ const drawTorsoCircle = (x,torsoY,torsoRadius) => {
 }
 
 
-const drawArms = (x1, x2) => {
+const drawArms = (x1, x2,torsoY,torsoRadius) => {
   drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
   x1 = x + torsoRadius * 0.6 * -1;
   x2 = x + torsoRadius * 2.35 * -1;
