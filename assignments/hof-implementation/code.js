@@ -2,7 +2,7 @@
 
 const filter = (predicate, array) => {
 if (predicate = array) {
-  return array
+  return predicate
 }
 };
 
