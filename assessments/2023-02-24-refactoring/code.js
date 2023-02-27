@@ -12,11 +12,7 @@ const drawBackground = () => {
 drawBackground()
 
 
-const drawSnowman = () => {
-  drawHead()
 
-}
-drawSnowman()
 const x = width / 2;
 const proportions = [3, 4, 5];
 const [headP, torsoP, buttP] = proportions;
@@ -96,3 +92,8 @@ const drawButt = (buttRadius) => {
 drawButt(buttSize / 2)
 
 
+const drawSnowman = () => {
+  drawHead()
+
+}
+drawSnowman()
