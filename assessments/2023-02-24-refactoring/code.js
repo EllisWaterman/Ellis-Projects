@@ -58,7 +58,6 @@ const drawHat = (brimTop, brimWidth, hatHeight) => {
 }
 const drawTorso = (headY) => {
   const torsoY = headY + headSize / 2 + torsoSize / 2;
-
   drawTorsoCircle()
   drawButtons()
   drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35);
@@ -86,14 +85,14 @@ const drawButtons = () => {
   }
 }
 const drawButt = () => {
-  drawButtCircle()
+  drawButtCircle(buttSize / 2, torsoY)
 }
-const drawButtCircle = (buttRadius) => {
+const drawButtCircle = (buttRadius,torsoY) => {
   const buttY = torsoY + torsoSize / 2 + buttSize / 2;
   drawCircle(x, buttY, buttRadius + 2, 'black', 3);
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }
-drawButt(buttSize / 2)
+
 
 
 const drawSnowman = () => {
