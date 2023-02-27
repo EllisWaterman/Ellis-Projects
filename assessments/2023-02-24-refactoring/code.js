@@ -1,4 +1,4 @@
-  const base = height * 1
+  const base = height * .9
   const size = height * 0.8
   
   const drawBackground = () => {
