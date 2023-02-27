@@ -3,7 +3,7 @@
 const filter = (predicate, array) => {
     let returnArray = []
 for(let i = 0; i < array.length; i++) {
-  if(array[i] === predicate) {
+  if(array[i] = predicate) {
     returnArray.push(array[i])
   }
 }
