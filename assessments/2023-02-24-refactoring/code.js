@@ -9,7 +9,6 @@ const drawBackground = () => {
   drawLine(0, horizon, width, horizon, '#bbb');
 }
 
-drawBackground()
 
 
 
@@ -96,4 +95,5 @@ const drawSnowman = () => {
   drawHead()
 
 }
+drawBackground()
 drawSnowman()
