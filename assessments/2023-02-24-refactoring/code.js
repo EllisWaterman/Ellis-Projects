@@ -27,7 +27,7 @@ const drawHead = (headY) => {
   const headRadius = headSize / 2
   drawHeadCircle(headY,headRadius)
   drawEyes(headRadius * 0.25,headY)
-  drawNose(headRadius * 0.8)
+  drawNose(headRadius * 0.8,headY)
   drawMouth()
   drawHat(headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
 }
@@ -41,7 +41,7 @@ const drawEyes = (eyeSpacing,headY) => {
 }
 
 
-const drawNose = (noseLength) => {
+const drawNose = (noseLength,headY) => {
   drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
 }
 const drawMouth = () => {
