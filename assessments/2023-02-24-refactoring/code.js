@@ -84,7 +84,7 @@ const drawButtons = (x,torsoY,torsoRadius) => {
     drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
   }
 }
-const drawButt = () => {
+const drawButt = (torsoY) => {
   drawButtCircle(buttSize / 2, torsoY)
 }
 const drawButtCircle = (buttRadius,torsoY) => {
@@ -99,7 +99,7 @@ const drawSnowman = () => {
   const headY = (base - size) + headSize / 2;
   drawHead(headY)
   drawTorso(headY)
-drawButt()
+drawButt(torsoY)
 }
 drawBackground()
 drawSnowman()
