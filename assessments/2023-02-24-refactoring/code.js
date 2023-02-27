@@ -99,7 +99,7 @@ const drawSnowman = () => {
   const headY = (base - size) + headSize / 2;
   drawHead(headY)
   drawTorso(headY)
-
+drawButt()
 }
 drawBackground()
 drawSnowman()
