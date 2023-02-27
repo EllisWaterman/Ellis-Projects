@@ -1,9 +1,9 @@
 const base = height * 0.9
 const size = height * 0.8
 const x = width / 2;
-const headSize;
-const torsoSize;
-const buttSize;
+let headSize;
+let torsoSize;
+let buttSize;
 
 const drawBackground = () => {
   const horizon = height * 0.7
