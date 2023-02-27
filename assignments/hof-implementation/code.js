@@ -23,7 +23,7 @@ const flatMap = (fn, array) => {
 
 const reduce = (fn, initialValue, array) => {
   for(let i = 0; i < array.length; i++) {
-    console.log(fn(initialValue))
+    console.log(fn(array[i]))
   }
 };
 
