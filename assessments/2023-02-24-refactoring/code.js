@@ -21,12 +21,10 @@ const headSize = size * (headP / total);
 const torsoSize = size * (torsoP / total)
 const buttSize = size * (buttP / total);
 
-const torsoY = headY + headSize / 2 + torsoSize / 2;
 const buttY = torsoY + torsoSize / 2 + buttSize / 2;
 const torsoRadius = torsoSize / 2;
 
-const drawHead = () => {
-  const headY = (base - size) + headSize / 2;
+const drawHead = (headY) => {
   const headRadius = headSize / 2
   drawHeadCircle()
   drawEyes(headRadius * 0.25)
@@ -59,12 +57,15 @@ const drawHat = (brimTop, brimWidth, hatHeight) => {
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 }
+const drawTorso = (headY) => {
+const torsoY = headY + headSize / 2 + torsoSize / 2;
 
-const drawTorso = () => {
+drawTorsoCircle()
+}
+const drawTorsoCircle = () => {
   drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
   drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
 }
-drawTorso()
 
 
 const drawArms = (x1, x2) => {
@@ -92,7 +93,9 @@ drawButt(buttSize / 2)
 
 
 const drawSnowman = () => {
-  drawHead()
+  const headY = (base - size) + headSize / 2;
+  drawHead(headY)
+  drawTorso(headY)
 
 }
 drawBackground()
