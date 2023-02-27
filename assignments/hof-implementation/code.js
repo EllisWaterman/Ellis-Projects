@@ -1,8 +1,8 @@
 // N.B. Do not use the array methods of the same name to implement these functions!
 
 const filter = (predicate, array) => {
-if (predicate = array) {
-  return array
+for(let i = 0; i < array.length; i++;) {
+  
 }
 };
 
