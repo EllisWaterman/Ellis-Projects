@@ -1,7 +1,9 @@
 // N.B. Do not use the array methods of the same name to implement these functions!
 
 const filter = (predicate, array) => {
-  predicate, array.
+if (predicate = array) {
+  return true
+}
 };
 
 const map = (fn, array) => {
