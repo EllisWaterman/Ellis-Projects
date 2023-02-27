@@ -96,8 +96,9 @@ const drawButtCircle = (buttRadius, torsoY) => {
 
 
 const drawSnowman = () => {
-  const torsoY = headY + headSize / 2 + torsoSize / 2;
   const headY = (base - size) + headSize / 2;
+    const torsoY = headY + headSize / 2 + torsoSize / 2;
+
   drawHead(headY)
   drawTorso(headY,torsoY)
   drawButt(torsoY)
