@@ -2,7 +2,9 @@
 
 const filter = (predicate, array) => {
 for(let i = 0; i < array.length; i++) {
-return predicate
+  if(array[i] === predicate) {
+    return array[i]
+  }
 }
 };
 
