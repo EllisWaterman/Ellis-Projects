@@ -13,7 +13,7 @@ const filter = (predicate, array) => {
 const map = (fn, array) => {
   let returnArray = []
   for (let i = 0; i < array.length; i++) {
-    return array.push(fn(array[i]))
+    returnArray.push(fn(array[i]))
   }
   return returnArray
 };
