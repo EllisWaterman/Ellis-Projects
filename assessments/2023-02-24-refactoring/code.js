@@ -21,9 +21,6 @@ const proportionator = () => {
   buttSize = size * (buttP / total);
 }
 
-
-
-
 const drawHead = (headY) => {
   const headRadius = headSize / 2
   drawHeadCircle(headY, headRadius)
@@ -104,5 +101,7 @@ const drawSnowman = () => {
   drawTorso(headY, torsoY)
   drawButt(torsoY)
 }
+
+proportionator()
 drawBackground()
 drawSnowman()
