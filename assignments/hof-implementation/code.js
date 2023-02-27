@@ -22,9 +22,11 @@ const flatMap = (fn, array) => {
 };
 
 const reduce = (fn, initialValue, array) => {
-  for(let i = 0; i < array.length; i++) {
-    console.log(fn(array[i]))
+  let returnArray = []
+  for (let i = 0; i < array.length; i++) {
+    returnArray.push(fn(array[i]))
   }
+  return returnArray
 };
 
 const every = (predicate, array) => {
