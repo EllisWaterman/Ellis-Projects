@@ -1,25 +1,27 @@
 const base = height * 0.9
 const size = height * 0.8
+const x = width / 2;
+const headSize;
+const torsoSize;
+const buttSize;
 
 const drawBackground = () => {
   const horizon = height * 0.7
-
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
 }
 
+const proportionator = () => {
+  const proportions = [3, 4, 5];
+  const [headP, torsoP, buttP] = proportions;
+  const total = proportions.reduce((tot, p) => tot + p, 0);
+  headSize = size * (headP / total);
+  torsoSize = size * (torsoP / total)
+  buttSize = size * (buttP / total);
+}
 
 
-
-const x = width / 2;
-const proportions = [3, 4, 5];
-const [headP, torsoP, buttP] = proportions;
-const total = proportions.reduce((tot, p) => tot + p, 0);
-
-const headSize = size * (headP / total);
-const torsoSize = size * (torsoP / total)
-const buttSize = size * (buttP / total);
 
 
 const drawHead = (headY) => {
@@ -55,9 +57,9 @@ const drawHat = (brimTop, brimWidth, hatHeight) => {
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 }
-const drawTorso = (headY,torsoY) => {
+const drawTorso = (headY, torsoY) => {
   const torsoRadius = torsoSize / 2;
-  
+
   drawTorsoCircle(x, torsoY, torsoRadius)
   drawButtons(x, torsoY, torsoRadius)
   drawArms(x + torsoRadius * 0.6, x + torsoRadius * 2.35, torsoY, torsoRadius);
@@ -97,10 +99,9 @@ const drawButtCircle = (buttRadius, torsoY) => {
 
 const drawSnowman = () => {
   const headY = (base - size) + headSize / 2;
-    const torsoY = headY + headSize / 2 + torsoSize / 2;
-
+  const torsoY = headY + headSize / 2 + torsoSize / 2;
   drawHead(headY)
-  drawTorso(headY,torsoY)
+  drawTorso(headY, torsoY)
   drawButt(torsoY)
 }
 drawBackground()
