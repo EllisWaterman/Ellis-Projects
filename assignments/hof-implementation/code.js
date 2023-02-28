@@ -39,7 +39,7 @@ const reduce = (fn, initialValue, array) => {
 const every = (predicate, array) => {
   let answer = true
   for (let i = 0; i < array.length; i++) {
-    if(predicate(array[i]))
+    if(!predicate(array[i]))
    answer = false
   }
   return answer
