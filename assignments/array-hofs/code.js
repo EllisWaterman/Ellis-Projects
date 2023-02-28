@@ -1,4 +1,4 @@
 const evens = (array) => {
-  array.filter(() => n % 2 === 0)
+  array.filter((n) => n % 2 === 0)
   return array
 }
