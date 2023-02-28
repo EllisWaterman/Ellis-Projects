@@ -21,14 +21,13 @@ const map = (fn, array) => {
 const flatMap = (fn, array) => {
   let returnArray = []
   for (let i = 0; i < array.length; i++) {
-    console.log( fn(array[i]))
+    console.log( fn(array[i][0]))
     returnArray.push(a)
   }
   return returnArray
 };
 
 const reduce = (fn, initialValue, array) => {
-  let returnArray = []
   for (let i = 0; i < array.length; i++) {
     initialValue = fn(initialValue, array[i])
   }
