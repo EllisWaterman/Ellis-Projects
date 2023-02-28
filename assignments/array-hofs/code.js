@@ -3,5 +3,5 @@ const evens = (array) => {
 }
 
 const odds = (array) => {
-  return array.filter((n) => n % 2 === 1)
+  return array.filter((n) => n % 2 !== 0)
 }
