@@ -33,7 +33,7 @@ const reduce = (fn, initialValue, array) => {
   for (let i = 0; i < array.length; i++) {
     initialValue = fn(initialValue, array[i])
   }
-  return returnArray
+  return initialValue
 };
 
 const every = (predicate, array) => {
