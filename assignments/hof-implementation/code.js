@@ -22,11 +22,11 @@ const flatMap = (fn, array) => {
   let returnArray = []
   for (let i = 0; i < array.length; i++) {
     let a = fn(array[i])
+  }
     for (let j = 0; j < array.length; j++) {
-      
       returnArray.push(a[j])
     }
-  }
+  
   return returnArray
 };
 
