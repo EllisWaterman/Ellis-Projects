@@ -9,3 +9,7 @@ const odds = (array) => {
 const big = (array) => {
   return array.filter((n) => n > 100)
 }
+
+const names = (array) => {
+  return
+}
