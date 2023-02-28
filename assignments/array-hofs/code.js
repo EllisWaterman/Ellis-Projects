@@ -1,5 +1,5 @@
 const evens = (array) => {
-  let returnArray = []
-  returnArray = array.filter((n) => n % 2 === 0)
-  return returnArray
+  return array.filter((n) => n % 2 === 0)
 }
+
+const odds = (array)
