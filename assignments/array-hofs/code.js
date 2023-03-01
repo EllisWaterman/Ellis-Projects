@@ -51,4 +51,5 @@ const lengthOfNames = (array) => {
   for(let i = 0; i<newArray.length; i++) {
     result.push(newArray[i].length)
   }
+  return result
 }
