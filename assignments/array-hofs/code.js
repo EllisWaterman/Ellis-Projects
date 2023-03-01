@@ -35,5 +35,8 @@ const averageGrade = (array) => {
 
 const flatpairs = (array) => {
     return array.flatMap((n) => [n,n])
+}
 
+const allEven = (array) => {
+  return array.every((n) => n % 2 === 0)
 }
