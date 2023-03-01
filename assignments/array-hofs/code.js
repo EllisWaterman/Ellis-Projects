@@ -34,6 +34,6 @@ const averageGrade = (array) => {
 }
 
 const flatpairs = (array) => {
-    return array.flatmap((n) => [n,n])
+    return array.flatMap((n) => [n,n])
 
 }
