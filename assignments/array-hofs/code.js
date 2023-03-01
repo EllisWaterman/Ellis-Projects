@@ -22,6 +22,6 @@ const pairs = (array) => {
   return array.map((n) => [n,n])
 }
 
-const avarageGrade = (array) => {
+const averageGrade = (array) => {
   return
 }
