@@ -15,5 +15,5 @@ const names = (array) => {
 }
 
 const grades = (array) => {
-  return
+  return array.map((n) => n.grade)
 }
