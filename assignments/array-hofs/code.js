@@ -28,6 +28,7 @@ const averageGrade = (array) => {
   for(let i = 0; i< newArray; i++) {
     console.log(newArray)
     result + newArray[i]
+    result/i
   }
   return result
 }
