@@ -40,7 +40,7 @@ const every = (predicate, array) => {
   let answer = true
   for (let i = 0; i < array.length; i++) {
     if(!predicate(array[i]))
-   answer = false
+   return false
   }
   return answer
 };
