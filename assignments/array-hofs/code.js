@@ -19,5 +19,5 @@ const grades = (array) => {
 }
 
 const pairs = (array) => {
-  return
+  return array.map((n) => n,n)
 }
