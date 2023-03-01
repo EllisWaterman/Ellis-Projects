@@ -46,5 +46,9 @@ const someEven = (array) => {
 }
 
 const lengthOfNames = (array) => {
-  return array.filter((n) => n[0].toUpperCase().length === n[0].length)
+  let result = []
+  let newArray = array.filter((n) => n[0].toUpperCase() === n[0])
+  for(let i = 0; i<newArray.length; i++) {
+    result.push(newArray[i].length)
+  }
 }
