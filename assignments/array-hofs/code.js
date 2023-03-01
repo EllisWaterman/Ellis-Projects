@@ -24,6 +24,9 @@ const pairs = (array) => {
 
 const averageGrade = (array) => {
   let result = 0
-  result + array.map((n) => n.grade)
+  let newArray = array.map((n) => n.grade)
+  for(let i = 0; i< newArray; i++) {
+    result + newArray[i]
+  }
   return result
 }
