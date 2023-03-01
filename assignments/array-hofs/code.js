@@ -13,3 +13,7 @@ const big = (array) => {
 const names = (array) => {
   return array.map((n) => n.name)
 }
+
+const grades = (array) => {
+  return
+}
