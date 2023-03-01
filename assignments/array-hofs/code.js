@@ -11,5 +11,5 @@ const big = (array) => {
 }
 
 const names = (array) => {
-  return
+  return array.filter((n) => n.name)
 }
