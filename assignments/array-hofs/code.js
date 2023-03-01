@@ -26,7 +26,7 @@ const averageGrade = (array) => {
   let result = 0
   let newArray = array.map((n) => n.grade)
   for(let i = 0; i< newArray; i++) {
-    console.log(result)
+    console.log(newArray)
     result + newArray[i]
   }
   return result
