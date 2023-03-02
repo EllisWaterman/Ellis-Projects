@@ -103,7 +103,7 @@ const drawSnowman = () => {
 }
 
 proportionator()
-drawBackground()
+drawBackground(horizon)
 drawSnowman()
 }
 drawPicture(height * 0.7)
