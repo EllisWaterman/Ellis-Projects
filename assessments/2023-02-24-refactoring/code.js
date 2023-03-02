@@ -54,7 +54,7 @@ const drawHat = (brimTop, brimWidth, hatHeight) => {
   drawFilledRect(x - brimWidth / 2, brimTop, brimWidth, brimHeight, 'black');
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 }
-const drawTorso = (headY, torsoY) => {
+const drawTorso = (torsoY) => {
   const torsoRadius = torsoSize / 2;
 
   drawTorsoCircle(x, torsoY, torsoRadius)
