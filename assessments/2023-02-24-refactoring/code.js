@@ -1,4 +1,4 @@
-const drawPicture = () => {
+const drawPicture = (horizon) => {
 const base = height * 0.9
 const size = height * 0.8
 const x = width / 2;
@@ -6,8 +6,7 @@ let headSize;
 let torsoSize;
 let buttSize;
 
-const drawBackground = () => {
-  const horizon = height * 0.7
+const drawBackground = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
   drawLine(0, horizon, width, horizon, '#bbb');
@@ -107,4 +106,4 @@ proportionator()
 drawBackground()
 drawSnowman()
 }
-drawPicture()
+drawPicture(height * 0.7)
