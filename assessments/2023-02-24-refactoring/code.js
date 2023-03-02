@@ -21,7 +21,7 @@ const proportionator = () => {
   buttSize = size * (buttP / total);
 }
 
-const drawHead = (headY) => {Aaa
+const drawHead = (headY) => {
   const headRadius = headSize / 2
   drawHeadCircle(headY, headRadius)
   drawEyes(headRadius * 0.25, headY)
