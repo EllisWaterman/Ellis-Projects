@@ -107,3 +107,4 @@ proportionator()
 drawBackground()
 drawSnowman()
 }
+drawPicture()
