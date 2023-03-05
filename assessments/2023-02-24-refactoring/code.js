@@ -13,7 +13,7 @@ const drawSnowball = (x,y, radius) => {
   drawFilledCircle(x, y, radius, 'white', 3);
 }
 
-const drawHead = (headY,headSize) => {
+const drawHead = (x,headY,headSize) => {
   const headRadius = headSize / 2
   drawSnowball(x,headY, headRadius)
   drawEyes(headRadius * 0.25, headY)
@@ -80,7 +80,7 @@ const drawSnowman = (x,base,size) => {
 
   const headY = (base - size) + headSize / 2;
   const torsoY = headY + headSize / 2 + torsoSize / 2;
-  drawHead(headY,headSize)
+  drawHead(x,headY,headSize)
   drawTorso(torsoY)
   drawSnowball(x,torsoY + torsoSize / 2 + buttSize / 2, buttSize / 2)
 }
