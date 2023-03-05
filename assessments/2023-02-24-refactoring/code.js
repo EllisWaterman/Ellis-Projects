@@ -47,7 +47,7 @@ const drawHat = (x, brimTop, brimWidth, hatHeight) => {
 
 const drawTorso = (x, torsoY, torsoSize) => {
   const torsoRadius = torsoSize / 2;
-  drawSnowball(torsoY, torsoRadius)
+  drawSnowball(x,torsoY, torsoRadius)
   drawButtons(x, torsoY, torsoRadius)
   drawArm(x, torsoRadius, torsoY, 1)
   drawArm(x, torsoRadius, torsoY, -1)
