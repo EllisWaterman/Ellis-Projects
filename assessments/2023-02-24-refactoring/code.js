@@ -69,8 +69,8 @@ const drawTorsoCircle = (x, torsoY, torsoRadius) => {
 }
 
 const drawArm = (x,torsoRadius,torsoY,sign) => {
-  x1 = x + torsoRadius * 0.6 * sign;
-  x2 = x + torsoRadius * 2.35 * sign;
+  let x1 = x + torsoRadius * 0.6 * sign;
+  let x2 = x + torsoRadius * 2.35 * sign;
   drawLine(x1, torsoY - torsoRadius * 0.25, x2, torsoY - torsoRadius * 0.85, 'black', 3);
 }
 
