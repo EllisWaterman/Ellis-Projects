@@ -63,6 +63,7 @@ const drawPicture = (horizon, base, size) => {
     drawArm(x, torsoRadius, torsoY, -1)
   }
 
+
   const drawArm = (x, torsoRadius, torsoY, sign) => {
     let x1 = x + torsoRadius * 0.6 * sign;
     let x2 = x + torsoRadius * 2.35 * sign;
@@ -75,9 +76,6 @@ const drawPicture = (horizon, base, size) => {
     }
   }
 
-  const drawButt = (torsoY) => {
-    drawSnowball(buttY, torsoY)
-  }
 
   const drawButtCircle = (buttRadius, torsoY) => {
     const buttY = torsoY + torsoSize / 2 + buttSize / 2;
@@ -90,7 +88,7 @@ const drawPicture = (horizon, base, size) => {
     const torsoY = headY + headSize / 2 + torsoSize / 2;
     drawHead(headY)
     drawTorso(torsoY)
-    drawButt(torsoY)
+    drawSnowball(buttSize / 2, torsoY)
   }
   proportionator()
   drawBackground(horizon)
