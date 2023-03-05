@@ -45,7 +45,7 @@ const drawHat = (x,brimTop, brimWidth, hatHeight) => {
   drawFilledRect(x - hatWidth / 2, brimTop - hatHeight, hatWidth, hatHeight, 'black');
 }
 
-const drawTorso = (torsoY) => {
+const drawTorso = (x,torsoY) => {
   const torsoRadius = torsoSize / 2;
   drawSnowball(torsoY, torsoRadius)
   drawButtons(x, torsoY, torsoRadius)
