@@ -78,7 +78,6 @@ const drawPicture = (horizon, base, size) => {
 
 
   const drawButtCircle = (buttRadius, torsoY) => {
-    const buttY = torsoY + torsoSize / 2 + buttSize / 2;
     drawCircle(x, buttY, buttRadius + 2, 'black', 3);
     drawFilledCircle(x, buttY, buttRadius, 'white', 3);
   }
@@ -88,7 +87,9 @@ const drawPicture = (horizon, base, size) => {
     const torsoY = headY + headSize / 2 + torsoSize / 2;
     drawHead(headY)
     drawTorso(torsoY)
-    drawSnowball(buttSize / 2, torsoY)
+        const buttY = ;
+
+    drawSnowball(torsoY + torsoSize / 2 + buttSize / 2,buttSize / 2)
   }
   proportionator()
   drawBackground(horizon)
