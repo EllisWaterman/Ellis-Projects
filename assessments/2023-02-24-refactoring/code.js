@@ -27,7 +27,7 @@ const drawEyes = (x,eyeSpacing, headY) => {
   drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 }
 
-const drawNose = (noseLength, headY) => {
+const drawNose = (x,noseLength, headY) => {
   drawFilledTriangle(x, headY, x + noseLength, headY + noseLength * 0.2, x, headY + noseLength * 0.3, 'orange');
 }
 
