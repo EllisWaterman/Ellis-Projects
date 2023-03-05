@@ -81,7 +81,7 @@ const drawSnowman = (x,base,size) => {
   const headY = (base - size) + headSize / 2;
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   drawHead(x,headY,headSize)
-  drawTorso(torsoY)
+  drawTorso(x,torsoY)
   drawSnowball(x,torsoY + torsoSize / 2 + buttSize / 2, buttSize / 2)
 }
 
