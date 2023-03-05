@@ -1,6 +1,5 @@
 const drawPicture = (horizon, base, size) => {
   const x = width / 2;
-  proportionator(size)
   drawBackground(horizon)
   drawSnowman()
 }
