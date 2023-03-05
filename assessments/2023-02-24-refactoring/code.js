@@ -10,7 +10,7 @@ const drawPicture = (horizon, base, size) => {
     drawLine(0, horizon, width, horizon, '#bbb');
   }
 
-  const drawSnowball = (x, y, radius) => {
+  const drawSnowball = (y, radius) => {
     drawCircle(x, y, radius + 2, 'black', 3);
     drawFilledCircle(x, y, radius, 'white', 3);
   }
