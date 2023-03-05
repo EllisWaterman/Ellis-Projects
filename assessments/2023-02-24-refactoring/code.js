@@ -2,6 +2,7 @@ const drawPicture = (horizon, base, size) => {
   drawBackground(horizon)
   drawSnowman(width / 2, base, size)
 }
+
 const drawBackground = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
   drawFilledRect(0, horizon, width, height, 'white');
@@ -16,10 +17,10 @@ const drawSnowball = (x, y, radius) => {
 const drawHead = (x, headY, headSize) => {
   const headRadius = headSize / 2
   drawSnowball(x, headY, headRadius)
-  drawEyes(x,headRadius * 0.25, headY)
-  drawNose(x,headRadius * 0.8, headY)
-  drawMouth(x,headRadius, headY)
-  drawHat(x,headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
+  drawEyes(x, headRadius * 0.25, headY)
+  drawNose(x, headRadius * 0.8, headY)
+  drawMouth(x, headRadius, headY)
+  drawHat(x, headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
 }
 
 const drawEyes = (x, eyeSpacing, headY) => {
@@ -47,7 +48,7 @@ const drawHat = (x, brimTop, brimWidth, hatHeight) => {
 
 const drawTorso = (x, torsoY, torsoSize) => {
   const torsoRadius = torsoSize / 2;
-  drawSnowball(x,torsoY, torsoRadius)
+  drawSnowball(x, torsoY, torsoRadius)
   drawButtons(x, torsoY, torsoRadius)
   drawArm(x, torsoRadius, torsoY, 1)
   drawArm(x, torsoRadius, torsoY, -1)
@@ -80,5 +81,4 @@ const drawSnowman = (x, base, size) => {
   drawSnowball(x, torsoY + torsoSize / 2 + buttSize / 2, buttSize / 2)
 }
 
-
-drawPicture(height * 0.7, height*.94, height * 0.8)
+drawPicture(height * 0.7, height * .94, height * 0.8)
