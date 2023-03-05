@@ -63,11 +63,6 @@ const drawPicture = (horizon, base, size) => {
     drawArm(x, torsoRadius, torsoY, -1)
   }
 
-  const drawTorsoCircle = (x, torsoY, torsoRadius) => {
-    drawCircle(x, torsoY, torsoRadius + 2, 'black', 3);
-    drawFilledCircle(x, torsoY, torsoRadius, 'white', 3);
-  }
-
   const drawArm = (x, torsoRadius, torsoY, sign) => {
     let x1 = x + torsoRadius * 0.6 * sign;
     let x2 = x + torsoRadius * 2.35 * sign;
@@ -81,7 +76,7 @@ const drawPicture = (horizon, base, size) => {
   }
 
   const drawButt = (torsoY) => {
-    drawButtCircle(buttSize / 2, torsoY)
+    drawSnoball(buttSize / 2, torsoY)
   }
 
   const drawButtCircle = (buttRadius, torsoY) => {
