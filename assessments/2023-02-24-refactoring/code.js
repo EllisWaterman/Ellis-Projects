@@ -4,7 +4,7 @@ const drawPicture = (horizon, base, size) => {
   let torsoSize;
   let buttSize;
   proportionator()
-  drawBackground()
+  drawBackground(horizon)
   drawSnowman()
 }
   const drawBackground = (horizon) => {
