@@ -65,10 +65,6 @@ const drawButtons = (x, torsoY, torsoRadius) => {
   }
 }
 
-const drawButtCircle = (buttRadius, torsoY) => {
-  drawCircle(x, buttY, buttRadius + 2, 'black', 3);
-  drawFilledCircle(x, buttY, buttRadius, 'white', 3);
-}
 
 const drawSnowman = (x,base,size) => {
   const proportions = [3, 4, 5];
