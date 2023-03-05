@@ -15,14 +15,14 @@ const drawSnowball = (x,y, radius) => {
 
 const drawHead = (headY,headSize) => {
   const headRadius = headSize / 2
-  drawSnowball(headY, headRadius)
+  drawSnowball(x,headY, headRadius)
   drawEyes(headRadius * 0.25, headY)
   drawNose(headRadius * 0.8, headY)
   drawMouth(headRadius, headY)
   drawHat(headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
 }
 
-const drawEyes = (eyeSpacing, headY) => {
+const drawEyes = (x,eyeSpacing, headY) => {
   drawFilledCircle(x - eyeSpacing, headY - eyeSpacing, 4, 'black');
   drawFilledCircle(x + eyeSpacing, headY - eyeSpacing, 4, 'black');
 }
