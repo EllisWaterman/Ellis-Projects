@@ -57,7 +57,7 @@ const drawPicture = (horizon, base, size) => {
 
   const drawTorso = (torsoY) => {
     const torsoRadius = torsoSize / 2;
-    drawTorsoCircle(x, torsoY, torsoRadius)
+    drawSnowball(x, torsoY, torsoRadius)
     drawButtons(x, torsoY, torsoRadius)
     drawArm(x, torsoRadius, torsoY, 1)
     drawArm(x, torsoRadius, torsoY, -1)
