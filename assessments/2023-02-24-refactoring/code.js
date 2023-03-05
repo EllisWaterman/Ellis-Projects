@@ -16,9 +16,9 @@ const drawSnowball = (x, y, radius) => {
 const drawHead = (x, headY, headSize) => {
   const headRadius = headSize / 2
   drawSnowball(x, headY, headRadius)
-  drawEyes(headRadius * 0.25, headY)
-  drawNose(headRadius * 0.8, headY)
-  drawMouth(headRadius, headY)
+  drawEyes(x,headRadius * 0.25, headY)
+  drawNose(x,headRadius * 0.8, headY)
+  drawMouth(x,headRadius, headY)
   drawHat(headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
 }
 
