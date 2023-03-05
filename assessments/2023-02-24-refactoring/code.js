@@ -1,6 +1,8 @@
 const drawPicture = (horizon, base, size) => {
   drawBackground(horizon)
   drawSnowman(width / 2, base, size)
+  drawSnowman(width / 5, base, size)
+
 }
 const drawBackground = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
