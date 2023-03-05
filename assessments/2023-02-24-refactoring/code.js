@@ -1,8 +1,5 @@
 const drawPicture = (horizon, base, size) => {
   const x = width / 2;
-  let headSize;
-  let torsoSize;
-  let buttSize;
   proportionator(size)
   drawBackground(horizon)
   drawSnowman()
@@ -17,14 +14,8 @@ const drawSnowball = (y, radius) => {
   drawCircle(x, y, radius + 2, 'black', 3);
   drawFilledCircle(x, y, radius, 'white', 3);
 }
-const proportionator = (size) => {
-  const proportions = [3, 4, 5];
-  const [headP, torsoP, buttP] = proportions;
-  const total = proportions.reduce((tot, p) => tot + p, 0);
-  headSize = size * (headP / total);
-  torsoSize = size * (torsoP / total)
-  buttSize = size * (buttP / total);
-}
+
+
 
 const drawHead = (headY) => {
   const headRadius = headSize / 2
@@ -84,6 +75,13 @@ const drawButtCircle = (buttRadius, torsoY) => {
 }
 
 const drawSnowman = () => {
+  const proportions = [3, 4, 5];
+  const [headP, torsoP, buttP] = proportions;
+  const total = proportions.reduce((tot, p) => tot + p, 0);
+  const headSize = size * (headP / total);
+  const torsoSize = size * (torsoP / total)
+  const buttSize = size * (buttP / total);
+
   const headY = (base - size) + headSize / 2;
   const torsoY = headY + headSize / 2 + torsoSize / 2;
   drawHead(headY)
