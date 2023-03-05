@@ -76,7 +76,7 @@ const drawPicture = (horizon, base, size) => {
   }
 
   const drawButt = (torsoY) => {
-    drawSnowball(buttSize / 2, torsoY)
+    drawSnowball(buttY, torsoY)
   }
 
   const drawButtCircle = (buttRadius, torsoY) => {
