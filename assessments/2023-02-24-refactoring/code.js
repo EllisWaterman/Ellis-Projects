@@ -81,4 +81,4 @@ const drawSnowman = (x, base, size) => {
 }
 
 
-drawPicture(height * 0.7, height * 2, height * 0.8)
+drawPicture(height * 0.7, height, height * 0.8)
