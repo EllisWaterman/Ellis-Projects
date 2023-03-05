@@ -1,7 +1,7 @@
 const drawPicture = (horizon, base, size) => {
   const x = width / 2;
   drawBackground(horizon)
-  drawSnowman()
+  drawSnowman(base,size)
 }
 const drawBackground = (horizon) => {
   drawFilledRect(0, 0, width, horizon, '#ddeeff');
@@ -13,8 +13,6 @@ const drawSnowball = (y, radius) => {
   drawCircle(x, y, radius + 2, 'black', 3);
   drawFilledCircle(x, y, radius, 'white', 3);
 }
-
-
 
 const drawHead = (headY) => {
   const headRadius = headSize / 2
@@ -73,7 +71,7 @@ const drawButtCircle = (buttRadius, torsoY) => {
   drawFilledCircle(x, buttY, buttRadius, 'white', 3);
 }
 
-const drawSnowman = () => {
+const drawSnowman = (base,size) => {
   const proportions = [3, 4, 5];
   const [headP, torsoP, buttP] = proportions;
   const total = proportions.reduce((tot, p) => tot + p, 0);
