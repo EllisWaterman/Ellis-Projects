@@ -3,7 +3,10 @@ const drawPicture = (horizon, base, size) => {
   let headSize;
   let torsoSize;
   let buttSize;
-
+  proportionator()
+  drawBackground()
+  drawSnowman()
+}
   const drawBackground = (horizon) => {
     drawFilledRect(0, 0, width, horizon, '#ddeeff');
     drawFilledRect(0, horizon, width, height, 'white');
@@ -63,7 +66,6 @@ const drawPicture = (horizon, base, size) => {
     drawArm(x, torsoRadius, torsoY, -1)
   }
 
-
   const drawArm = (x, torsoRadius, torsoY, sign) => {
     let x1 = x + torsoRadius * 0.6 * sign;
     let x2 = x + torsoRadius * 2.35 * sign;
@@ -75,7 +77,6 @@ const drawPicture = (horizon, base, size) => {
       drawFilledCircle(x, torsoY - torsoRadius * 0.5 + i * torsoRadius * 0.5, 4, 'black');
     }
   }
-
 
   const drawButtCircle = (buttRadius, torsoY) => {
     drawCircle(x, buttY, buttRadius + 2, 'black', 3);
@@ -89,9 +90,6 @@ const drawPicture = (horizon, base, size) => {
     drawTorso(torsoY)
     drawSnowball(torsoY + torsoSize / 2 + buttSize / 2, buttSize / 2)
   }
-  proportionator()
-  drawBackground(horizon)
-  drawSnowman()
-}
+
 
 drawPicture(height * 0.7, height * 0.9, height * 0.8)
