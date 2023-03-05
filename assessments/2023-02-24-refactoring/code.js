@@ -19,7 +19,7 @@ const drawHead = (x, headY, headSize) => {
   drawEyes(x,headRadius * 0.25, headY)
   drawNose(x,headRadius * 0.8, headY)
   drawMouth(x,headRadius, headY)
-  drawHat(headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
+  drawHat(x,headY - headRadius * 0.9, headRadius * 2.25, headRadius * 1.25)
 }
 
 const drawEyes = (x, eyeSpacing, headY) => {
