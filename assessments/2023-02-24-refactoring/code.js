@@ -8,7 +8,7 @@ const drawBackground = (horizon) => {
   drawLine(0, horizon, width, horizon, '#bbb');
 }
 
-const drawSnowball = (y, radius) => {
+const drawSnowball = (x,y, radius) => {
   drawCircle(x, y, radius + 2, 'black', 3);
   drawFilledCircle(x, y, radius, 'white', 3);
 }
