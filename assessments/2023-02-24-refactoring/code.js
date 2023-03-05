@@ -87,9 +87,7 @@ const drawPicture = (horizon, base, size) => {
     const torsoY = headY + headSize / 2 + torsoSize / 2;
     drawHead(headY)
     drawTorso(torsoY)
-        const buttY = ;
-
-    drawSnowball(torsoY + torsoSize / 2 + buttSize / 2,buttSize / 2)
+    drawSnowball(torsoY + torsoSize / 2 + buttSize / 2, buttSize / 2)
   }
   proportionator()
   drawBackground(horizon)
