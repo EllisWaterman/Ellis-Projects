@@ -23,7 +23,7 @@ const pairs = (array) => {
 }
 
 const averageGrade = (array) => {
-  return (array.map((n) => n.grade)).reduce((total, n) => total+n)/array.length
+  return array.map((n) => n.grade).reduce((total, n) => total+n)/array.length
 }
 
 const flatpairs = (array) => {
