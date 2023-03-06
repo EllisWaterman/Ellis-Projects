@@ -112,28 +112,44 @@ canvas.onclick = (e) => {
     let y = offsetY
     let col = Math.floor(x / SQUARE_SIZE);
     let row = Math.floor(y / SQUARE_SIZE);
-    if (board[col][row] !== 0) {
-        if (pieceSelected === null) {
+
+    // 1. selecting a new piece to move
+
+    // 2. Moving selected piece
+
+    // 3. Capturing with a slected peice
+
+    // 4. unselecting current peice
+    if (pieceSelected === null) {
+        if (board[col][row] !== 0) {
             pieceSelected = board[col][row]
             highlightPeice(pieceSelected.icon, col, row, 'blue')
         }
     }
-    else {
-        console.log(board[col][row].team)
-        emptySpace(pieceSelected)
-        drawPiece(pieceSelected.icon, col, row)
-        board[pieceSelected.col][pieceSelected.row] = 0
-        pieceSelected.row = row
-        pieceSelected.col = col
-        board[col][row] = pieceSelected
-        pieceSelected = null
+    else{
+        if(board[col][row] === 0) {
+            emptySpace(pieceSelected)
+            drawPiece(pieceSelected.icon, col, row)
+            board[pieceSelected.col][pieceSelected.row] = 0
+            pieceSelected.row = row
+            pieceSelected.col = col
+            board[col][row] = pieceSelected
+            pieceSelected = null
+        }
+        if (pieceSelected.team !== board[row][col].team) {
+            emptySpace(pieceSelected)
+            drawPiece(pieceSelected.icon, col, row)
+            board[pieceSelected.col][pieceSelected.row] = 0
+            pieceSelected.row = row
+            pieceSelected.col = col
+            board[col][row] = pieceSelected
+            pieceSelected = null
+        }
     }
-};
-
-//bank of things i will use later
-
-// if (pieceSelected.team === board[col][row].team) {
-//     pieceSelected = board[col][row]
-//     highlightPeice(pieceSelected.icon, col, row, 'blue')
-
-//if ((pieceSelected.team !== board[col][row].team))
+}
+// if (pieceSelected.team === board[col][row].team || board[col][row] === 0) {
+//     {
+       
+//     }
+// }
+// };
