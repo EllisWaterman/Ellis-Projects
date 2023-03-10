@@ -16,7 +16,6 @@
 
 const drawPicture = (horizon) => {
   const numTrees = 5;
-  const maxApples = 8;
 
 
   const drawSky = () => {
@@ -62,7 +61,7 @@ const drawPicture = (horizon) => {
     drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
   }
 
-  const drawTree = (treeBaseX, treeBaseY,minApples) => {
+  const drawTree = (treeBaseX, treeBaseY,minApples,maxApples) => {
     let trunkWidth = 20;
     let trunkHeight = 55;
     let numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
@@ -102,11 +101,12 @@ const drawPicture = (horizon) => {
   }
   const drawTrees = (horizon, numTrees) => {
     let minApples = 5;
+    let maxApples = 8;
     let gap = width / (numTrees + 1);
     for (let i = 0; i < numTrees; i++) {
       let treeBaseY = horizon * 1.1;
       let treeBaseX = (i + 1) * gap;
-      drawTree(treeBaseX, treeBaseY,minApples)
+      drawTree(treeBaseX, treeBaseY,minApples,maxApples)
     }
   }
   drawTrees(horizon, numTrees)
