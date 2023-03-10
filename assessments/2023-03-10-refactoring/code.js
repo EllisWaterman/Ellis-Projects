@@ -30,11 +30,15 @@ const drawPicture = (horizon) => {
   const appleRadius = 6;
 
 const drawBackground = () => {
-drawFilledRect(0, 0, width, horizon, 'skyblue');
-drawFilledRect(0, horizon, width, horizon, 'green');
+drawSky()
 }  
+const drawSky = () => {
+drawFilledRect(0, 0, width, horizon, 'skyblue');
+
+}
 
   // Draw ground
+  drawFilledRect(0, horizon, width, horizon, 'green');
 
   // Draw the sun. The sun is always at top right and the way we draw the rays
   // depends on that.
