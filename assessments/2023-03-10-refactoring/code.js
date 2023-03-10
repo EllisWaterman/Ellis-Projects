@@ -15,7 +15,6 @@
 //
 
 const drawPicture = (horizon) => {
-  const smallCloudSize = 25;
   const bigCloudSize = 35;
   const numTrees = 5;
   const trunkWidth = 20;
@@ -49,14 +48,19 @@ const drawSunRays = (sunSize,sunRayProportion,sunRays,sunRayWidth) => {
     drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
   }
 } 
-
-  // Draw small cloud
-  let x = width * 0.1;
+drawClouds = () => {
+  drawSmallCloud(25)
+  drawBigCloud()
+}
+const drawSmallCloud = (smallCloudSize) => {
+let x = width * 0.1;
   let y = height * 0.2;
   drawFilledCircle(x, y, smallCloudSize, 'white');
   drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
   drawFilledCircle(x + (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
   drawFilledCircle(x + (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
+} 
+  
 
   // Draw big cloud
   x = width * 0.5;
