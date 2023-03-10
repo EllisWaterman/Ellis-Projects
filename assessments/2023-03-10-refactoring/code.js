@@ -29,7 +29,7 @@ const drawPicture = (horizon) => {
   const maxApples = 8;
   const appleRadius = 6;
 
-const drawBackground = () => {
+const drawBackground = (width,horizon) => {
 drawSky(width,horizon)
 drawGround()
 }  
