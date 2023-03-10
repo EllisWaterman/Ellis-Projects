@@ -32,42 +32,41 @@ const drawPicture = (horizon) => {
     drawFilledRect(0, horizon, width, horizon, 'green');
   }
 
-const drawSun = (sunSize) => {
-  drawSunRays(100,2,6,7)
-  drawFilledCircle(width, 0, sunSize, 'yellow');
-}
-
-const drawSunRays = (sunSize,sunRayProportion,sunRays,sunRayWidth) => {
- let startAngle = (Math.PI / 2) * 0.023;
-  let r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
-  for (let i = 0; i < sunRays; i++) {
-    let angle = startAngle + Math.PI + (i * r);
-    let x2 = width + sunSize * sunRayProportion * Math.cos(angle);
-    let y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
-    drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
+  const drawSun = (sunSize) => {
+    drawSunRays(100, 2, 6, 7)
+    drawFilledCircle(width, 0, sunSize, 'yellow');
   }
-} 
-const drawClouds = () => {
-  let y = height * 0.2;
-  drawSmallCloud(width * 0.1,y,25)
-  drawBigCloud(width * 0.5,y,35)
-}
-const drawSmallCloud = (x,y,smallCloudSize) => {
-  drawFilledCircle(x, y, smallCloudSize, 'white');
-  drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
-  drawFilledCircle(x + (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
-  drawFilledCircle(x + (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
-} 
-  
 
-const drawBigCloud = (x,y,bigCloudSize) => {
-  drawFilledCircle(x, y, bigCloudSize, 'white');
-  drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
-  drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
-  drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
-} 
-const drawTrees = () => {
-}
+  const drawSunRays = (sunSize, sunRayProportion, sunRays, sunRayWidth) => {
+    let startAngle = (Math.PI / 2) * 0.023;
+    let r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
+    for (let i = 0; i < sunRays; i++) {
+      let angle = startAngle + Math.PI + (i * r);
+      let x2 = width + sunSize * sunRayProportion * Math.cos(angle);
+      let y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
+      drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
+    }
+  }
+  const drawClouds = () => {
+    let y = height * 0.2;
+    drawSmallCloud(width * 0.1, y, 25)
+    drawBigCloud(width * 0.5, y, 35)
+  }
+  const drawSmallCloud = (x, y, smallCloudSize) => {
+    drawFilledCircle(x, y, smallCloudSize, 'white');
+    drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
+    drawFilledCircle(x + (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
+    drawFilledCircle(x + (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
+  }
+
+
+  const drawBigCloud = (x, y, bigCloudSize) => {
+    drawFilledCircle(x, y, bigCloudSize, 'white');
+    drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
+    drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
+    drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
+  }
+
   const gap = width / (numTrees + 1);
   const treeBaseY = horizon * 1.1;
   for (let i = 0; i < numTrees; i++) {
