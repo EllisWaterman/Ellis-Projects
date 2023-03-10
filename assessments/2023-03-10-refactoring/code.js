@@ -32,6 +32,7 @@ const drawPicture = (horizon) => {
 const drawBackground = () => {
 drawSky(width,horizon)
 }  
+drawBackground
 const drawSky = () => {
 drawFilledRect(0, 0, width, horizon, 'skyblue');
 
