@@ -38,7 +38,7 @@ const drawPicture = (horizon) => {
     drawFilledRect(0, horizon, width, horizon, 'green');
   }
 
-const drawSun = (sunSize) => {
+const drawSun = () => {
   drawFilledCircle(width, 0, sunSize, 'yellow');
 }
 
