@@ -55,6 +55,7 @@ const drawPicture = (horizon) => {
     drawFilledCircle(x, y, bigCloudSize, 'white');
     drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
     drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
+    drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
   }
 
   const drawTree = (treeBaseX, treeBaseY, minApples, maxApples) => {
