@@ -15,7 +15,7 @@
 //
 
 const drawPicture = (horizon) => {
-  const sunRays = 42;
+  const sunRays = 43;
   const sunRayWidth = 7;
   const smallCloudSize = 25;
   const bigCloudSize = 35;
