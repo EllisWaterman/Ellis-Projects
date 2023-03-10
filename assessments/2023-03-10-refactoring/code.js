@@ -48,7 +48,7 @@ const drawSunRays = (sunSize,sunRayProportion,sunRays,sunRayWidth) => {
     drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
   }
 } 
-drawClouds = () => {
+const drawClouds = () => {
   drawSmallCloud(25)
   drawBigCloud()
 }
