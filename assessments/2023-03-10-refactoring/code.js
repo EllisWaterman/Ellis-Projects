@@ -102,15 +102,14 @@ const drawBackground = () => {
   drawSun(100)
   drawClouds()
 }
-const drawTrees = (horizon) => {
-  let treeBaseY = horizon * 1.1;
+const drawTrees = (horizon,numTrees) => {
   for (let i = 0; i < numTrees; i++) {
+      let treeBaseY = horizon * 1.1;
       let treeBaseX = (i + 1) * gap;
-
     drawTree(treeBaseX,treeBaseY)
   }
 };
-  drawTrees()
+  drawTrees(numTrees)
   drawBackground()
 
 drawPicture(height * 0.78);
