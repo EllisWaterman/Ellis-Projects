@@ -40,12 +40,12 @@ const drawSun = (sunSize) => {
 }
 
 const drawSunRays = (sunSize,sunRayProportion,sunRays,sunRayWidth) => {
- const startAngle = (Math.PI / 2) * 0.023;
-  const r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
+ let startAngle = (Math.PI / 2) * 0.023;
+  let r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
   for (let i = 0; i < sunRays; i++) {
-    const angle = startAngle + Math.PI + (i * r);
-    const x2 = width + sunSize * sunRayProportion * Math.cos(angle);
-    const y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
+    let angle = startAngle + Math.PI + (i * r);
+    let x2 = width + sunSize * sunRayProportion * Math.cos(angle);
+    let y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
     drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
   }
 } 
