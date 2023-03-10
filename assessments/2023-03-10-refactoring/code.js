@@ -35,7 +35,7 @@ const drawPicture = (horizon) => {
   }
 
 const drawSun = (sunSize) => {
-  drawSunRays(100,2,6,7)
+  drawSunRays(100,2,6,70)
   drawFilledCircle(width, 0, sunSize, 'yellow');
 }
 
