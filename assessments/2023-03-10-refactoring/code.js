@@ -15,7 +15,6 @@
 //
 
 const drawPicture = (horizon) => {
-  const sunRays = 6;
   const sunRayWidth = 7;
   const smallCloudSize = 25;
   const bigCloudSize = 35;
@@ -37,11 +36,11 @@ const drawPicture = (horizon) => {
   }
 
 const drawSun = (sunSize) => {
-  drawSunRays(100,2)
+  drawSunRays(100,2,6)
   drawFilledCircle(width, 0, sunSize, 'yellow');
 }
 
-const drawSunRays = (sunSize,sunRayProportion) => {
+const drawSunRays = (sunSize,sunRayProportion,sunRays) => {
  const startAngle = (Math.PI / 2) * 0.023;
   const r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
   for (let i = 0; i < sunRays; i++) {
