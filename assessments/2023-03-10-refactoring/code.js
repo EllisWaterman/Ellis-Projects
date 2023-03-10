@@ -72,15 +72,17 @@ const drawPicture = (horizon) => {
     }
     const gap = width / (numTrees + 1);
     const treeBaseY = horizon * 1.1;
-    for (let i = 0; i < numTrees; i++) {
-      // Draw one tree
+      const drawTree = () => {
+        drawTrunk()
+      }
       const treeBaseX = (i + 1) * gap;
       const leavesX = treeBaseX + trunkWidth / 2;
       const leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
       const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
 
-      // Draw trunk
-      drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
+const drawTrunk = () => {
+drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
+}
 
       // Draw leaves
       drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
