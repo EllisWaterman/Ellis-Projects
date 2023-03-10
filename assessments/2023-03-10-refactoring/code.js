@@ -31,15 +31,16 @@ const drawPicture = (horizon) => {
 
 const drawBackground = () => {
 drawSky()
+drawGround()
 }  
 drawBackground
 const drawSky = () => {
 drawFilledRect(0, 0, width, horizon, 'skyblue');
-
 }
 
-  // Draw ground
+const drawGround = () => {
   drawFilledRect(0, horizon, width, horizon, 'green');
+}
 
   // Draw the sun. The sun is always at top right and the way we draw the rays
   // depends on that.
