@@ -96,7 +96,7 @@ const drawPicture = (horizon) => {
     drawSun(100)
     drawClouds()
   }
-  const drawTrees = (horizon, numTrees) => {
+  const drawTrees = (horizon) => {
     let numTrees = 5;
     let minApples = 5;
     let maxApples = 8;
