@@ -25,7 +25,7 @@ const drawPicture = (horizon) => {
   const trunkWidth = 20;
   const trunkHeight = 55;
   const leavesRadius = 40;
-  const minApples = 100000;
+  const minApples = 100;
   const maxApples = 8;
   const appleRadius = 6;
 
