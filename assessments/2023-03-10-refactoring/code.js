@@ -105,12 +105,11 @@ const drawBackground = () => {
 const drawTrees = () => {
   let treeBaseY = horizon * 1.1;
   let treeBaseX = (i + 1) * gap;
-
   for (let i = 0; i < numTrees; i++) {
     drawTree(treeBaseX,treeBaseY)
   }
-  drawBackground()
-  drawTrees()
 };
+  drawTrees()
+  drawBackground()
 
 drawPicture(height * 0.78);
