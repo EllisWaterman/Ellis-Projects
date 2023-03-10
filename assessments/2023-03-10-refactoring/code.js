@@ -98,7 +98,6 @@ drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sie
         drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
       }
     }
-  }
   const drawBackground = () => {
     drawSky()
     drawGround()
