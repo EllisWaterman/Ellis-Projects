@@ -29,11 +29,7 @@ const drawPicture = (horizon) => {
   const maxApples = 8;
   const appleRadius = 6;
 
-const drawBackground = () => {
-drawSky()
-drawGround()
-}  
-drawBackground()
+
 const drawSky = () => {
 drawFilledRect(0, 0, width, horizon, 'skyblue');
 }
@@ -98,6 +94,12 @@ const drawGround = () => {
       drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
     }
   }
+
+  const drawBackground = () => {
+drawSky()
+drawGround()
+}  
+drawBackground()
 };
 
 drawPicture(height * 0.78);
