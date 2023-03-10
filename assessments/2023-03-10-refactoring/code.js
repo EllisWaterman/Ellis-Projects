@@ -96,7 +96,7 @@ const drawPicture = (horizon) => {
       drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
     }
   }
-
+  }
   const drawBackground = () => {
     drawSky()
     drawGround()
