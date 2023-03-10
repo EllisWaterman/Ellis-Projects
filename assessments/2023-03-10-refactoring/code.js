@@ -71,7 +71,7 @@ const drawPicture = (horizon) => {
     let leavesX = treeBaseX + trunkWidth / 2;
     let leavesRadius = 40;
     let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
-    drawTrunk(treeBaseX, treeBaseY, 55, 20)
+    drawTrunk(treeBaseX, treeBaseY, trunkWidth, trunkHeight)
     drawLeaves(leavesX, leavesY, leavesRadius)
     drawApples(leavesX, leavesY, 6, numApples)
   }
