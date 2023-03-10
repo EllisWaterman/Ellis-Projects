@@ -53,7 +53,7 @@ const drawClouds = () => {
   drawBigCloud()
 }
 const drawSmallCloud = (smallCloudSize) => {
-let x = width * 0.1;
+  let x = width * 0.1;
   let y = height * 0.2;
   drawFilledCircle(x, y, smallCloudSize, 'white');
   drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
