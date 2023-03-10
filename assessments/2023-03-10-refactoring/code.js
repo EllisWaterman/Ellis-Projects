@@ -30,13 +30,13 @@ const drawPicture = (horizon) => {
   const appleRadius = 6;
 
 
-const drawSky = () => {
-drawFilledRect(0, 0, width, horizon, 'skyblue');
-}
+  const drawSky = () => {
+    drawFilledRect(0, 0, width, horizon, 'skyblue');
+  }
 
-const drawGround = () => {
-  drawFilledRect(0, horizon, width, horizon, 'green');
-}
+  const drawGround = () => {
+    drawFilledRect(0, horizon, width, horizon, 'green');
+  }
 
   // Draw the sun. The sun is always at top right and the way we draw the rays
   // depends on that.
@@ -57,15 +57,15 @@ const drawGround = () => {
   let y = height * 0.2;
   drawFilledCircle(x, y, smallCloudSize, 'white');
   drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
-  drawFilledCircle(x+ (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
-  drawFilledCircle(x+ (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
+  drawFilledCircle(x + (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
+  drawFilledCircle(x + (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
 
   // Draw big cloud
   x = width * 0.5;
   drawFilledCircle(x, y, bigCloudSize, 'white');
   drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
-  drawFilledCircle(x+ (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
-  drawFilledCircle(x+ (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
+  drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
+  drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
 
   // Draw trees
   const gap = width / (numTrees + 1);
@@ -96,10 +96,14 @@ const drawGround = () => {
   }
 
   const drawBackground = () => {
-drawSky()
-drawGround()
-}  
-drawBackground()
+    drawSky()
+    drawGround()
+  }
+  const drawTrees = () => {
+
+  }
+    drawBackground()
+drawTrees()
 };
 
 drawPicture(height * 0.78);
