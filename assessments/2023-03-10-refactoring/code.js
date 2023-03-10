@@ -38,9 +38,9 @@ const drawPicture = (horizon) => {
     drawFilledRect(0, horizon, width, horizon, 'green');
   }
 
-  // Draw the sun. The sun is always at top right and the way we draw the rays
-  // depends on that.
+const drawSun = (sunSize) => {
   drawFilledCircle(width, 0, sunSize, 'yellow');
+}
 
   // Draw the sun's rays.
   const startAngle = (Math.PI / 2) * 0.023;
@@ -98,6 +98,7 @@ const drawPicture = (horizon) => {
   const drawBackground = () => {
     drawSky()
     drawGround()
+    drawSun()
   }
   const drawTrees = () => {
 
