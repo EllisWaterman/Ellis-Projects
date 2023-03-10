@@ -72,32 +72,35 @@ const drawPicture = (horizon) => {
     }
     const gap = width / (numTrees + 1);
     const treeBaseY = horizon * 1.1;
-      const drawTree = () => {
-        drawTrunk()
-      }
-      const treeBaseX = (i + 1) * gap;
-      const leavesX = treeBaseX + trunkWidth / 2;
-      const leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
-      const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
-
-const drawTrunk = () => {
-drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
-}
-
-      // Draw leaves
-      drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
-
-      // Draw apples
-      let r = appleRadius;
-      drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
-      for (let i = 0; i < numApples; i++) {
-        const angle = i * ((Math.PI * 2) / numApples);
-        const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
-        const ax = leavesX + d * Math.cos(angle);
-        const ay = leavesY + d * Math.sin(angle);
-        drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
-      }
+    const drawTree = () => {
+      drawTrunk()
+      drawLeaves()
     }
+    const treeBaseX = (i + 1) * gap;
+    const leavesX = treeBaseX + trunkWidth / 2;
+    const leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
+    const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
+
+    const drawTrunk = () => {
+      drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
+    }
+
+    const drawLeaves = () => {
+      drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
+    }
+
+
+    // Draw apples
+    let r = appleRadius;
+    drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
+    for (let i = 0; i < numApples; i++) {
+      const angle = i * ((Math.PI * 2) / numApples);
+      const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
+      const ax = leavesX + d * Math.cos(angle);
+      const ay = leavesY + d * Math.sin(angle);
+      drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
+    }
+  }
   const drawBackground = () => {
     drawSky()
     drawGround()
