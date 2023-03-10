@@ -102,7 +102,7 @@ const drawBackground = () => {
   drawSun(100)
   drawClouds()
 }
-const drawTrees = () => {
+const drawTrees = (horizon) => {
   let treeBaseY = horizon * 1.1;
   let treeBaseX = (i + 1) * gap;
   for (let i = 0; i < numTrees; i++) {
