@@ -18,7 +18,6 @@ const drawPicture = (horizon) => {
   const numTrees = 5;
   const trunkWidth = 20;
   const trunkHeight = 55;
-  const leavesRadius = 40;
   const minApples = 5;
   const maxApples = 8;
   const appleRadius = 6;
@@ -66,50 +65,51 @@ const drawPicture = (horizon) => {
     drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
     drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
   }
-    const gap = width / (numTrees + 1);
-    const treeBaseY = horizon * 1.1;
-    const drawTree = () => {
-      drawTrunk()
-      drawLeaves()
-      drawApples()
-    }
-    const treeBaseX = (i + 1) * gap;
-    const leavesX = treeBaseX + trunkWidth / 2;
-    const leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
-    const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
+  const gap = width / (numTrees + 1);
+  const treeBaseY = horizon * 1.1;
+  const drawTree = () => {
+    let leavesX = treeBaseX + trunkWidth / 2;
+    let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
+    let leavesRadius = 40;
+    drawTrunk()
+    drawLeaves(leavesX,leavesY,leavesRadius)
+    drawApples()
+  }
+  const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
 
-    const drawTrunk = () => {
-      drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
-    }
-
-    const drawLeaves = () => {
-      drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
-    }
-
-
-    const drawApples = () => {
-      let r = appleRadius;
-      drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
-      for (let i = 0; i < numApples; i++) {
-        const angle = i * ((Math.PI * 2) / numApples);
-        const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
-        const ax = leavesX + d * Math.cos(angle);
-        const ay = leavesY + d * Math.sin(angle);
-        drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
-      }
-    }
+  const drawTrunk = () => {
+    drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
   }
 
-  const drawBackground = () => {
-    drawSky()
-    drawGround()
-    drawSun(100)
-    drawClouds()
+  const drawLeaves = (leavesX, leavesY, leavesRadius) => {
+    drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
   }
-  const drawTrees = () => {
-    for (let i = 0; i < numTrees; i++) {
-      drawTree()
+
+
+  const drawApples = () => {
+    let r = appleRadius;
+    drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
+    for (let i = 0; i < numApples; i++) {
+      const angle = i * ((Math.PI * 2) / numApples);
+      const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
+      const ax = leavesX + d * Math.cos(angle);
+      const ay = leavesY + d * Math.sin(angle);
+      drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
     }
+  }
+}
+
+const drawBackground = () => {
+  drawSky()
+  drawGround()
+  drawSun(100)
+  drawClouds()
+}
+const drawTrees = () => {
+  for (let i = 0; i < numTrees; i++) {
+    let treeBaseX = (i + 1) * gap;
+    drawTree(treeBaseX)
+  }
   drawBackground()
   drawTrees()
 };
