@@ -16,7 +16,6 @@
 
 const drawPicture = (horizon) => {
   const numTrees = 5;
-  const trunkWidth = 20;
   const minApples = 5;
   const maxApples = 8;
   const appleRadius = 6;
@@ -70,14 +69,14 @@ const drawPicture = (horizon) => {
     let leavesX = treeBaseX + trunkWidth / 2;
     let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
     let leavesRadius = 40;
-    drawTrunk(treeBaseX,treeBaseY,55)
+    drawTrunk(treeBaseX,treeBaseY,55,20)
     drawLeaves(leavesX, leavesY, leavesRadius)
     drawApples()
   }
 
   const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
 
-  const drawTrunk = (treeBaseX,treeBaseY,trunkHeight) => {
+  const drawTrunk = (treeBaseX,treeBaseY,trunkHeight,trunkWidth) => {
     drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
   }
   const drawLeaves = (leavesX, leavesY, leavesRadius) => {
