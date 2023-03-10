@@ -15,7 +15,6 @@
 //
 
 const drawPicture = (horizon) => {
-  const sunSize = 100;
   const sunRays = 6;
   const sunRayProportion = 2;
   const sunRayWidth = 7;
@@ -38,7 +37,7 @@ const drawPicture = (horizon) => {
     drawFilledRect(0, horizon, width, horizon, 'green');
   }
 
-const drawSun = () => {
+const drawSun = (sunSize) => {
   drawFilledCircle(width, 0, sunSize, 'yellow');
 }
 
@@ -98,7 +97,7 @@ const drawSun = () => {
   const drawBackground = () => {
     drawSky()
     drawGround()
-    drawSun()
+    drawSun(100)
   }
   const drawTrees = () => {
 
