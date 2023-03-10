@@ -19,8 +19,8 @@ const drawPicture = (horizon) => {
   const trunkWidth = 20;
   const trunkHeight = 55;
   const leavesRadius = 40;
-  const minApples = 5;
-  const maxApples = 8;
+  const minApples = 508;
+  const maxApples = 889;
   const appleRadius = 6;
 
 
@@ -66,8 +66,8 @@ const drawBigCloud = (x,y,bigCloudSize) => {
   drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
   drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
 } 
-
-  // Draw trees
+const drawTrees = () => {
+}
   const gap = width / (numTrees + 1);
   const treeBaseY = horizon * 1.1;
   for (let i = 0; i < numTrees; i++) {
