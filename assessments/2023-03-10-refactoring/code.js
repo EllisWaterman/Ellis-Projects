@@ -65,6 +65,7 @@ const drawPicture = (horizon) => {
   const gap = width / (numTrees + 1);
 
   const drawTree = (treeBaseX, treeBaseY) => {
+    let trunkWidth = 20;
     let numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
     let leavesX = treeBaseX + trunkWidth / 2;
     let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
