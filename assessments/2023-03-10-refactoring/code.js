@@ -99,9 +99,6 @@ const drawPicture = (horizon) => {
     drawGround()
     drawSun(100)
   }
-  const drawTrees = () => {
-
-  }
   drawBackground()
   drawTrees()
   drawClouds()
