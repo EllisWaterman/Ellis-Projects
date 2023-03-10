@@ -15,9 +15,6 @@
 //
 
 const drawPicture = (horizon) => {
-  const numTrees = 5;
-
-
   const drawSky = () => {
     drawFilledRect(0, 0, width, horizon, 'skyblue');
   }
@@ -100,6 +97,7 @@ const drawPicture = (horizon) => {
     drawClouds()
   }
   const drawTrees = (horizon, numTrees) => {
+    let numTrees = 5;
     let minApples = 5;
     let maxApples = 8;
     let gap = width / (numTrees + 1);
