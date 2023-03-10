@@ -108,8 +108,10 @@ const drawTrees = (horizon,numTrees) => {
       let treeBaseX = (i + 1) * gap;
     drawTree(treeBaseX,treeBaseY)
   }
-};
-  drawTrees(numTrees)
+}
+    drawTrees(numTrees)
   drawBackground()
+};
+
 
 drawPicture(height * 0.78);
