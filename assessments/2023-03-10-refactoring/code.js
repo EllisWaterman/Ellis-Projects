@@ -30,7 +30,7 @@ const drawPicture = (horizon) => {
   const appleRadius = 6;
 
 const drawBackground = () => {
-drawSky()
+drawSky(width,horizon)
 drawGround()
 }  
 drawBackground
