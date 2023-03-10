@@ -107,7 +107,7 @@ const drawPicture = (horizon) => {
       drawTree(treeBaseX, treeBaseY,minApples,maxApples)
     }
   }
-  drawTrees(horizon, numTrees)
+  drawTrees(horizon)
   drawBackground()
 };
 
