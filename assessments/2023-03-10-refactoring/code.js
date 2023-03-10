@@ -63,18 +63,18 @@ const drawPicture = (horizon) => {
     drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
   }
   const gap = width / (numTrees + 1);
-  
+
   const drawTree = () => {
     let numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
     let leavesX = treeBaseX + trunkWidth / 2;
     let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
     let leavesRadius = 40;
-    drawTrunk(treeBaseX,treeBaseY,55,20)
+    drawTrunk(treeBaseX, treeBaseY, 55, 20)
     drawLeaves(leavesX, leavesY, leavesRadius)
-    drawApples(leavesX,leavesY,6,numApples)
+    drawApples(leavesX, leavesY, 6, numApples)
   }
 
-  const drawTrunk = (treeBaseX,treeBaseY,trunkHeight,trunkWidth) => {
+  const drawTrunk = (treeBaseX, treeBaseY, trunkHeight, trunkWidth) => {
     drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
   }
 
@@ -83,7 +83,7 @@ const drawPicture = (horizon) => {
   }
 
 
-  const drawApples = (leavesX,leavesY,appleRadius,numApples) => {
+  const drawApples = (leavesX, leavesY, appleRadius, numApples) => {
     let r = appleRadius;
     drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
     for (let i = 0; i < numApples; i++) {
@@ -94,22 +94,21 @@ const drawPicture = (horizon) => {
       drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
     }
   }
-}
 
-const drawBackground = () => {
-  drawSky()
-  drawGround()
-  drawSun(100)
-  drawClouds()
-}
-const drawTrees = (horizon,numTrees) => {
-  for (let i = 0; i < numTrees; i++) {
+  const drawBackground = () => {
+    drawSky()
+    drawGround()
+    drawSun(100)
+    drawClouds()
+  }
+  const drawTrees = (horizon, numTrees) => {
+    for (let i = 0; i < numTrees; i++) {
       let treeBaseY = horizon * 1.1;
       let treeBaseX = (i + 1) * gap;
-    drawTree(treeBaseX,treeBaseY)
+      drawTree(treeBaseX, treeBaseY)
+    }
   }
-}
-    drawTrees(numTrees)
+  drawTrees(numTrees)
   drawBackground()
 };
 
