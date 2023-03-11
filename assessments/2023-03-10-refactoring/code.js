@@ -94,7 +94,7 @@ const drawRadialApples = (leavesX, leavesY, numApples, leavesRadius, appleRadius
 
 const drawBackground = (horizon) => {
   drawSky(horizon)
-  drawGround()
+  drawGround(horizon)
   drawSun(100)
   drawClouds()
 }
