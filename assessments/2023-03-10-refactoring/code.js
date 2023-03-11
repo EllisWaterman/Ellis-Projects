@@ -92,8 +92,8 @@ const drawRadialApples = (leavesX, leavesY, numApples, leavesRadius, appleRadius
   }
 }
 
-const drawBackground = () => {
-  drawSky()
+const drawBackground = (horizon) => {
+  drawSky(horizon)
   drawGround()
   drawSun(100)
   drawClouds()
@@ -112,7 +112,7 @@ const drawTrees = (horizon) => {
 }
 
 const drawPicture = (horizon) => {
-  drawBackground()
+  drawBackground(horizon)
   drawTrees(horizon)
 };
 
