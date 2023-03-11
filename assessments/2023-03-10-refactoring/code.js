@@ -50,20 +50,6 @@ const drawPicture = (horizon) => {
     drawFilledCircle(x + (cloudSize * 1.25), y - cloudSize * 0.5, cloudSize, 'white');
     drawFilledCircle(x + (cloudSize * 1.25), y + cloudSize * 0.5, cloudSize, 'white');
   }
-  const drawSmallCloud = (x, y, smallCloudSize) => {
-    drawFilledCircle(x, y, smallCloudSize, 'white');
-    drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
-    drawFilledCircle(x + (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
-    drawFilledCircle(x + (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
-  }
-
-
-  const drawBigCloud = (x, y, bigCloudSize) => {
-    drawFilledCircle(x, y, bigCloudSize, 'white');
-    drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
-    drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
-    drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
-  }
 
   const drawTree = (treeBaseX, treeBaseY, minApples, maxApples) => {
     let trunkWidth = 20;
