@@ -100,7 +100,7 @@ const drawBackground = (horizon) => {
 }
 
 const drawTrees = (horizon) => {
-  let numTrees = 10;
+  let numTrees = 12;
   let minApples = 5;
   let maxApples = 8;
   let gap = width / (numTrees + 1);
