@@ -14,11 +14,11 @@
 //    rewritten in terms of new functions you have defined.
 //
 
-const drawSky = () => {
+const drawSky = (horizon) => {
   drawFilledRect(0, 0, width, horizon, 'skyblue');
 }
 
-const drawGround = () => {
+const drawGround = (horizon) => {
   drawFilledRect(0, horizon, width, horizon, 'green');
 }
 
