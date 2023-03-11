@@ -73,7 +73,7 @@ const drawPicture = (horizon) => {
 
   const drawApples = (leavesX, leavesY, appleRadius, numApples, leavesRadius) => {
     let r = appleRadius;
-    // drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
+    drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
     for (let i = 0; i < numApples; i++) {
       const angle = i * ((Math.PI * 2) / numApples);
       const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
