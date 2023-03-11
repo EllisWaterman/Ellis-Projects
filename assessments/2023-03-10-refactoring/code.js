@@ -60,9 +60,7 @@ const drawPicture = (horizon) => {
     let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
     drawTrunk(treeBaseX, treeBaseY, trunkHeight, trunkWidth)
     drawLeaves(leavesX, leavesY, leavesRadius)
-    drawRadialApples(leavesX, leavesY,numApples, leavesRadius)
-    drawCenterApple(leavesX, leavesY,numApples, leavesRadius)
-
+    drawApples()
   }
 
   const drawTrunk = (treeBaseX, treeBaseY, trunkHeight, trunkWidth) => {
@@ -72,12 +70,17 @@ const drawPicture = (horizon) => {
   const drawLeaves = (leavesX, leavesY, leavesRadius) => {
     drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
   }
-const drawCenterApple = (leavesX, leavesY,numApples, leavesRadius) => {
+
+  const drawApples = () => {
+    const appleRadius = 6;
+    drawRadialApples(leavesX, leavesY, numApples, leavesRadius, appleRadius)
+    drawCenterApple(leavesX, leavesY, appleRadius)
+  }
+  const drawCenterApple = (leavesX, leavesY, appleRadius) => {
     drawFilledCircle(leavesX + -appleRadius / 2 + Math.random() * appleRadius, leavesY + -appleRadius / 2 + Math.random() * appleRadius, appleRadius, 'crimson');
 
-}
-  const drawRadialApples = (leavesX, leavesY,numApples, leavesRadius) => {
-    const appleRadius = 6;
+  }
+  const drawRadialApples = (leavesX, leavesY, numApples, leavesRadius, appleRadius) => {
     for (let i = 0; i < numApples; i++) {
       const angle = i * ((Math.PI * 2) / numApples);
       const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
