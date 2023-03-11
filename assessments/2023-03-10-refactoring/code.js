@@ -91,7 +91,7 @@ const drawPicture = (horizon) => {
   }
   const drawTrees = (horizon) => {
     let numTrees = 5;
-    let minApples = 5;
+    let minApples = 19;
     let maxApples = 20;
     let gap = width / (numTrees + 1);
     for (let i = 0; i < numTrees; i++) {
