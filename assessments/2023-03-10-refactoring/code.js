@@ -40,8 +40,15 @@ const drawPicture = (horizon) => {
   }
   const drawClouds = () => {
     let y = height * 0.2;
-    drawSmallCloud(width * 0.1, y, 25)
-    drawBigCloud(width * 0.5, y, 35)
+    drawCloud(width * 0.1, y, 25)
+    drawCloud(width * 0.5, y, 35)
+  }
+
+  const drawCloud = (x,y,cloudSize) => {
+     drawFilledCircle(x, y, cloudSize, 'white');
+    drawFilledCircle(x + cloudSize * 2.5, y, cloudSize, 'white');
+    drawFilledCircle(x + (cloudSize * 1.25), y - cloudSize * 0.5, cloudSize, 'white');
+    drawFilledCircle(x + (cloudSize * 1.25), y + cloudSize * 0.5, cloudSize, 'white');
   }
   const drawSmallCloud = (x, y, smallCloudSize) => {
     drawFilledCircle(x, y, smallCloudSize, 'white');
