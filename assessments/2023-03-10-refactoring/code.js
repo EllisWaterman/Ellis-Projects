@@ -15,70 +15,72 @@
 //
 
 const drawPicture = (horizon) => {
-  const drawSky = () => {
-    drawFilledRect(0, 0, width, horizon, 'skyblue');
+  const sunSize = 100;
+  const sunRays = 6;
+  const sunRayProportion = 2;
+  const sunRayWidth = 7;
+  const smallCloudSize = 25;
+  const bigCloudSize = 35;
+  const numTrees = 5;
+  const trunkWidth = 20;
+  const trunkHeight = 55;
+  const leavesRadius = 40;
+  const minApples = 5;
+  const maxApples = 8;
+  const appleRadius = 6;
+
+  // Draw sky
+  drawFilledRect(0, 0, width, horizon, 'skyblue');
+
+  // Draw ground
+  drawFilledRect(0, horizon, width, horizon, 'green');
+
+  // Draw the sun. The sun is always at top right and the way we draw the rays
+  // depends on that.
+  drawFilledCircle(width, 0, sunSize, 'yellow');
+
+  // Draw the sun's rays.
+  const startAngle = (Math.PI / 2) * 0.023;
+  const r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
+  for (let i = 0; i < sunRays; i++) {
+    const angle = startAngle + Math.PI + (i * r);
+    const x2 = width + sunSize * sunRayProportion * Math.cos(angle);
+    const y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
+    drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
   }
 
-  const drawGround = () => {
-    drawFilledRect(0, horizon, width, horizon, 'green');
-  }
+  // Draw small cloud
+  let x = width * 0.1;
+  let y = height * 0.2;
+  drawFilledCircle(x, y, smallCloudSize, 'white');
+  drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
+  drawFilledCircle(x+ (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
+  drawFilledCircle(x+ (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
 
-  const drawSun = (sunSize) => {
-    drawSunRays(100, 2, 6, 7)
-    drawFilledCircle(width, 0, sunSize, 'yellow');
-  }
+  // Draw big cloud
+  x = width * 0.5;
+  drawFilledCircle(x, y, bigCloudSize, 'white');
+  drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
+  drawFilledCircle(x+ (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
+  drawFilledCircle(x+ (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
 
-  const drawSunRays = (sunSize, sunRayProportion, sunRays, sunRayWidth) => {
-    let startAngle = (Math.PI / 2) * 0.023;
-    let r = ((Math.PI / 2) - 2 * startAngle) / (sunRays - 1);
-    for (let i = 0; i < sunRays; i++) {
-      let angle = startAngle + Math.PI + (i * r);
-      let x2 = width + sunSize * sunRayProportion * Math.cos(angle);
-      let y2 = 0 - sunSize * sunRayProportion * Math.sin(angle);
-      drawLine(width, 0, x2, y2, 'yellow', sunRayWidth);
-    }
-  }
-  const drawClouds = () => {
-    let y = height * 0.2;
-    drawSmallCloud(width * 0.1, y, 25)
-    drawBigCloud(width * 0.5, y, 35)
-  }
-  const drawSmallCloud = (x, y, smallCloudSize) => {
-    drawFilledCircle(x, y, smallCloudSize, 'white');
-    drawFilledCircle(x + smallCloudSize * 2.5, y, smallCloudSize, 'white');
-    drawFilledCircle(x + (smallCloudSize * 1.25), y - smallCloudSize * 0.5, smallCloudSize, 'white');
-    drawFilledCircle(x + (smallCloudSize * 1.25), y + smallCloudSize * 0.5, smallCloudSize, 'white');
-  }
+  // Draw trees
+  const gap = width / (numTrees + 1);
+  const treeBaseY = horizon * 1.1;
+  for (let i = 0; i < numTrees; i++) {
+    // Draw one tree
+    const treeBaseX = (i + 1) * gap;
+    const leavesX = treeBaseX + trunkWidth / 2;
+    const leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
+    const numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
 
-
-  const drawBigCloud = (x, y, bigCloudSize) => {
-    drawFilledCircle(x, y, bigCloudSize, 'white');
-    drawFilledCircle(x + bigCloudSize * 2.5, y, bigCloudSize, 'white');
-    drawFilledCircle(x + (bigCloudSize * 1.25), y - bigCloudSize * 0.5, bigCloudSize, 'white');
-    drawFilledCircle(x + (bigCloudSize * 1.25), y + bigCloudSize * 0.5, bigCloudSize, 'white');
-  }
-
-  const drawTree = (treeBaseX, treeBaseY, minApples, maxApples) => {
-    let trunkWidth = 20;
-    let trunkHeight = 55;
-    let numApples = minApples + Math.floor(Math.random() * (maxApples - minApples));
-    let leavesX = treeBaseX + trunkWidth / 2;
-    let leavesRadius = 40;
-    let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
-    drawTrunk(treeBaseX, treeBaseY, trunkHeight, trunkWidth)
-    drawLeaves(leavesX, leavesY, leavesRadius)
-    drawApples(leavesX, leavesY, 6, numApples, leavesRadius)
-  }
-
-  const drawTrunk = (treeBaseX, treeBaseY, trunkHeight, trunkWidth) => {
+    // Draw trunk
     drawFilledRect(treeBaseX, treeBaseY - trunkHeight, trunkWidth, trunkHeight, 'sienna');
-  }
 
-  const drawLeaves = (leavesX, leavesY, leavesRadius) => {
+    // Draw leaves
     drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
-  }
 
-  const drawApples = (leavesX, leavesY, appleRadius, numApples, leavesRadius) => {
+    // Draw apples
     let r = appleRadius;
     drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
     for (let i = 0; i < numApples; i++) {
@@ -89,27 +91,6 @@ const drawPicture = (horizon) => {
       drawFilledCircle(ax + -r / 2 + Math.random() * r, ay + -r / 2 + Math.random() * r, r, 'crimson');
     }
   }
-
-  const drawBackground = () => {
-    drawSky()
-    drawGround()
-    drawSun(100)
-    drawClouds()
-  }
-  const drawTrees = (horizon) => {
-    let numTrees = 5;
-    let minApples = 5;
-    let maxApples = 8;
-    let gap = width / (numTrees + 1);
-    for (let i = 0; i < numTrees; i++) {
-      let treeBaseY = horizon * 1.1;
-      let treeBaseX = (i + 1) * gap;
-      drawTree(treeBaseX, treeBaseY, minApples, maxApples)
-    }
-  }
-  drawTrees(horizon)
-  drawBackground()
 };
-
 
 drawPicture(height * 0.78);
