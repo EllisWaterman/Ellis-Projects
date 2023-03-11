@@ -44,8 +44,8 @@ const drawPicture = (horizon) => {
     drawCloud(width * 0.5, y, 35)
   }
 
-  const drawCloud = (x,y,cloudSize) => {
-     drawFilledCircle(x, y, cloudSize, 'white');
+  const drawCloud = (x, y, cloudSize) => {
+    drawFilledCircle(x, y, cloudSize, 'white');
     drawFilledCircle(x + cloudSize * 2.5, y, cloudSize, 'white');
     drawFilledCircle(x + (cloudSize * 1.25), y - cloudSize * 0.5, cloudSize, 'white');
     drawFilledCircle(x + (cloudSize * 1.25), y + cloudSize * 0.5, cloudSize, 'white');
@@ -73,7 +73,7 @@ const drawPicture = (horizon) => {
 
   const drawApples = (leavesX, leavesY, appleRadius, numApples, leavesRadius) => {
     let r = appleRadius;
-    drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
+    // drawFilledCircle(leavesX + -r / 2 + Math.random() * r, leavesY + -r / 2 + Math.random() * r, r, 'crimson');
     for (let i = 0; i < numApples; i++) {
       const angle = i * ((Math.PI * 2) / numApples);
       const d = leavesRadius - appleRadius * 1.25 - (Math.random() * appleRadius * 2);
