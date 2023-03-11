@@ -108,7 +108,7 @@ const drawPicture = (horizon) => {
     }
   }
   drawTrees(horizon)
-  //drawBackground()
+  drawBackground()
 };
 
 
