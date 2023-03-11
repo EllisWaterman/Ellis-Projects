@@ -60,7 +60,7 @@ const drawPicture = (horizon) => {
     let leavesY = treeBaseY - trunkHeight - (leavesRadius - 2);
     drawTrunk(treeBaseX, treeBaseY, trunkHeight, trunkWidth)
     drawLeaves(leavesX, leavesY, leavesRadius)
-    drawApples()
+    drawApples(leavesX,leavesY)
   }
 
   const drawTrunk = (treeBaseX, treeBaseY, trunkHeight, trunkWidth) => {
@@ -71,7 +71,7 @@ const drawPicture = (horizon) => {
     drawFilledCircle(leavesX, leavesY, leavesRadius, 'forestgreen');
   }
 
-  const drawApples = () => {
+  const drawApples = (leavesX,leavesY) => {
     const appleRadius = 6;
     drawRadialApples(leavesX, leavesY, numApples, leavesRadius, appleRadius)
     drawCenterApple(leavesX, leavesY, appleRadius)
