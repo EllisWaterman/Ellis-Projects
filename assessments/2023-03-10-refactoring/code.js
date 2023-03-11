@@ -112,4 +112,4 @@ const drawPicture = (horizon) => {
 };
 
 
-drawPicture(height * 0.1);
+drawPicture(height * 0;
