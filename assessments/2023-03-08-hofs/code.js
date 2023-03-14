@@ -53,3 +53,11 @@ const someonesFavorite = (people, food) => {
 const strange = (people) => {
   return people.map((n) => n.isStrange)
 }
+
+const birthdays = (students) => {
+  return students.map((n) => n.birthday)
+}
+
+const animals = (animals) => {
+  return animals.reduce((n) => math.Max(n.weight))
+}
