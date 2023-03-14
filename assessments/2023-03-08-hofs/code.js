@@ -30,13 +30,12 @@ const allSiblings = (students) => {
   return returnArray
 }
 
-const allPassing = (students,passing) => {
+const allPassing = (students, passing) => {
   let answer = true
   for (let i = 0; i < students.length; i++) {
-    if(!students.grade >= passing) {
-       answer = false
+    if (!students.grade >= passing) {
+      answer = false
     }
   }
-      return answer
-
+  return answer
 }
