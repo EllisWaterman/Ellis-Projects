@@ -39,3 +39,13 @@ const allPassing = (students, passing) => {
   }
   return answer
 }
+
+const someonesFavorite = (people, food) => {
+    let answer = false
+  for (let i = 0; i < people.length; i++) {
+    if (people.favoriteFood === food) {
+      answer = true
+    }
+  }
+  return answer
+}
