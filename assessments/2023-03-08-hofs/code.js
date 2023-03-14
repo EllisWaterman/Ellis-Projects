@@ -15,3 +15,17 @@ const shouty = (strings) => {
   }
   return returnArray
 }
+
+const join = (strings, delimiter) => {
+  for (let i = 0; i < strings.length; i++) {
+    joined[i] + s
+  }
+}
+
+const allSiblings = (students) => {
+  let returnArray = []
+  for (let i = 0; i < students.length; i++) {
+    returnArray.push(students[i].siblings)
+  }
+  return returnArray
+}
