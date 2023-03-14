@@ -18,7 +18,11 @@ const shouty = (strings) => {
 
 const join = (strings, delimiter) => {
   for (let i = 0; i < strings.length; i++) {
-    joined[i] + s
+    if (strings[i] === null) {
+      return s;
+    } else {
+      return strings[i] + delimiter + s;
+    }
   }
 }
 
