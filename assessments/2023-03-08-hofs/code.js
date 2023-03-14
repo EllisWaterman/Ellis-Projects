@@ -59,5 +59,17 @@ const birthdays = (students) => {
 }
 
 const animals = (animals) => {
-  return animals.reduce((n) => math.Max(n.weight))
+  return animals.reduce((n) => Math.max(n.weight))
+}
+
+const allStudents = (grades) => {
+  return grades.flatMap((n) => n.students)
+}
+
+const allComulent = (things) => {
+  return things.every((n) => isCromulent(n))
+}
+
+const notAllTerrible = (things) => {
+  return things.some((n) => isTerrible(n))
 }
