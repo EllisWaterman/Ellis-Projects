@@ -49,3 +49,7 @@ const someonesFavorite = (people, food) => {
   }
   return answer
 }
+
+const strange = (people) => {
+  return people.map((n) => n.isStrange)
+}
