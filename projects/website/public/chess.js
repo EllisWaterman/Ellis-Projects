@@ -56,6 +56,9 @@ const pieces = [
     { team: 'black', icon: BLACK_PAWN, row: 1, col: 7 },
 
 ]
+let pieceSelected = null;
+let clickCount = 0
+let turn = 'white'
 
 
 const drawBoard = () => {
@@ -100,11 +103,29 @@ const emptySpace = (piece) => {
         piece.row * SQUARE_SIZE,
         SQUARE_SIZE, SQUARE_SIZE, color);
 }
+
+const movePiece = (selected,row,col) => {
+    emptySpace(selected)
+    drawPiece(selected.icon, col, row)
+    board[selected.col][selected.row] = 0
+    selected.row = row
+    selected.col = col
+    board[col][row] = selected
+    pieceSelected = null
+}
+
+const capturePiece = (selected,row,col) => {
+    emptySpace(selected)
+    board[selected.col][selected.row] = 0
+    selected.row = row
+    selected.col = col
+    board[col][row] = selected
+    pieceSelected = null
+    emptySpace(selected)
+    drawPiece(selected.icon, col, row)
+}
 drawBoard();
 placePieces();
-let pieceSelected = null;
-let clickCount = 0
-let turn = 'white'
 
 canvas.onclick = (e) => {
     const { offsetX, offsetY } = e;
@@ -128,21 +149,12 @@ canvas.onclick = (e) => {
     }
     else{
         if(board[col][row] === 0) {
-            emptySpace(pieceSelected)
-            drawPiece(pieceSelected.icon, col, row)
-            board[pieceSelected.col][pieceSelected.row] = 0
-            pieceSelected.row = row
-            pieceSelected.col = col
-            board[col][row] = pieceSelected
-            pieceSelected = null
+            movePiece(pieceSelected,row,col)
         }
         if (pieceSelected.team !== board[row][col].team) {
-            emptySpace(pieceSelected)
-            drawPiece(pieceSelected.icon, col, row)
-            board[pieceSelected.col][pieceSelected.row] = 0
-            pieceSelected.row = row
-            pieceSelected.col = col
-            board[col][row] = pieceSelected
+            capturePiece(pieceSelected,row,col)
+        }
+        if(board[row][col] === pieceSelected) {
             pieceSelected = null
         }
     }
