@@ -1,4 +1,4 @@
-const evens = (numbers) => {
+const evens = (numbers) => { // correct
   let returnArray = []
   for (let i = 0; i < numbers.length; i++) {
     if (numbers[i] % 2 === 0) {
@@ -8,7 +8,7 @@ const evens = (numbers) => {
   return returnArray
 }
 
-const shouty = (strings) => {
+const shouty = (strings) => { // correct
   let returnArray = []
   for (let i = 0; i < strings.length; i++) {
     returnArray.push(strings[i].toUpperCase())
@@ -16,7 +16,7 @@ const shouty = (strings) => {
   return returnArray
 }
 
-const join = (strings, delimiter) => {
+const join = (strings, delimiter) => { // pattern
   for (let i = 0; i < strings.length; i++) {
     if (strings[i] === null) {
       return s;
@@ -26,7 +26,7 @@ const join = (strings, delimiter) => {
   }
 }
 
-const allSiblings = (students) => {
+const allSiblings = (students) => { // pattern
   let returnArray = []
   for (let i = 0; i < students.length; i++) {
     returnArray.push(students[i].siblings)
@@ -34,7 +34,7 @@ const allSiblings = (students) => {
   return returnArray
 }
 
-const allPassing = (students, passing) => {
+const allPassing = (students, passing) => { // almost
   let answer = true
   for (let i = 0; i < students.length; i++) {
     if (!students.grade >= passing) {
@@ -44,7 +44,7 @@ const allPassing = (students, passing) => {
   return answer
 }
 
-const someonesFavorite = (people, food) => {
+const someonesFavorite = (people, food) => { // correct
     let answer = false
   for (let i = 0; i < people.length; i++) {
     if (people.favoriteFood === food) {
@@ -54,26 +54,26 @@ const someonesFavorite = (people, food) => {
   return answer
 }
 
-const strange = (people) => {
+const strange = (people) => { // almost
   return people.map((n) => n.isStrange)
 }
 
-const birthdays = (students) => {
+const birthdays = (students) => { // correct
   return students.map((n) => n.birthday)
 }
 
-const animals = (animals) => {
+const animals = (animals) => { // pattern
   return animals.reduce((n) => Math.max(n.weight))
 }
 
-const allStudents = (grades) => {
+const allStudents = (grades) => { // correct
   return grades.flatMap((n) => n.students)
 }
 
-const allComulent = (things) => {
+const allComulent = (things) => { // correct
   return things.every((n) => isCromulent(n))
 }
 
-const notAllTerrible = (things) => {
+const notAllTerrible = (things) => { // correct
   return things.some((n) => isTerrible(n))
 }
