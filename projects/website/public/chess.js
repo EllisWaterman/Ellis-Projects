@@ -124,6 +124,24 @@ const capturePiece = (selected,row,col) => {
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
 }
+const pawnLegal = (piece, square) => {
+    if(square[row][cow] === piece[row][col+1]) {
+        return legal
+    } else if(square[row][col].team !== piece.team && square[row][cow] === piece[row+1][col+1]) {
+        return legal
+    }  else if(square[row][col].team !== piece.team && square[row][cow] === piece[row-1][col+1]) {
+    return legal
+} else {
+    return illegal
+}
+}
+//const 
+
+const checkIfLegal = (piece, square) => {
+    if (peice.icon === "WHITE_PAWN" || "BLACK_PAWN") {
+        pawnLegal(piece, square);
+    }
+}
 drawBoard();
 placePieces();
 
