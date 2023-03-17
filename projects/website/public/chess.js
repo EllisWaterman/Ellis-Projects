@@ -66,7 +66,7 @@ const drawBoard = () => {
     let rowsize = 8;
     for (let rows = 0; rows < rowsize; rows++) {
         for (let cols = 0; cols < colsize + 1; cols++) {
-            let color = (cols % 2 === 0) ? 'white' : 'grey';
+            let color = (cols % 2 === 0) ? 'silver' : '#D4AF37';
             drawFilledRect(rows * SQUARE_SIZE,
                 cols * SQUARE_SIZE - (SQUARE_SIZE * (rows % 2 === 0 ? 0 : 1)),
                 SQUARE_SIZE, SQUARE_SIZE, color);
@@ -93,12 +93,10 @@ const highlightPeice = (icon, col, row, color) => {
         color, SQUARE_SIZE);
 }
 const placePieces = () => {
-    pieces.forEach(piece => {
-        placePiece(piece);
-    });
+    pieces.forEach(placePiece);
 };
 const emptySpace = (piece) => {
-    let color = ((piece.col + piece.row * 7) % 2 === 0) ? 'white' : 'grey';
+    let color = (piece.col + piece.row) % 2 === 0 ? 'silver' : '#D4AF37';
     drawFilledRect(piece.col * SQUARE_SIZE,
         piece.row * SQUARE_SIZE,
         SQUARE_SIZE, SQUARE_SIZE, color);
@@ -106,12 +104,13 @@ const emptySpace = (piece) => {
 
 const movePiece = (selected,row,col) => {
     emptySpace(selected)
-    drawPiece(selected.icon, col, row)
     board[selected.col][selected.row] = 0
     selected.row = row
     selected.col = col
     board[col][row] = selected
     pieceSelected = null
+    emptySpace(selected)
+    drawPiece(selected.icon, col, row)
 }
 
 const capturePiece = (selected,row,col) => {
@@ -125,20 +124,19 @@ const capturePiece = (selected,row,col) => {
     drawPiece(selected.icon, col, row)
 }
 const pawnLegal = (piece, square) => {
-    if(square[row][cow] === piece[row][col+1]) {
+    if(square[row] === piece.row && square[col] === piece.col+1) {
         return legal
-    } else if(square[row][col].team !== piece.team && square[row][cow] === piece[row+1][col+1]) {
-        return legal
-    }  else if(square[row][col].team !== piece.team && square[row][cow] === piece[row-1][col+1]) {
-    return legal
+    // } else if(square[row][col].team !== piece.team && square[row][cow] === piece[row+1][col+1]) {
+    //     return legal
+    // }  else if(square[row][col].team !== piece.team && square[row][cow] === piece[row-1][col+1]) {
+    // return legal
 } else {
     return illegal
 }
 }
-//const 
 
 const checkIfLegal = (piece, square) => {
-    if (peice.icon === "WHITE_PAWN" || "BLACK_PAWN") {
+    if (piece.icon === "WHITE_PAWN" || "BLACK_PAWN") {
         pawnLegal(piece, square);
     }
 }
@@ -167,13 +165,15 @@ canvas.onclick = (e) => {
     }
     else{
         if(board[col][row] === 0) {
+            console.log(board[col][row])
             movePiece(pieceSelected,row,col)
         }
-        if (pieceSelected.team !== board[row][col].team) {
+        if (pieceSelected.team !== board[col][row].team) {
             capturePiece(pieceSelected,row,col)
         }
-        if(board[row][col] === pieceSelected) {
+        if(board[col][row] === pieceSelected) {
             pieceSelected = null
+            highlightPeice(pieceSelected.icon, col, row, 'black')
         }
     }
 }
