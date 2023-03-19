@@ -127,12 +127,14 @@ const capturePiece = (selected, row, col) => {
 const pawnMoveIsLegal = (piece, col, row) => {
     const pawnDirection = (piece.icon === WHITE_PAWN ? -1 : 1)
     const pawnDirectionFirstMove = (piece.icon === WHITE_PAWN ? -2 : 2)
-
+    console.log(piece)
     if (piece.moves === 0) {
         if (col === piece.col && row === piece.row + pawnDirection || col === piece.col && row === piece.row + pawnDirectionFirstMove) {
+            piece.moves++
             return true
         }
     } else if (col === piece.col && row === piece.row + pawnDirection) {
+        piece.moves++
         return true
     } else {
         return false
@@ -143,7 +145,6 @@ const pawnMoveIsLegal = (piece, col, row) => {
 
 const moveIsLegal = (piece, col, row) => {
     if (piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) {
-        pieceSelected.moves++
         return pawnMoveIsLegal(piece, col, row);
     }
     return false
