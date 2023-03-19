@@ -1,8 +1,9 @@
 import { setCanvas, drawFilledRect, drawText } from './graphics.js';
 const canvas = document.getElementById('screen')
 setCanvas(canvas);
-
-
+// const im = document.createElement('img')
+// im.setAttribute('src', 'https://www.shutterstock.com/image-vector/pawn-chess-icon-soldier-modern-260nw-1662529951.jpg')
+// const pieceImages = [{ king: imgKing, queen: imgQueen, pawn: imgPawn }]
 const WHITE_KING = '♔';
 const WHITE_QUEEN = '♕';
 const WHITE_ROOK = '♖';
@@ -30,14 +31,14 @@ const pieces = [
     { team: 'white', icon: WHITE_ROOK, row: 7, col: 0 },
     { team: 'white', icon: WHITE_ROOK, row: 7, col: 7 },
     { team: 'white', icon: WHITE_QUEEN, row: 7, col: 3 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 1 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 2 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 3 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 4 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 5 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 6 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 7 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 0, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 1, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 2, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 3, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 4, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 5, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 6, moves: 0 },
+    { team: 'white', icon: WHITE_PAWN, row: 6, col: 7, moves: 0 },
     { team: 'black', icon: BLACK_KING, row: 0, col: 4 },
     { team: 'black', icon: BLACK_KNIGHT, row: 0, col: 6 },
     { team: 'black', icon: BLACK_KNIGHT, row: 0, col: 1 },
@@ -46,14 +47,14 @@ const pieces = [
     { team: 'black', icon: BLACK_ROOK, row: 0, col: 0 },
     { team: 'black', icon: BLACK_ROOK, row: 0, col: 7 },
     { team: 'black', icon: BLACK_QUEEN, row: 0, col: 3 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 1 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 2 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 3 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 4 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 5 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 6 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 7 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 0, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 1, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 2, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 3, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 4, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 5, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 6, moves: 0 },
+    { team: 'black', icon: BLACK_PAWN, row: 1, col: 7, moves: 0 },
 
 ]
 let pieceSelected = null;
@@ -124,15 +125,15 @@ const capturePiece = (selected, row, col) => {
     drawPiece(selected.icon, col, row)
 }
 const pawnMoveIsLegal = (piece, col, row) => {
-    console.log(col,row)
-    console.log(piece)
     const pawnDirection = (piece.icon === WHITE_PAWN ? -1 : 1)
-    if (col === piece.col && row === piece.row + pawnDirection) {
+    const pawnDirectionFirstMove = (piece.icon === WHITE_PAWN ? -2 : 2)
+
+    if (piece.moves === 0) {
+        if (col === piece.col && row === piece.row + pawnDirection || col === piece.col && row === piece.row + pawnDirectionFirstMove) {
+            return true
+        }
+    } else if (col === piece.col && row === piece.row + pawnDirection) {
         return true
-        // } else if(square[row][col].team !== piece.team && square[row][cow] === piece[row+1][col+1]) {
-        //     return legal
-        // }  else if(square[row][col].team !== piece.team && square[row][cow] === piece[row-1][col+1]) {
-        // return legal
     } else {
         return false
     }
@@ -140,8 +141,9 @@ const pawnMoveIsLegal = (piece, col, row) => {
 
 
 
-const moveIsLegal = (piece, col,row) => {
+const moveIsLegal = (piece, col, row) => {
     if (piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) {
+        pieceSelected.moves++
         return pawnMoveIsLegal(piece, col, row);
     }
     return false
@@ -171,7 +173,7 @@ canvas.onclick = (e) => {
     }
     else {
         if (board[col][row] === 0) {
-            if (moveIsLegal(pieceSelected, col,row)) {
+            if (moveIsLegal(pieceSelected, col, row)) {
                 movePiece(pieceSelected, row, col)
             }
             return;
