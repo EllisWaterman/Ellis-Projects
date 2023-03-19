@@ -102,7 +102,7 @@ const emptySpace = (piece) => {
         SQUARE_SIZE, SQUARE_SIZE, color);
 }
 
-const movePiece = (selected,row,col) => {
+const movePiece = (selected, row, col) => {
     emptySpace(selected)
     board[selected.col][selected.row] = 0
     selected.row = row
@@ -113,7 +113,7 @@ const movePiece = (selected,row,col) => {
     drawPiece(selected.icon, col, row)
 }
 
-const capturePiece = (selected,row,col) => {
+const capturePiece = (selected, row, col) => {
     emptySpace(selected)
     board[selected.col][selected.row] = 0
     selected.row = row
@@ -123,22 +123,28 @@ const capturePiece = (selected,row,col) => {
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
 }
-const pawnLegal = (piece, square) => {
-    if(square[row] === piece.row && square[col] === piece.col+1) {
-        return legal
-    // } else if(square[row][col].team !== piece.team && square[row][cow] === piece[row+1][col+1]) {
-    //     return legal
-    // }  else if(square[row][col].team !== piece.team && square[row][cow] === piece[row-1][col+1]) {
-    // return legal
-} else {
-    return illegal
-}
-}
-
-const checkIfLegal = (piece, square) => {
-    if (piece.icon === "WHITE_PAWN" || "BLACK_PAWN") {
-        pawnLegal(piece, square);
+const pawnMoveIsLegal = (piece, col, row) => {
+    console.log(col,row)
+    console.log(piece)
+    const pawnDirection = (piece.icon === WHITE_PAWN ? -1 : 1)
+    if (col === piece.col && row === piece.row + pawnDirection) {
+        return true
+        // } else if(square[row][col].team !== piece.team && square[row][cow] === piece[row+1][col+1]) {
+        //     return legal
+        // }  else if(square[row][col].team !== piece.team && square[row][cow] === piece[row-1][col+1]) {
+        // return legal
+    } else {
+        return false
     }
+}
+
+
+
+const moveIsLegal = (piece, col,row) => {
+    if (piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) {
+        return pawnMoveIsLegal(piece, col, row);
+    }
+    return false
 }
 drawBoard();
 placePieces();
@@ -163,23 +169,21 @@ canvas.onclick = (e) => {
             highlightPeice(pieceSelected.icon, col, row, 'blue')
         }
     }
-    else{
-        if(board[col][row] === 0) {
-            console.log(board[col][row])
-            movePiece(pieceSelected,row,col)
+    else {
+        if (board[col][row] === 0) {
+            if (moveIsLegal(pieceSelected, col,row)) {
+                movePiece(pieceSelected, row, col)
+            }
+            return;
         }
         if (pieceSelected.team !== board[col][row].team) {
-            capturePiece(pieceSelected,row,col)
+            capturePiece(pieceSelected, row, col)
+            return
         }
-        if(board[col][row] === pieceSelected) {
-            pieceSelected = null
+        if (board[col][row] === pieceSelected) {
             highlightPeice(pieceSelected.icon, col, row, 'black')
+            pieceSelected = null
+            return
         }
     }
 }
-// if (pieceSelected.team === board[col][row].team || board[col][row] === 0) {
-//     {
-       
-//     }
-// }
-// };
