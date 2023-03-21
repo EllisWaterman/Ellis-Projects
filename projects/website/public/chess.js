@@ -89,6 +89,7 @@ const drawPiece = (icon, col, row) => {
 }
 
 const highlightPeice = (icon, col, row, color) => {
+    emptySpace(pieceSelected)
     drawText(icon, col * SQUARE_SIZE,
         row * SQUARE_SIZE + SQUARE_SIZE,
         color, SQUARE_SIZE);
@@ -141,19 +142,25 @@ const pawnMoveIsLegal = (piece, col, row) => {
 }
 
 const rookMoveIsLegal = (piece, col, row) => {
-        if ((col === piece.col || row === piece.row)) {
-            return true
-        } else {
-            return false
-    }
-}
+    return col === piece.col || row === piece.row;
+};
 
 const bishopMoveIsLegal = (piece, col, row) => {
-        if ((col !== piece.col && row !== piece.row)) {
-            return true
-        } else {
-            return false
-    }
+    return Math.abs(col - piece.col) === Math.abs(row - piece.row)
+}
+
+const queenMoveIsLegal = (piece, col, row) => {
+    return Math.abs(col - piece.col) === Math.abs(row - piece.row) || (col === piece.col || row === piece.row)
+}
+const kingMoveIsLegal = (piece, col, row) => {
+    return (row === piece.row + 1 && col === piece.col) ||
+        (row === piece.row - 1 && col === piece.col) ||
+        (col === piece.col - 1 && row === piece.row) ||
+        (col === piece.col + 1 && row === piece.row) ||
+        (col === piece.col + 1 && row === piece.row + 1) ||
+        (col === piece.col - 1 && row === piece.row - 1) ||
+        (col === piece.col + 1 && row === piece.row - 1) ||
+        (col === piece.col - 1 && row === piece.row + 1)
 }
 const moveIsLegal = (piece, col, row) => {
     if (piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) {
@@ -161,7 +168,11 @@ const moveIsLegal = (piece, col, row) => {
     } else if (piece.icon === WHITE_ROOK || piece.icon === BLACK_ROOK) {
         return rookMoveIsLegal(piece, col, row);
     } else if (piece.icon === WHITE_BISHOP || piece.icon === BLACK_BISHOP) {
-        return bishopMoveIsLegal(piece,col,row)
+        return bishopMoveIsLegal(piece, col, row)
+    } else if (piece.icon === WHITE_QUEEN || piece.icon === BLACK_QUEEN) {
+        return queenMoveIsLegal(piece, col, row)
+    } else if (piece.icon === WHITE_KING || piece.icon === BLACK_KING) {
+        return kingMoveIsLegal(piece, col, row)
     }
     return false
 }
