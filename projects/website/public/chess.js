@@ -58,7 +58,6 @@ const pieces = [
 
 ]
 let pieceSelected = null;
-let clickCount = 0
 let turn = 'white'
 
 
@@ -89,7 +88,7 @@ const drawPiece = (icon, col, row) => {
 }
 
 const highlightPeice = (icon, col, row, color) => {
-    console.log(col,row)
+    console.log(col, row)
     emptySpace(pieceSelected)
     drawText(icon, col * SQUARE_SIZE,
         row * SQUARE_SIZE + SQUARE_SIZE,
@@ -114,28 +113,28 @@ const movePiece = (selected, row, col) => {
     pieceSelected = null
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
+    if (turn === 'white') {
+    turn = 'black'
+    } else {
+        turn = 'white'
+    }
 }
 
-const capturePiece = (selected, row, col) => {
-    emptySpace(selected)
-    board[selected.col][selected.row] = 0
-    selected.row = row
-    selected.col = col
-    board[col][row] = selected
-    pieceSelected = null
-    emptySpace(selected)
-    drawPiece(selected.icon, col, row)
-}
 const pawnMoveIsLegal = (piece, col, row) => {
     const pawnDirection = (piece.icon === WHITE_PAWN ? -1 : 1)
-    const pawnDirectionFirstMove = (piece.icon === WHITE_PAWN ? -2 : 2)
     if (piece.moves === 0) {
-        if (col === piece.col && row === piece.row + pawnDirection || col === piece.col && row === piece.row + pawnDirectionFirstMove) {
+        if (col === piece.col && (row === piece.row + pawnDirection || row === piece.row + pawnDirection * 2)) {
             piece.moves++
+            if (row === 7 || row === 0) {
+                promotePawn(piece)
+            }
             return true
         }
     } else if (col === piece.col && row === piece.row + pawnDirection) {
         piece.moves++
+        if (row === 7 || row === 0) {
+            promotePawn(piece)
+        }
         return true
     } else {
         return false
@@ -143,17 +142,21 @@ const pawnMoveIsLegal = (piece, col, row) => {
 }
 const pawnCaptureIsLegal = (piece, col, row) => {
     const pawnDirection = (piece.icon === WHITE_PAWN ? -1 : 1)
-    return (row === piece.row + pawnDirection && 
-        col === piece.col + 1) || (row === piece.row + pawnDirection && col === piece.col - 1)
+    if ((row === piece.row + pawnDirection &&
+        col === piece.col + 1) || (row === piece.row + pawnDirection && col === piece.col - 1)) {
+        if (row === 7 || row === 0) {
+            promotePawn(piece)
+        }
+        return true
+    }
 }
 
 const promotePawn = (piece) => {
-    console.log(promotePawn)
-    // if(piece.col === 0) {
-    //     piece.icon = WHITE_QUEEN
-    // } else {
-    //     piece.icon = BLACK_QUEEN
-    // }
+    if (piece.icon === WHITE_PAWN) {
+        piece.icon = WHITE_QUEEN
+    } else {
+        piece.icon = BLACK_QUEEN
+    }
 }
 const rookMoveIsLegal = (piece, col, row) => {
     return col === piece.col || row === piece.row;
@@ -164,7 +167,7 @@ const bishopMoveIsLegal = (piece, col, row) => {
 }
 
 const queenMoveIsLegal = (piece, col, row) => {
-    return Math.abs(col - piece.col) === Math.abs(row - piece.row) || (col === piece.col || row === piece.row)
+    return Math.abs(col - piece.col) === Math.abs(row - piece.row) || col === piece.col || row === piece.row
 }
 const kingMoveIsLegal = (piece, col, row) => {
     return (row === piece.row + 1 && col === piece.col) ||
@@ -177,23 +180,20 @@ const kingMoveIsLegal = (piece, col, row) => {
         (col === piece.col - 1 && row === piece.row + 1)
 }
 
-const knightMoveIsLegal = (piece,col,row) => {
-    return (row === piece.row+1 && col === piece.col+2) ||
-    (row === piece.row-1 && col === piece.col-2) ||
-    (row === piece.row+1 && col === piece.col-2) ||
-    (row === piece.row-1 && col === piece.col+2) ||
-    (row === piece.row+2 && col === piece.col+1) ||
-    (row === piece.row+2 && col === piece.col-1) ||
-    (row === piece.row-2 && col === piece.col+1) ||
-    (row === piece.row-2 && col === piece.col-1)
+const knightMoveIsLegal = (piece, col, row) => {
+    return (row === piece.row + 1 && col === piece.col + 2) ||
+        (row === piece.row - 1 && col === piece.col - 2) ||
+        (row === piece.row + 1 && col === piece.col - 2) ||
+        (row === piece.row - 1 && col === piece.col + 2) ||
+        (row === piece.row + 2 && col === piece.col + 1) ||
+        (row === piece.row + 2 && col === piece.col - 1) ||
+        (row === piece.row - 2 && col === piece.col + 1) ||
+        (row === piece.row - 2 && col === piece.col - 1)
 }
 const moveIsLegal = (piece, col, row) => {
     if ((piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) && (board[col][row] !== 0) && (board[col][row].team !== piece.team)) {
         return pawnCaptureIsLegal(piece, col, row);
     } else if (piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) {
-        if (col === 7 || 0) {
-            promotePawn(piece)
-        } else
         return pawnMoveIsLegal(piece, col, row)
     } else if (piece.icon === WHITE_ROOK || piece.icon === BLACK_ROOK) {
         return rookMoveIsLegal(piece, col, row);
@@ -204,7 +204,7 @@ const moveIsLegal = (piece, col, row) => {
     } else if (piece.icon === WHITE_KING || piece.icon === BLACK_KING) {
         return kingMoveIsLegal(piece, col, row)
     } else if (piece.icon === WHITE_KNIGHT || piece.icon === BLACK_KNIGHT) {
-        return knightMoveIsLegal(piece,col,row)
+        return knightMoveIsLegal(piece, col, row)
     }
     return false
 }
@@ -226,11 +226,11 @@ canvas.onclick = (e) => {
 
     // 4. unselecting current peice
     if (pieceSelected === null) {
-        if (board[col][row] !== 0) {
-            pieceSelected = board[col][row]
-            highlightPeice(pieceSelected.icon, col, row, 'blue')
+        if (board[col][row] !== 0 && board[col][row].team === turn) {
+                pieceSelected = board[col][row]
+                highlightPeice(pieceSelected.icon, col, row, 'blue')
+            }
         }
-    }
     else {
         if (board[col][row] === 0) {
             if (moveIsLegal(pieceSelected, col, row)) {
@@ -240,7 +240,7 @@ canvas.onclick = (e) => {
         }
         if (pieceSelected.team !== board[col][row].team) {
             if (moveIsLegal(pieceSelected, col, row)) {
-                capturePiece(pieceSelected, row, col)
+                movePiece(pieceSelected, row, col)
             }
             return
         }
@@ -258,3 +258,4 @@ canvas.onclick = (e) => {
 // Pawn Promotion to queens
 // Show the legal moves of a peice when it is selected
 //make turns
+// checks and checkmates
