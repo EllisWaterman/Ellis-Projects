@@ -81,18 +81,17 @@ const placePiece = (piece) => {
 
 const board = new Array(8).fill(0).map(() => new Array(8).fill(0));
 
-const drawPiece = (icon, col, row) => {
-    drawText(icon, col * SQUARE_SIZE,
-        row * SQUARE_SIZE + SQUARE_SIZE,
-        'black', SQUARE_SIZE);
+const drawPiece = (icon, col, row, color = 'black') => {
+    let displacement = 3
+    drawText(icon,
+        col * SQUARE_SIZE + displacement,
+        row * SQUARE_SIZE + SQUARE_SIZE - displacement,
+        color, SQUARE_SIZE);
 }
 
 const highlightPeice = (icon, col, row, color) => {
-    console.log(col, row)
     emptySpace(pieceSelected)
-    drawText(icon, col * SQUARE_SIZE,
-        row * SQUARE_SIZE + SQUARE_SIZE,
-        color, SQUARE_SIZE);
+    drawPiece(icon, col, row, color);
 }
 const placePieces = () => {
     pieces.forEach(placePiece);
@@ -114,7 +113,7 @@ const movePiece = (selected, row, col) => {
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
     if (turn === 'white') {
-    turn = 'black'
+        turn = 'black'
     } else {
         turn = 'white'
     }
@@ -158,8 +157,47 @@ const promotePawn = (piece) => {
         piece.icon = BLACK_QUEEN
     }
 }
+
+const isMoveBlocked = (srcCol, srcRow, dstCol, dstRow) => {
+    console.log(srcCol, srcRow, dstCol, dstRow)
+    if (srcCol === dstCol) {
+        console.log('vertical')
+        if (srcRow < dstRow) {
+            console.log('down')
+            for (let i = srcRow + 1; i < dstRow; i++) {
+                console.log(board[srcCol][i])
+                if (board[srcCol][i] !== 0)
+                    return true
+            }
+        } else {
+            console.log('up')
+            for (let i = srcRow - 1; i > dstRow; i--) {
+                console.log(board[srcCol][i])
+                if (board[srcCol][i] !== 0)
+                    return true
+            }
+        }
+    } else {
+        if (srcCol < dstCol) {
+            console.log('down')
+            for (let i = srcCol + 1; i < dstCol; i++) {
+                console.log(board[i][srcRow])
+                if (board[i][srcRow] !== 0)
+                    return true
+            }
+        } else {
+            console.log('up')
+            for (let i = srcCol - 1; i > dstCol; i--) {
+                console.log(board[i][srcRow])
+                if (board[i][srcRow] !== 0)
+                    return true
+            }
+        }
+        return false
+    }
+}
 const rookMoveIsLegal = (piece, col, row) => {
-    return col === piece.col || row === piece.row;
+    return (col === piece.col || row === piece.row) && (!isMoveBlocked(piece.col, piece.row, col, row))
 };
 
 const bishopMoveIsLegal = (piece, col, row) => {
@@ -227,10 +265,10 @@ canvas.onclick = (e) => {
     // 4. unselecting current peice
     if (pieceSelected === null) {
         if (board[col][row] !== 0 && board[col][row].team === turn) {
-                pieceSelected = board[col][row]
-                highlightPeice(pieceSelected.icon, col, row, 'blue')
-            }
+            pieceSelected = board[col][row]
+            highlightPeice(pieceSelected.icon, col, row, 'blue')
         }
+    }
     else {
         if (board[col][row] === 0) {
             if (moveIsLegal(pieceSelected, col, row)) {
