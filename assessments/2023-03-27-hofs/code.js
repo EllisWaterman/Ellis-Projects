@@ -128,7 +128,7 @@ const allColors = (fruits) => {
 }
 
 const areAllTasty = (fruits) => {
-  return fruits.every((n) => !n.isTasty)
+  return fruits.every((n) => isTasty(n))
 }
 
 const notAllInconvenient = (fruits) => {
