@@ -120,7 +120,7 @@ const weights = (fruits) => {
 const heaviest = (fruits) => {
   return fruits.reduce((f, n) => {
     return Math.max(f, n.grams)
-  },0)
+  }, 0)
 }
 
 const allColors = (fruits) => {
@@ -156,9 +156,9 @@ const names = (fruits) => {
 const avarageInconvenince = (fruits) => {
   let r = 0
   for (let i = 0; i < fruits.length; i++) {
-    r+fruits[i].inconvenience
+    r + fruits[i].inconvenience
   }
-  return r/fruits.length
+  return r / fruits.length
 }
 
 const allCountries = (fruits) => {
@@ -174,20 +174,20 @@ const allCountries = (fruits) => {
 
 const allGrownInMoreThanNCountries = (fruits, n) => {
   let answer = true
-    for (let i = 0; i < fruits.length; i++) {
-      if(!(fruits[i].grownIn.length > n)) {
-         answer = false
-      }
+  for (let i = 0; i < fruits.length; i++) {
+    if (!(fruits[i].grownIn.length > n)) {
+      answer = false
     }
-    return answer
+  }
+  return answer
 }
 
 const someMoreThanNColors = (fruits, n) => {
   let answer = false
-    for (let i = 0; i < fruits.length; i++) {
-      if(fruits[i].colors.length > n) {
-         answer = true
-      }
+  for (let i = 0; i < fruits.length; i++) {
+    if (fruits[i].colors.length > n) {
+      answer = true
     }
-    return answer
+  }
+  return answer
 }
