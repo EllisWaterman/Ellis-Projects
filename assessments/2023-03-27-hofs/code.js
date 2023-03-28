@@ -114,7 +114,7 @@ const redFruits = (fruits) => {
 }
 
 const weights = (fruits) => {
-  return fruits.filter((n.grams))
+  return fruits.filter((n) => n.grams)
 }
 
 const heaviest = (fruits) => {
