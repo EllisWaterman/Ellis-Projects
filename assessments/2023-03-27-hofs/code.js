@@ -158,3 +158,14 @@ const avarageInconvenince = (fruits) => {
   }
   return r/fruits.length
 }
+
+const allCountries = (fruits) => {
+  const r = []
+  for (let i = 0; i < fruits.length; i++) {
+    const countries = fruits[i].grownIn
+    for (let j = 0; j < countries.length; j++) {
+      r.push(countries[j])
+    }
+  }
+  return r
+};
