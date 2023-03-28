@@ -138,7 +138,7 @@ const notAllInconvenient = (fruits) => {
 const tasty = (fruits) => {
   let r = []
   for (let i = 0; i < fruits.length; i++) {
-    if (fruits[i].isTasty) {
+    if (isTasty(fruits[i])) {
       r.push(fruits[i])
     }
   }
