@@ -189,5 +189,3 @@ const someMoreThanNColors = (fruits, n) => {
     }
     return answer
 }
-
-}
