@@ -122,5 +122,5 @@ const heaviest = (fruits) => {
 }
 
 const allColors = (fruits) => {
-  fruits.map((n) => n.colors)
+  return fruits.map((n) => n.colors)
 }
