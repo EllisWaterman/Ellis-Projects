@@ -135,7 +135,7 @@ const notAllInconvenient = (fruits) => {
 
 const tasty = (fruits) => {
   let r = []
-  for(let i = 0; i < fruits.length; i++) {
+  for (let i = 0; i < fruits.length; i++) {
     if (fruits[i].isTasty) {
       r.push(fruits[i])
     }
@@ -144,9 +144,17 @@ const tasty = (fruits) => {
 }
 
 const names = (fruits) => {
-    let r = []
-  for(let i = 0; i < fruits.length; i++) {
+  let r = []
+  for (let i = 0; i < fruits.length; i++) {
     r.push(fruits[i].name)
   }
   return r
+}
+
+const avarageInconvenince = (fruits) => {
+  let r = 0
+  for (let i = 0; i < fruits.length; i++) {
+    r+fruits[i].inconvenience
+  }
+  return r/fruits.length
 }
