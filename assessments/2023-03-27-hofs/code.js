@@ -119,7 +119,7 @@ const weights = (fruits) => {
 
 const heaviest = (fruits) => {
   return fruits.reduce((f, n) => {
-    return f+ Math.max(n.grams)
+    return Math.max(f, n.grams)
   },0)
 }
 
