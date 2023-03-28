@@ -113,12 +113,12 @@ const redFruits = (fruits) => {
   return fruits.filter((n) => n.includes('red'))
 }
 
-const weights= (fruits) => {
+const weights = (fruits) => {
   return fruits.filter((n.grams))
 }
 
 const heaviest = (fruits) => {
-  return fruits.reduce((f,n) => Math.max(n.grams))
+  return fruits.reduce((f, n) => Math.max(n.grams))
 }
 
 const allColors = (fruits) => {
@@ -127,4 +127,8 @@ const allColors = (fruits) => {
 
 const areAllTasty = (fruits) => {
   return fruits.every((n) => n.isTasty)
+}
+
+const notAllInconvenient = (fruits) => {
+  return fruits.some((n) => n.isInconvenient)
 }
