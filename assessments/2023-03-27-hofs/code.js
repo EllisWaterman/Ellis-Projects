@@ -156,10 +156,10 @@ const names = (fruits) => {
 const avarageInconvenince = (fruits) => {
   let r = 0
   for (let i = 0; i < fruits.length; i++) {
-    console.log(fruits[i].inconvenience)
-    // r + fruits[i].inconvenience
+    r + fruits[i].inconvenience
   }
-  return r / fruits.length
+  console.log(r)
+  // return r / fruits.length
 }
 
 const allCountries = (fruits) => {
