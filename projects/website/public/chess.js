@@ -112,11 +112,11 @@ const movePiece = (selected, row, col) => {
     pieceSelected = null
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
-    // if (turn === 'white') {
-    //     turn = 'black'
-    // } else {
-    //     turn = 'white'
-    // }
+    if (turn === 'white') {
+        turn = 'black'
+    } else {
+        turn = 'white'
+    }
 }
 
 const pawnMoveIsLegal = (piece, col, row) => {
@@ -209,15 +209,7 @@ const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
     if(piece.kind === 'bishop') {
         return bishopMoveIsBlocked(srcCol,srcRow,dstCol,dstRow)
     }
-    
-    // if (srcCol !== dstCol && srcRow !== dstRow) {
-    //     if (srcCol)
-    //         for (let i = 0; i < 8; i++) {
-    //             for (let j = 0; j < 8; j++) {
 
-    //             }
-    //         }
-    // }
 }
 const rookMoveIsLegal = (piece, col, row) => {
     return (col === piece.col || row === piece.row) && (!isMoveBlocked(piece, piece.col, piece.row, col, row))
