@@ -23,38 +23,38 @@ const SQUARE_SIZE = 62.5;
 
 
 const pieces = [
-    { team: 'white', icon: WHITE_KING, row: 7, col: 4 },
-    { team: 'white', icon: WHITE_KNIGHT, row: 7, col: 6 },
-    { team: 'white', icon: WHITE_KNIGHT, row: 7, col: 1 },
-    { team: 'white', icon: WHITE_BISHOP, row: 7, col: 2 },
-    { team: 'white', icon: WHITE_BISHOP, row: 7, col: 5 },
-    { team: 'white', icon: WHITE_ROOK, row: 7, col: 0 },
-    { team: 'white', icon: WHITE_ROOK, row: 7, col: 7 },
-    { team: 'white', icon: WHITE_QUEEN, row: 7, col: 3 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 0, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 1, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 2, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 3, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 4, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 5, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 6, moves: 0 },
-    { team: 'white', icon: WHITE_PAWN, row: 6, col: 7, moves: 0 },
-    { team: 'black', icon: BLACK_KING, row: 0, col: 4 },
-    { team: 'black', icon: BLACK_KNIGHT, row: 0, col: 6 },
-    { team: 'black', icon: BLACK_KNIGHT, row: 0, col: 1 },
-    { team: 'black', icon: BLACK_BISHOP, row: 0, col: 2 },
-    { team: 'black', icon: BLACK_BISHOP, row: 0, col: 5 },
-    { team: 'black', icon: BLACK_ROOK, row: 0, col: 0 },
-    { team: 'black', icon: BLACK_ROOK, row: 0, col: 7 },
-    { team: 'black', icon: BLACK_QUEEN, row: 0, col: 3 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 0, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 1, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 2, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 3, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 4, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 5, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 6, moves: 0 },
-    { team: 'black', icon: BLACK_PAWN, row: 1, col: 7, moves: 0 },
+    { team: 'white', kind: 'king', icon: WHITE_KING, row: 7, col: 4, },
+    { team: 'white', kind: 'knight', icon: WHITE_KNIGHT, row: 7, col: 6 },
+    { team: 'white', kind: 'knight', icon: WHITE_KNIGHT, row: 7, col: 1 },
+    { team: 'white', kind: 'bishop', icon: WHITE_BISHOP, row: 7, col: 2 },
+    { team: 'white', kind: 'bishop', icon: WHITE_BISHOP, row: 7, col: 5 },
+    { team: 'white', kind: 'rook', icon: WHITE_ROOK, row: 7, col: 0 },
+    { team: 'white', kind: 'rook', icon: WHITE_ROOK, row: 7, col: 7 },
+    { team: 'white', kind: 'queen', icon: WHITE_QUEEN, row: 7, col: 3 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 0, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 1, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 2, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 3, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 4, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 5, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 6, moves: 0 },
+    { team: 'white', kind: 'pawn', icon: WHITE_PAWN, row: 6, col: 7, moves: 0 },
+    { team: 'black', kind: 'king', icon: BLACK_KING, row: 0, col: 4 },
+    { team: 'black', kind: 'knight', icon: BLACK_KNIGHT, row: 0, col: 6 },
+    { team: 'black', kind: 'knight', icon: BLACK_KNIGHT, row: 0, col: 1 },
+    { team: 'black', kind: 'bishop', icon: BLACK_BISHOP, row: 0, col: 2 },
+    { team: 'black', kind: 'bishop', icon: BLACK_BISHOP, row: 0, col: 5 },
+    { team: 'black', kind: 'rook', icon: BLACK_ROOK, row: 0, col: 0 },
+    { team: 'black', kind: 'rook', icon: BLACK_ROOK, row: 0, col: 7 },
+    { team: 'black', kind: 'queen', icon: BLACK_QUEEN, row: 0, col: 3 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 0, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 1, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 2, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 3, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 4, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 5, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 6, moves: 0 },
+    { team: 'black', kind: 'pawn', icon: BLACK_PAWN, row: 1, col: 7, moves: 0 },
 
 ]
 let pieceSelected = null;
@@ -112,11 +112,11 @@ const movePiece = (selected, row, col) => {
     pieceSelected = null
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
-    if (turn === 'white') {
-        turn = 'black'
-    } else {
-        turn = 'white'
-    }
+    // if (turn === 'white') {
+    //     turn = 'black'
+    // } else {
+    //     turn = 'white'
+    // }
 }
 
 const pawnMoveIsLegal = (piece, col, row) => {
@@ -157,20 +157,15 @@ const promotePawn = (piece) => {
         piece.icon = BLACK_QUEEN
     }
 }
-
-const isMoveBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-    console.log(srcCol, srcRow, dstCol, dstRow)
+const rookMoveIsBlocked = (srcCol,srcRow,dstCol,dstRow) => {
     if (srcCol === dstCol) {
-        console.log('vertical')
         if (srcRow < dstRow) {
-            console.log('down')
             for (let i = srcRow + 1; i < dstRow; i++) {
                 console.log(board[srcCol][i])
                 if (board[srcCol][i] !== 0)
                     return true
             }
         } else {
-            console.log('up')
             for (let i = srcRow - 1; i > dstRow; i--) {
                 console.log(board[srcCol][i])
                 if (board[srcCol][i] !== 0)
@@ -179,14 +174,12 @@ const isMoveBlocked = (srcCol, srcRow, dstCol, dstRow) => {
         }
     } else {
         if (srcCol < dstCol) {
-            console.log('down')
             for (let i = srcCol + 1; i < dstCol; i++) {
                 console.log(board[i][srcRow])
                 if (board[i][srcRow] !== 0)
                     return true
             }
         } else {
-            console.log('up')
             for (let i = srcCol - 1; i > dstCol; i--) {
                 console.log(board[i][srcRow])
                 if (board[i][srcRow] !== 0)
@@ -196,16 +189,46 @@ const isMoveBlocked = (srcCol, srcRow, dstCol, dstRow) => {
         return false
     }
 }
+
+const bishopMoveIsBlocked = (srcCol,srcRow,dstCol,dstRow) => {
+console.log(srcCol,srcRow,dstCol, dstRow)
+     if ((srcCol < dstCol) && (srcRow > dstRow)) {
+            for (let i = srcCol; i < dstCol; i++) {
+                for (let j = srcRow; j > dstRow; j--) {
+                    if(board[i][i] !== 0)
+                    return true
+                }
+            }
+    }
+    return false
+}
+const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
+    if(piece.kind === 'rook') {
+        return rookMoveIsBlocked(srcCol,srcRow,dstCol,dstRow)
+    }
+    if(piece.kind === 'bishop') {
+        return bishopMoveIsBlocked(srcCol,srcRow,dstCol,dstRow)
+    }
+    
+    // if (srcCol !== dstCol && srcRow !== dstRow) {
+    //     if (srcCol)
+    //         for (let i = 0; i < 8; i++) {
+    //             for (let j = 0; j < 8; j++) {
+
+    //             }
+    //         }
+    // }
+}
 const rookMoveIsLegal = (piece, col, row) => {
-    return (col === piece.col || row === piece.row) && (!isMoveBlocked(piece.col, piece.row, col, row))
+    return (col === piece.col || row === piece.row) && (!isMoveBlocked(piece, piece.col, piece.row, col, row))
 };
 
 const bishopMoveIsLegal = (piece, col, row) => {
-    return Math.abs(col - piece.col) === Math.abs(row - piece.row)
+    return Math.abs(col - piece.col) === Math.abs(row - piece.row) && (!isMoveBlocked(piece, piece.col, piece.row, col, row))
 }
 
 const queenMoveIsLegal = (piece, col, row) => {
-    return Math.abs(col - piece.col) === Math.abs(row - piece.row) || col === piece.col || row === piece.row
+    return (Math.abs(col - piece.col) === Math.abs(row - piece.row) || col === piece.col || row === piece.row) && (!isMoveBlocked(piece.col, piece.row, col, row))
 }
 const kingMoveIsLegal = (piece, col, row) => {
     return (row === piece.row + 1 && col === piece.col) ||
@@ -229,19 +252,19 @@ const knightMoveIsLegal = (piece, col, row) => {
         (row === piece.row - 2 && col === piece.col - 1)
 }
 const moveIsLegal = (piece, col, row) => {
-    if ((piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) && (board[col][row] !== 0) && (board[col][row].team !== piece.team)) {
+    if ((piece.kind === 'pawn') && (board[col][row] !== 0) && (board[col][row].team !== piece.team)) {
         return pawnCaptureIsLegal(piece, col, row);
-    } else if (piece.icon === WHITE_PAWN || piece.icon === BLACK_PAWN) {
+    } else if (piece.kind === 'pawn') {
         return pawnMoveIsLegal(piece, col, row)
-    } else if (piece.icon === WHITE_ROOK || piece.icon === BLACK_ROOK) {
+    } else if (piece.kind === 'rook') {
         return rookMoveIsLegal(piece, col, row);
-    } else if (piece.icon === WHITE_BISHOP || piece.icon === BLACK_BISHOP) {
+    } else if (piece.kind === 'bishop') {
         return bishopMoveIsLegal(piece, col, row)
-    } else if (piece.icon === WHITE_QUEEN || piece.icon === BLACK_QUEEN) {
+    } else if (piece.kind === 'queen') {
         return queenMoveIsLegal(piece, col, row)
-    } else if (piece.icon === WHITE_KING || piece.icon === BLACK_KING) {
+    } else if (piece.kind === 'king') {
         return kingMoveIsLegal(piece, col, row)
-    } else if (piece.icon === WHITE_KNIGHT || piece.icon === BLACK_KNIGHT) {
+    } else if (piece.kind === 'knight') {
         return knightMoveIsLegal(piece, col, row)
     }
     return false
@@ -264,7 +287,7 @@ canvas.onclick = (e) => {
 
     // 4. unselecting current peice
     if (pieceSelected === null) {
-        if (board[col][row] !== 0 && board[col][row].team === turn) {
+        if (board[col][row] !== 0 /* && board[col][row].team === turn*/) {
             pieceSelected = board[col][row]
             highlightPeice(pieceSelected.icon, col, row, 'blue')
         }
@@ -293,7 +316,5 @@ canvas.onclick = (e) => {
 
 // To Do List For Chess (not in any order)
 // Make Peices not able to move through other peices, exept kights
-// Pawn Promotion to queens
 // Show the legal moves of a peice when it is selected
-//make turns
 // checks and checkmates
