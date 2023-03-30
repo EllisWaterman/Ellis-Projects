@@ -132,7 +132,7 @@ const areAllTasty = (fruits) => { // correct
 }
 
 const notAllInconvenient = (fruits) => { // almost (fixed)
-  return fruits.some((n) => isInconvenient(n))
+  return fruits.some((n) => !isInconvenient(n))
 }
 
 const tasty = (fruits) => { // correct
