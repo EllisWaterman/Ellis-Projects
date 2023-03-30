@@ -131,8 +131,8 @@ const areAllTasty = (fruits) => { // correct
   return fruits.every((n) => isTasty(n))
 }
 
-const notAllInconvenient = (fruits) => { // almost
-  return fruits.some((n) => !isInconvenient(n))
+const notAllInconvenient = (fruits) => { // almost (fixed)
+  return fruits.some((n) => isInconvenient(n))
 }
 
 const tasty = (fruits) => { // correct
