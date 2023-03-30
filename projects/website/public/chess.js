@@ -112,11 +112,11 @@ const movePiece = (selected, row, col) => {
     pieceSelected = null
     emptySpace(selected)
     drawPiece(selected.icon, col, row)
-    if (turn === 'white') {
-        turn = 'black'
-    } else {
-        turn = 'white'
-    }
+    // if (turn === 'white') {
+    //     turn = 'black'
+    // } else {
+    //     turn = 'white'
+    // }
 }
 
 const pawnMoveIsLegal = (piece, col, row) => {
@@ -157,17 +157,15 @@ const promotePawn = (piece) => {
         piece.icon = BLACK_QUEEN
     }
 }
-const rookMoveIsBlocked = (srcCol,srcRow,dstCol,dstRow) => {
+const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
     if (srcCol === dstCol) {
         if (srcRow < dstRow) {
             for (let i = srcRow + 1; i < dstRow; i++) {
-                console.log(board[srcCol][i])
                 if (board[srcCol][i] !== 0)
                     return true
             }
         } else {
             for (let i = srcRow - 1; i > dstRow; i--) {
-                console.log(board[srcCol][i])
                 if (board[srcCol][i] !== 0)
                     return true
             }
@@ -175,13 +173,11 @@ const rookMoveIsBlocked = (srcCol,srcRow,dstCol,dstRow) => {
     } else {
         if (srcCol < dstCol) {
             for (let i = srcCol + 1; i < dstCol; i++) {
-                console.log(board[i][srcRow])
                 if (board[i][srcRow] !== 0)
                     return true
             }
         } else {
             for (let i = srcCol - 1; i > dstCol; i--) {
-                console.log(board[i][srcRow])
                 if (board[i][srcRow] !== 0)
                     return true
             }
@@ -190,25 +186,58 @@ const rookMoveIsBlocked = (srcCol,srcRow,dstCol,dstRow) => {
     }
 }
 
-const bishopMoveIsBlocked = (srcCol,srcRow,dstCol,dstRow) => {
-console.log(srcCol,srcRow,dstCol, dstRow)
-     if ((srcCol < dstCol) && (srcRow > dstRow)) {
-            for (let i = srcCol; i < dstCol; i++) {
-                for (let j = srcRow; j > dstRow; j--) {
-                    if(board[i][i] !== 0)
+const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
+    if ((srcCol < dstCol) && (srcRow > dstRow)) {
+        for (let i = srcCol + 1; i < dstCol; i++) {
+            for (let j = srcRow - 1; j > dstRow; j--) {
+                console.log(board[i][j])
+                if (board[i][j] !== 0)
                     return true
+            }
+        }
+    } else if ((srcCol > dstCol) && (srcRow < dstRow)) {
+            for (let i = srcCol - 1; i > dstCol; i--) {
+                for (let j = srcRow + 1; j < dstRow; j++) {
+                    console.log(board[i][j])
+                    if (board[i][j] !== 0)
+                        return true
                 }
             }
+        } else if ((srcCol > dstCol) && (srcRow > dstRow)) {
+            for (let i = srcCol - 1; i > dstCol; i--) {
+                for (let j = srcRow - 1; j > dstRow; j--) {
+                    console.log(board[i][j])
+                    if (board[i][j] !== 0)
+                        return true
+                }
+            }
+        } else if ((srcCol < dstCol) && (srcRow < dstRow)) {
+            for (let i = srcCol + 1; i < dstCol; i++) {
+                for (let j = srcRow + 1; j < dstRow; j++) {
+                    console.log(board[i][j])
+                    if (board[i][j] !== 0)
+                        return true
+                }
+            }
+        }
+        return false
+}
+
+const queenMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
+    if((rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)) || (bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow))) {
+        return true
     }
     return false
 }
 const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
-    if(piece.kind === 'rook') {
-        return rookMoveIsBlocked(srcCol,srcRow,dstCol,dstRow)
+    if (piece.kind === 'rook') {
+        return rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)
     }
-    if(piece.kind === 'bishop') {
-        return bishopMoveIsBlocked(srcCol,srcRow,dstCol,dstRow)
-    }
+    else if (piece.kind === 'bishop') {
+        return bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)
+    } else if(piece.kind === 'queen') {
+        return queenMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)
+    } else return false
 
 }
 const rookMoveIsLegal = (piece, col, row) => {
@@ -270,14 +299,6 @@ canvas.onclick = (e) => {
     let y = offsetY
     let col = Math.floor(x / SQUARE_SIZE);
     let row = Math.floor(y / SQUARE_SIZE);
-
-    // 1. selecting a new piece to move
-
-    // 2. Moving selected piece
-
-    // 3. Capturing with a slected peice
-
-    // 4. unselecting current peice
     if (pieceSelected === null) {
         if (board[col][row] !== 0 /* && board[col][row].team === turn*/) {
             pieceSelected = board[col][row]
@@ -305,8 +326,7 @@ canvas.onclick = (e) => {
     }
 }
 
-
-// To Do List For Chess (not in any order)
+// make the a1 square actually 1,1 in row and col
 // Make Peices not able to move through other peices, exept kights
 // Show the legal moves of a peice when it is selected
 // checks and checkmates
