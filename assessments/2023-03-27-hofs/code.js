@@ -108,3 +108,86 @@ const fruitBowl = [
 const isTasty = (fruit) => fruit.tastiness >= 5;
 
 const isInconvenient = (fruit) => fruit.inconvenience >= 5;
+
+const redFruits = (fruits) => { // correct
+  return fruits.filter((n) => n.colors.includes('red'))
+}
+
+const weights = (fruits) => { // correct
+  return fruits.map((n) => n.grams)
+}
+
+const heaviest = (fruits) => { // correct
+  return fruits.reduce((f, n) => {
+    return Math.max(f, n.grams)
+  }, 0)
+}
+
+const allColors = (fruits) => { // correct
+  return fruits.flatMap((n) => n.colors)
+}
+
+const areAllTasty = (fruits) => { // correct
+  return fruits.every((n) => isTasty(n))
+}
+
+const notAllInconvenient = (fruits) => { // almost (fixed)
+  return fruits.some((n) => !isInconvenient(n))
+}
+
+const tasty = (fruits) => { // correct
+  let r = []
+  for (let i = 0; i < fruits.length; i++) {
+    if (isTasty(fruits[i])) {
+      r.push(fruits[i])
+    }
+  }
+  return r
+}
+
+const names = (fruits) => { // correct
+  let r = []
+  for (let i = 0; i < fruits.length; i++) {
+    r.push(fruits[i].name)
+  }
+  return r
+}
+
+const avarageInconvenince = (fruits) => { // correct
+  let r = 0
+  for (let i = 0; i < fruits.length; i++) {
+    r = r + fruits[i].inconvenience
+  }
+  return r / fruits.length
+}
+
+const allCountries = (fruits) => { // correct
+  const r = []
+  for (let i = 0; i < fruits.length; i++) {
+    const countries = fruits[i].grownIn
+    for (let j = 0; j < countries.length; j++) {
+      r.push(countries[j])
+    }
+  }
+  return r
+};
+
+const allGrownInMoreThanNCountries = (fruits, n) => { // correct
+  let answer = true
+  for (let i = 0; i < fruits.length; i++) {
+    if (!(fruits[i].grownIn.length > n)) {
+      answer = false
+    }
+  }
+  return answer
+}
+
+const someMoreThanNColors = (fruits, n) => { // correct
+  let answer = false
+  for (let i = 0; i < fruits.length; i++) {
+    if (fruits[i].colors.length > n) {
+      answer = true
+    }
+  }
+  return answer
+}
