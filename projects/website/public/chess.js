@@ -153,8 +153,10 @@ const pawnCaptureIsLegal = (piece, col, row) => {
 const promotePawn = (piece) => {
     if (piece.icon === WHITE_PAWN) {
         piece.icon = WHITE_QUEEN
+        piece.kind = 'queen'
     } else {
         piece.icon = BLACK_QUEEN
+        piece.kind = 'queen'
     }
 }
 const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
@@ -187,6 +189,25 @@ const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
 }
 
 const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
+    let rowChange;
+    let colChange;
+    if (srcCol < dstCol) {
+        colChange = -1
+    } else if (srcCol > dstCol) {
+        colChange = 1
+    }
+    if (srcRow < dstRow) {
+        rowChange = -1
+    } else if (srcRow > dstRow) {
+        rowChange = 1
+    }
+
+    for (let i = srcCol + colChange; i < dstCol; i = i + colChange) {
+        for (let j = srcRow + rowChange; j > dstRow; j = j + rowChange) {
+            if (board[i][j] !== 0)
+                return true
+        }
+    }
     if ((srcCol < dstCol) && (srcRow > dstRow)) {
         for (let i = srcCol + 1; i < dstCol; i++) {
             for (let j = srcRow - 1; j > dstRow; j--) {
@@ -196,35 +217,35 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
             }
         }
     } else if ((srcCol > dstCol) && (srcRow < dstRow)) {
-            for (let i = srcCol - 1; i > dstCol; i--) {
-                for (let j = srcRow + 1; j < dstRow; j++) {
-                    console.log(board[i][j])
-                    if (board[i][j] !== 0)
-                        return true
-                }
-            }
-        } else if ((srcCol > dstCol) && (srcRow > dstRow)) {
-            for (let i = srcCol - 1; i > dstCol; i--) {
-                for (let j = srcRow - 1; j > dstRow; j--) {
-                    console.log(board[i][j])
-                    if (board[i][j] !== 0)
-                        return true
-                }
-            }
-        } else if ((srcCol < dstCol) && (srcRow < dstRow)) {
-            for (let i = srcCol + 1; i < dstCol; i++) {
-                for (let j = srcRow + 1; j < dstRow; j++) {
-                    console.log(board[i][j])
-                    if (board[i][j] !== 0)
-                        return true
-                }
+        for (let i = srcCol - 1; i > dstCol; i--) {
+            for (let j = srcRow + 1; j < dstRow; j++) {
+                console.log(board[i][j])
+                if (board[i][j] !== 0)
+                    return true
             }
         }
-        return false
+    } else if ((srcCol > dstCol) && (srcRow > dstRow)) {
+        for (let i = srcCol - 1; i > dstCol; i--) {
+            for (let j = srcRow - 1; j > dstRow; j--) {
+                console.log(board[i][j])
+                if (board[i][j] !== 0)
+                    return true
+            }
+        }
+    } else if ((srcCol < dstCol) && (srcRow < dstRow)) {
+        for (let i = srcCol + 1; i < dstCol; i++) {
+            for (let j = srcRow + 1; j < dstRow; j++) {
+                console.log(board[i][j])
+                if (board[i][j] !== 0)
+                    return true
+            }
+        }
+    }
+    return false
 }
 
 const queenMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-    if((rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)) || (bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow))) {
+    if ((rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)) || (bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow))) {
         return true
     }
     return false
@@ -235,7 +256,7 @@ const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
     }
     else if (piece.kind === 'bishop') {
         return bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)
-    } else if(piece.kind === 'queen') {
+    } else if (piece.kind === 'queen') {
         return queenMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)
     } else return false
 
