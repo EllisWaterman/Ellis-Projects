@@ -5,3 +5,11 @@ const factorial = (n) => {
     return n * factorial(n - 1);
   }
 }
+
+const triangular = (n) => {
+  if (n === 0) {
+    return 0
+  } else {
+    return n + triangular(n-1);
+  }
+}
