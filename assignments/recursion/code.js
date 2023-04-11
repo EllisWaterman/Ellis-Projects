@@ -24,3 +24,6 @@ const fibonacci = (n) => {
   }
 }
 
+const gcd = (n) => {
+  
+}
