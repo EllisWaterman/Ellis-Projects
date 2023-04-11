@@ -19,11 +19,16 @@ const fibonacci = (n) => {
     return 0;
   } else if (n === 1) {
     return 1;
-  }else {
+  } else {
     return fibonacci(n - 1) + fibonacci(n - 2)
   }
 }
 
-const gcd = (n) => {
-  
+const gcd = (A, B) => {
+  if (A === 0) {
+    return B
+  } else if (B === 0) {
+    return A
+  }
+
 }
