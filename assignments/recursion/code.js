@@ -30,7 +30,14 @@ const gcd = (A, B) => {
   } else if (B === 0) {
     return A
   } else {
-    return gcd((A&B)+1)
+    return gcd(A&B)
   }
+}
 
+const sum = (n) => {
+  if (n.length === 0) {
+    return 0
+  } else {
+    return sum(n[1])/.
+  }
 }
