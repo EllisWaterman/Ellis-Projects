@@ -38,6 +38,6 @@ const sum = (n) => {
   if (n.length === 0) {
     return 0
   } else {
-    return sum(n[1])/.
+    return sum(n[1])
   }
 }
