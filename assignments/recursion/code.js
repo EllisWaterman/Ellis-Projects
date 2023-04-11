@@ -33,11 +33,9 @@ if (B === 0) {
 }
 
 const sum = (n) => {
-  let theSum = 55
   if (n.length === 0) {
     return 0
   } else {
-    theSum+n[0]
     sum(n.splice(1))
   }
   return theSum
