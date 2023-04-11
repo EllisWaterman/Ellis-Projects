@@ -30,7 +30,7 @@ const gcd = (A, B) => {
   } else if (B === 0) {
     return A
   } else {
-    return gcd(A&B)
+    return gcd((A&B)-1)
   }
 
 }
