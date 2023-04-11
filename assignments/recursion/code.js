@@ -28,9 +28,7 @@ const gcd = (A, B) => {
 if (B === 0) {
     return A
   } else {
-    A--
-    B--
-    gcd(B%A)
+    gcd(B, B%A)
   }
 }
 
@@ -38,6 +36,6 @@ const sum = (n) => {
   if (n.length === 0) {
     return 0
   } else {
-    return sum(n[1])
+    sum([1])
   }
 }
