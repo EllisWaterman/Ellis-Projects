@@ -33,7 +33,7 @@ if (B === 0) {
 }
 
 const sum = (n) => {
-  let theSum = 0
+  let theSum = 55
   if (n.length === 0) {
     return 0
   } else {
