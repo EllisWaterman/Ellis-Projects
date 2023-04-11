@@ -31,6 +31,6 @@ const gcd = (A, B) => {
     return A
   } else {
     return gcd(A&B)
-  }l
+  }
 
 }
