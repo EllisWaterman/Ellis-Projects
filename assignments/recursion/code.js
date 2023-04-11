@@ -28,7 +28,9 @@ const gcd = (A, B) => {
 if (B === 0) {
     return A
   } else {
-    return gcd((B%A)-1)
+    A--
+    B--
+    gcd(B%A)
   }
 }
 
