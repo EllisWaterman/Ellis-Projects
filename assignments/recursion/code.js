@@ -25,9 +25,7 @@ const fibonacci = (n) => {
 }
 
 const gcd = (A, B) => {
-  if (A === 0) {
-    return B
-  } else if (B === 0) {
+if (B === 0) {
     return A
   } else {
     return gcd(A&B)
