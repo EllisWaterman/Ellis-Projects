@@ -36,7 +36,6 @@ const sum = (n) => {
   if (n.length === 0) {
     return 0
   } else {
-    sum(n.splice(1))
+    return sum(n.splice(1))
   }
-  return theSum
 }
