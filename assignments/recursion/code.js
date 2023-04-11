@@ -29,6 +29,8 @@ const gcd = (A, B) => {
     return B
   } else if (B === 0) {
     return A
+  } else {
+    return A&B
   }
 
 }
