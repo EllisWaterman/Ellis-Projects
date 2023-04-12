@@ -65,3 +65,4 @@ const treeMap = (tree, treeFunction) => {
 } else if (tree === 0) {
   return 0
 }
+}
