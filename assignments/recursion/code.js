@@ -52,6 +52,6 @@ const reverseString = (n) => {
   if(n.length === 0) {
     return ''
    } else {
-     return n.substring(n.length-1) + reverseString(n.substring(n.length-2))
+     return n.substring(n.length-1) + reverseString(n.substring(n.length-1))
    }
 }
