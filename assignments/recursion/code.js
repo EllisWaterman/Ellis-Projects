@@ -39,3 +39,9 @@ const sum = (n) => {
     return n[0] + sum(n.splice(1))
   }
 }
+
+const search = (n, number) => {
+  if (n.length === 0) {
+    return false
+  } 
+}
