@@ -44,7 +44,10 @@ const search = (n, number) => {
   if (n.length === 0) {
     return false
   } else {
-    return search(n.splice(1), number) === number
+  if (n[0] === number) {
+    return true
+  }
+    return search(n.splice(1), number) 
   }
 }
 
