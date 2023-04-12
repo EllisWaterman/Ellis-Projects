@@ -46,6 +46,6 @@ const search = (n, number) => {
   } else {
      if(n.indexOf(number)) {
        return true
-     }
+     } else return false
   }
 }
