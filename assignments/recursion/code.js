@@ -42,7 +42,7 @@ const sum = (n) => {
 
 const search = (n, number) => {
   if (n.length === 0) {
-    return false
+    return true
   } else {
     return search(n.splice(1), number) === number
   }
