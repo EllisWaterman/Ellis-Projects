@@ -43,5 +43,7 @@ const sum = (n) => {
 const search = (n, number) => {
   if (n.length === 0) {
     return false
-  } 
+  } else {
+     if(n.indexOf(number))
+  }
 }
