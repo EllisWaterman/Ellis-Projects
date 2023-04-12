@@ -58,3 +58,7 @@ const reverseString = (n) => {
      return n.substring(n.length-1) + reverseString((n.slice(0,-1)))
    }
 }
+
+const treeMap = (tree, treeFunction) => {
+  
+}
