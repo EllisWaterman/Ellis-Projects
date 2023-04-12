@@ -47,3 +47,11 @@ const search = (n, number) => {
     return search(n.splice(1), number) === number
   }
 }
+
+const reverseString = (n) => {
+  if(n.length === 0) {
+    return ''
+   } else {
+     return n.subtring(n.length-1)
+   }
+}
