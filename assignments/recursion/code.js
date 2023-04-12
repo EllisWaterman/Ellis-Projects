@@ -25,10 +25,10 @@ const fibonacci = (n) => {
 }
 
 const gcd = (A, B) => {
-if (B === 0) {
+  if (B === 0) {
     return A
   } else {
-    return gcd(B, A%B)
+    return gcd(B, A % B)
   }
 }
 
@@ -44,8 +44,6 @@ const search = (n, number) => {
   if (n.length === 0) {
     return false
   } else {
-     if(search(n.splice(1),number) === number) {
-       return true
-     } else return false
+    return search(n.splice(1), number) === number
   }
 }
