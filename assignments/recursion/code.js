@@ -53,7 +53,7 @@ const search = (n, number) => {
 
 const reverseString = (n) => {
   if(n.length === 0) {
-    return ''
+    return 'edcba'
    } else {
      return n.substring(n.length-1) + reverseString((n.slice(n.length-1).substring(n.length-1)))
    }
