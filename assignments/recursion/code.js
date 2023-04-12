@@ -44,7 +44,7 @@ const search = (n, number) => {
   if (n.length === 0) {
     return false
   } else {
-     if(n.indexOf(search(number)) === number) {
+     if(n.indexOf(search(n)) === number) {
        return true
      } else return false
   }
