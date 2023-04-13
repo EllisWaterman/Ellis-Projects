@@ -44,25 +44,27 @@ const search = (n, number) => {
   if (n.length === 0) {
     return false
   } else {
-  if (n[0] === number) {
-    return true
-  }
-    return search(n.splice(1), number) 
+    if (n[0] === number) {
+      return true
+    }
+    return search(n.splice(1), number)
   }
 }
 
 const reverseString = (n) => {
-  if(n.length === 0) {
+  if (n.length === 0) {
     return ''
-   } else {
-     return n.substring(n.length-1) + reverseString((n.slice(0,-1)))
-   }
+  } else {
+    return n.substring(n.length - 1) + reverseString((n.slice(0, -1)))
+  }
 }
 
 const treeMap = (tree, treeFunction) => {
-  if(tree.left) {
-  return {}
-} else if (tree !== {} ) {
-  return 0
-}
+  if (tree.left) {
+    return {}
+  } else if (tree !== {}) {
+    return 0
+  } else {
+    return treeFunction(tree)
+  }
 }
