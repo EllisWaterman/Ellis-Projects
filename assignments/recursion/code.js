@@ -68,3 +68,7 @@ const treeMap = (tree, treeFunction) => {
     return treeFunction(tree)
   }
 }
+
+const change = (money, coinArray) => {
+  
+}
