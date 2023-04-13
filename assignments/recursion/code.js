@@ -77,7 +77,7 @@ const change = (money, coinArray) => {
   } else if (coinArray.length === 0){
     return 0
   }else {
-    if(isInteger(money / coinArray[0])) {
+    if(Number.isInteger(money / coinArray[0])) {
       result++
     }
   }
