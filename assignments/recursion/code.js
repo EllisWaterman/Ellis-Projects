@@ -66,9 +66,9 @@ const treeMap = (tree, treeFunction) => {
   } else if (tree !== {}) {
     return 0
   } else {
-    return tree
-
   }
+      return tree
+
 }
 
 const change = (money, coinArray) => {
