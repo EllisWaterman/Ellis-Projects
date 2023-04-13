@@ -64,15 +64,16 @@ const treeMap = (tree, treeFunction) => {
   if (isLeaf(tree)) {
     return treeFunction(tree)
   } else {
-     newTree.left = treeMap(tree.left, treeFunction)
-     newTree.right = treeMap(tree.right, treeFunction)
+    newTree.left = treeMap(tree.left, treeFunction)
+    newTree.right = treeMap(tree.right, treeFunction)
   }
-return newTree
+  return newTree
 }
 
 const change = (money, coinArray) => {
-  if(money === 0) {
+  if (money === 0) {
     return 1
-  } else 
-  return money/coinArray[0]
+  } else {
+    return money / coinArray[0]
+  }
 }
