@@ -61,7 +61,9 @@ const reverseString = (n) => {
 
 const treeMap = (tree, treeFunction) => {
   if (tree.left) {
-    return treeFunction(tree.left)
+    tree.left = treeFunction(tree.left)
+     tree.right = treeFunction(tree.right)
+     return tree
   } else if (tree !== {}) {
     return 0
   } else {
