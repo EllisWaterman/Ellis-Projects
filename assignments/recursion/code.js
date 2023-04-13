@@ -60,15 +60,15 @@ const reverseString = (n) => {
 }
 
 const treeMap = (tree, treeFunction) => {
-  if (tree.left) {
-    tree.left = treeFunction(tree.left)
-    tree.right = treeFunction(tree.right)
-    tree.left.left = treeFunction(tree.left.left)
-  } else if (tree !== {}) {
-    tree = treeFunction(tree)
-  } else {
-  }
-    return tree
+  // if (tree.left) {
+  //   tree.left = treeFunction(tree.left)
+  //   tree.right = treeFunction(tree.right)
+  //   tree.left.left = treeFunction(tree.left.left)
+  // } else if (tree !== {}) {
+  //   tree = treeFunction(tree)
+  // } else {
+  // }
+  //   return tree
 }
 
 const change = (money, coinArray) => {
