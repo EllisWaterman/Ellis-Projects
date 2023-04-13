@@ -71,11 +71,15 @@ const treeMap = (tree, treeFunction) => {
 }
 
 const change = (money, coinArray) => {
+  let result = 0
   if (money === 0) {
     return 1
   } else if (coinArray.length === 0){
     return 0
   }else {
-    return money / coinArray[0]
+    if(isInteger(money / coinArray[0])) {
+      result++
+    }
   }
+  return result
 }
