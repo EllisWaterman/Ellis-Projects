@@ -60,9 +60,11 @@ const reverseString = (n) => {
 }
 
 const treeMap = (tree, treeFunction) => {
-  if(isLeaf(tree)) {
+  if (isLeaf(tree)) {
     return treeFunction(tree)
-  }
+  } else {
+    treeMap(tree.left)
+  }..
 
   // if (isLeaf(tree)) {
   //   if(isLeaf(tree)) {
