@@ -71,7 +71,7 @@ return newTree
 }
 
 const change = (money, coinArray) => {
-  if(money = 0) {
+  if(money === 0) {
     return 1
   }
   return money/coinArray[0]
