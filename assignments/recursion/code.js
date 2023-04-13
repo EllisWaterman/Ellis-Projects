@@ -63,8 +63,9 @@ const treeMap = (tree, treeFunction) => {
   if (tree.left) {
     if(tree.left !== {}) {
       return 0
-    } else {
-      treeFunction(tree)
+    } else if (tree.left === {}) {
+      treeFunction(tree.left.left)
+      treeFunction(tree.left.right)
     }
     // tree.left = treeFunction(tree.left)
     // tree.right = treeFunction(tree.right)
