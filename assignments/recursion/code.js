@@ -63,7 +63,7 @@ const treeMap = (tree, treeFunction) => {
   if (isLeaf(tree)) {
     return treeFunction(tree)
   } else {
-    return treeMap(tree.left)
+    return treeMap(tree.left.slice(1))
   }
 
   // if (isLeaf(tree)) {
