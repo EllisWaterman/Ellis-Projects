@@ -1,4 +1,4 @@
-import { setCanvas, drawFilledRect, drawText } from "./graphics.js";
+import { setCanvas, drawFilledRect, drawText, clear, drawRect, height } from "./graphics.js";
 const canvas = document.getElementById("screen");
 setCanvas(canvas);
 // const im I= document.createElement('img')
@@ -62,7 +62,7 @@ const drawBoard = () => {
   let rowsize = 8;
   for (let rows = 0; rows < rowsize; rows++) {
     for (let cols = 0; cols < colsize + 1; cols++) {
-      let color = cols % 2 === 0 ? "silver" : "#D4AF37";
+      let color = cols % 2 === 0 ? "grey" : "white";
       drawFilledRect(
         rows * SQUARE_SIZE,
         cols * SQUARE_SIZE - SQUARE_SIZE * (rows % 2 === 0 ? 0 : 1),
@@ -100,7 +100,7 @@ const placePieces = () => {
   pieces.forEach(placePiece);
 };
 const emptySpace = (piece) => {
-  let color = (piece.col + piece.row) % 2 === 0 ? "silver" : "#D4AF37";
+  let color = (piece.col + piece.row) % 2 === 0 ? "grey" : "white";
   drawFilledRect(
     piece.col * SQUARE_SIZE,
     piece.row * SQUARE_SIZE,
@@ -125,6 +125,37 @@ const movePiece = (selected, row, col) => {
   //     turn = 'white'
   // }
 };
+
+const capturePiece = (selected, row, col) => {
+  console.log(board[col][row])
+  if(board[col][row].kind === "king") {
+    console.log('GAME ENDED')
+    return endTheGame(board[col][row].team)
+  }
+  emptySpace(selected);
+  board[selected.col][selected.row] = 0;
+  selected.row = row;
+  selected.col = col;
+  board[col][row] = selected;
+  pieceSelected = null;
+  emptySpace(selected);
+  drawPiece(selected.icon, col, row);
+  // if (turn === 'white') {
+  //     turn = 'black'
+  // } else {
+  //     turn = 'white'
+  // }
+};
+
+const endTheGame = (KingColor) => {
+  if(KingColor === 'black') {
+  console.log('White Wins')
+  drawText("White Wins!", width / 4, height / 2, 'White', 10);  
+} else {
+  drawText("Black Wins!", width / 4, height / 2, 'White', 10);  
+    console.log("Black Wins")
+  }
+}
 
 const pawnMoveIsLegal = (piece, col, row) => {
   const pawnDirection = piece.icon === WHITE_PAWN ? -1 : 1;
@@ -268,6 +299,7 @@ const queenMoveIsLegal = (piece, col, row) => {
     return rookMoveIsLegal(piece,col,row);
   } else return bishopMoveIsLegal(piece,col,row);
 };
+
 const kingMoveIsLegal = (piece, col, row) => {
   return (
     (row === piece.row + 1 && col === piece.col) ||
@@ -315,6 +347,10 @@ const moveIsLegal = (piece, col, row) => {
   }
   return false;
 };
+
+const checkIfCheck = (piece,col,row) => {
+
+}
 drawBoard();
 placePieces();
 
@@ -338,7 +374,7 @@ canvas.onclick = (e) => {
     }
     if (pieceSelected.team !== board[col][row].team) {
       if (moveIsLegal(pieceSelected, col, row)) {
-        movePiece(pieceSelected, row, col);
+        capturePiece(pieceSelected, row, col);
       }
       return;
     }
@@ -351,6 +387,7 @@ canvas.onclick = (e) => {
 };
 
 // make the a1 square actually 1,1 in row and col
-// Make Peices not able to move through other peices, exept kights
 // Show the legal moves of a peice when it is selected
 // checks and checkmates
+// make a home screen
+// make a chess engine that plays a random move
