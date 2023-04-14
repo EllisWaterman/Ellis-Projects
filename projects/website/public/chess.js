@@ -201,7 +201,7 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   if (srcCol < dstCol && srcRow > dstRow) {
     let col = srcCol + 1;
     let row = srcRow - 1;
-    for (let i = dstCol - srcCol-1; i > 0; i--) {
+    for (let i = dstCol - srcCol - 1; i > 0; i--) {
       if (board[col][row] !== 0) return true;
       col++;
       row--;
@@ -225,8 +225,8 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   } else if (srcCol < dstCol && srcRow < dstRow) {
     let col = srcCol + 1;
     let row = srcRow + 1;
-    for (let i = dstCol-srcCol-1; i > 0; i--) {
-      console.log("checking: " + col + ", " + row)
+    for (let i = dstCol - srcCol - 1; i > 0; i--) {
+      console.log("checking: " + col + ", " + row);
       if (board[col][row] !== 0) return true;
       col++;
       row++;
@@ -236,14 +236,9 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
 };
 
 const queenMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-  // make it return rook move is block if it is a rook style move and vice verse for bishop
-  if (
-    rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow) ||
-    bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow)
-  ) {
-    return true;
-  }
-  return false;
+  if (srcCol === dstCol || srcRow === dstRow) {
+    return rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
+  } else return bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
 };
 const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
   if (piece.kind === "rook") {
@@ -255,7 +250,6 @@ const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
   } else return false;
 };
 const rookMoveIsLegal = (piece, col, row) => {
-  console.log("rook");
   return (
     (col === piece.col || row === piece.row) &&
     !isMoveBlocked(piece, piece.col, piece.row, col, row)
@@ -263,7 +257,6 @@ const rookMoveIsLegal = (piece, col, row) => {
 };
 
 const bishopMoveIsLegal = (piece, col, row) => {
-  console.log("bishop");
   return (
     Math.abs(col - piece.col) === Math.abs(row - piece.row) &&
     !isMoveBlocked(piece, piece.col, piece.row, col, row)
@@ -271,14 +264,9 @@ const bishopMoveIsLegal = (piece, col, row) => {
 };
 
 const queenMoveIsLegal = (piece, col, row) => {
-  console.log("queenMove");
-  return bishopMoveIsLegal(piece, col, row) || rookMoveIsLegal(piece, col, row);
-  //   return (
-  //     (Math.abs(col - piece.col) === Math.abs(row - piece.row) ||
-  //       col === piece.col ||
-  //       row === piece.row) &&
-  //     !isMoveBlocked(piece.col, piece.row, col, row)
-  //   );
+  if (col === piece.col || row === piece.row) {
+    return rookMoveIsLegal(piece,col,row);
+  } else return bishopMoveIsLegal(piece,col,row);
 };
 const kingMoveIsLegal = (piece, col, row) => {
   return (
