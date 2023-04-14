@@ -24,11 +24,11 @@ const fibonacci = (n) => {
   }
 }
 
-const gcd = (A, B) => {
-  if (B === 0) {
-    return A
+const gcd = (a, b) => {
+  if (b === 0) {
+    return a
   } else {
-    return gcd(B, A % B)
+    return gcd(b, a % b)
   }
 }
 
