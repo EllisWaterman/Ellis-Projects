@@ -47,7 +47,7 @@ const search = (n, number) => {
     if (n[0] === number) {
       return true
     }
-    return search(n.slice(1), number)
+    return search(n.splice(1), number)
   }
 }
 
