@@ -1,5 +1,6 @@
 const add = (a,b) => {
-  return a + b
+  let n = [a,b]
+  return n[0] + add(n.slice(1))
 }
 
 const maximum = (n) => {
