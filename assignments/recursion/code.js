@@ -1,12 +1,11 @@
-const factorial
-
-const triangular = (n) => {
-  if (n === 0) {
-    return 0;
+const factorial = (n) => {
+  if (n == 0) { 
+    return 0
   } else {
-    return n + triangular(n - 1);
+    return n* factorial(n-1)
   }
 }
+
 
 const fibonacci = (n) => {
   if (n === 0) {
