@@ -1,5 +1,5 @@
 const add = (a,b) => {
-  return a + add(b)
+  return a + b
 }
 
 const maximum = (n) => {
