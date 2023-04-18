@@ -10,14 +10,14 @@ const multiply = (a, b) => {
   if (b === 0) {
     return 0
   } else {
-    return a + multiply(a,b-1)
+    return a + multiply(a, b - 1)
   }
 }
 const double = (a, b) => {
   if (b === 0) {
     return 1
   } else {
-    return a * (double(a-a, b-1))
+    return a * (double(a + a, b - 1))
   }
 }
 const maximum = (n) => {
