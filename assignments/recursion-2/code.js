@@ -6,6 +6,15 @@ const add = (a, b) => {
   }
 }
 
+const multiply = () => {
+  const add = (a, b) => {
+  if (b === 0) {
+    return 0
+  } else {
+    return 1 * add(a,b-1)
+  }
+}
+}
 const double = (a,b) => { 
   if (b === 0) {
     return 0
