@@ -15,7 +15,7 @@ const multiply = (a, b) => {
 }
 const double = (a, b) => {
   if (b === 0) {
-    return a
+    return 1
   } else {
     return a * (double(a *2, b - 1))
   }
