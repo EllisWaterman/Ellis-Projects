@@ -20,7 +20,7 @@ const double = (a, b) => {
   //   return a * (2 * (double(a, b--)))
   // }
 
-  a * (2*b)
+  return a * (2*b)
 }
 const maximum = (n) => {
   if (n.length === 0) {
