@@ -6,7 +6,7 @@ const add = (a, b) => {
   }
 }
 
-const multiply = () => {
+const multiply = (a,b) => {
   const add = (a, b) => {
   if (b === 0) {
     return 0
