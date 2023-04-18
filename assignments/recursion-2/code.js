@@ -8,9 +8,9 @@ const add = (a, b) => {
 
 const multiply = (a, b) => {
   if (b === 0) {
-    return 0
+    return 1
   } else {
-    return 1 * add(a, b - 1)
+    return 1 * multiply(a, b - 1)
   }
 }
 const double = (a, b) => {
