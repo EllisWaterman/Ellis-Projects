@@ -17,7 +17,7 @@ const double = (a, b) => {
   if (b === 0) {
     return 0
   } else {
-    return a * (2 * (double(a, b--)))
+    return a * (double(a, b-1))
   }
 }
 const maximum = (n) => {
