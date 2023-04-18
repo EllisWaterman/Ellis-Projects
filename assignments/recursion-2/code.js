@@ -13,11 +13,12 @@ const multiply = (a, b) => {
     return a + multiply(a, b - 1)
   }
 }
+
 const double = (a, b) => {
   if (b === 0) {
-    return a
+    return
   } else {
-    return a * double(a *2, b - 1)
+    return a * double(a * 2, b - 1)
   }
 }
 const maximum = (n) => {
