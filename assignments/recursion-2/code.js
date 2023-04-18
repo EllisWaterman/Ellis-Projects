@@ -30,5 +30,5 @@ const maximum = (n) => {
 
 
 const power = (number, power) => {
-  number^^power
+  return number**power
 }
