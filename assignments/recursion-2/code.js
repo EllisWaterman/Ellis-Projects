@@ -1,5 +1,5 @@
 const add = (a, b) => {
-  if (n.length === 0) {
+  if (b === 0) {
     return 0
   } else {
     return 1 + add(a,b-1)
