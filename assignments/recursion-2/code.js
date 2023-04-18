@@ -1,9 +1,8 @@
 const add = (a, b) => {
-  let n = [a, b]
   if (n.length === 0) {
     return 0
   } else {
-    return n[0] + add(n.slice(1),0)
+    return 1 + add(a,b-1)
   }
 }
 
