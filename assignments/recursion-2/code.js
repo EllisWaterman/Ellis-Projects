@@ -27,7 +27,7 @@ const maximum = (n) => {
     return Math.max(n[0], maximum(n.slice(1)))
   }
 }
-
+/*
 
 const power = (number, power) => {
   if (power === 0) {
@@ -36,3 +36,4 @@ const power = (number, power) => {
     return
   }
 }
+*/
