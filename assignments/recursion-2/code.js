@@ -3,7 +3,7 @@ const add = (a, b) => {
   if (n.length === 0) {
     return 0
   } else {
-    return n[0] + add(n.slice(1))
+    return n[0] + add(n.slice(1),0)
   }
 }
 
