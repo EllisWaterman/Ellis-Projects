@@ -1,6 +1,6 @@
 const add = (a, b) => {
   if (b === 0) {
-    return 
+    return 0
   } else {
     return 1 + add(a, b - 1)
   }
