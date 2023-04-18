@@ -13,7 +13,7 @@ const multiply = (a, b) => {
     return a + multiply(a,b-1)
   }
 }
-const double = (a, b) => {
+const power = (a, b) => {
   if (b === 0) {
     return a
   } else {
