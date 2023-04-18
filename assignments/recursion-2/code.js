@@ -14,13 +14,11 @@ const multiply = (a, b) => {
   }
 }
 const double = (a, b) => {
-  // if (b === 0) {
-  //   return 0
-  // } else {
-  //   return a * (2 * (double(a, b--)))
-  // }
-
-  return a * (2*b)
+  if (b === 0) {
+    return 0
+  } else {
+    return a * (2 * (double(a, b--)))
+  }
 }
 const maximum = (n) => {
   if (n.length === 0) {
