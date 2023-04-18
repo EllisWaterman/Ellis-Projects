@@ -17,7 +17,7 @@ const power = (a, b) => {
   if (b === 0) {
     return a
   } else {
-    return a * (double(a+ a, b-1))
+    return a * (power(a+ a, b-1))
   }
 }
 const maximum = (n) => {
