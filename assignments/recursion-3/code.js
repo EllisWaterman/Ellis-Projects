@@ -23,3 +23,9 @@ const lucas = (n) => {
     return lucas(n - 1) + lucas(n - 2)
   }
 }
+
+const isAscending = (n) => {
+  if (n.length === 0) {
+    return false
+  }
+}
