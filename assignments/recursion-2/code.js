@@ -51,6 +51,6 @@ const deleteXs = (s) => {
   } else if (s[0] === 'x') {
     deleteXs(s.slice(1))
   } else {
-    return s[0] + deleteXs(s.slice)
+    return s[0] + deleteXs(s.slice(1))
   }
 }
