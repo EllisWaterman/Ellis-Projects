@@ -54,3 +54,13 @@ const deleteXs = (s) => {
     return s[0] + deleteXs(s.slice(1))
   }
 }
+
+const countXs = (s) => {
+  if (s.length === 0) {
+    return 0
+  } else if(s[0] === 'x') {
+    return 1
+  } else {
+    return countXs(s.slice(1))
+  }
+}
