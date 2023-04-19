@@ -39,7 +39,7 @@ const maximum = (n) => {
 
 const power = (number, exponent) => {
   if (exponent === 0) {
-    return 0
+    return 1
   }else {
     return number**exponent
   }
