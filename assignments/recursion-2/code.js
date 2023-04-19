@@ -77,7 +77,7 @@ const every = (n, predicate) => {
 
 const some = (n, predicate) => {
   if (n.length === 0) {
-    return true
+    return false
   } else if (predicate(n[0])) {
     return true
     } else {
