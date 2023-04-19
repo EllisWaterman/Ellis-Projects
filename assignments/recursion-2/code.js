@@ -64,3 +64,11 @@ const countXs = (s) => {
     return countXs(s.slice(1))
   }
 }
+
+const every = (n, predicate) => {
+  if (predicate(n[0])) {
+    return true
+  } else {
+    return every(n.slice(1), predicate)
+  }
+}
