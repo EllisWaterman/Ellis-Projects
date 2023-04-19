@@ -40,8 +40,8 @@ const maximum = (n) => {
 const power = (number, exponent) => {
   if (exponent === 0) {
     return 1
-  }else {
-    return number* power(number, exponent-1)
+  } else {
+    return number * power(number, exponent - 1)
   }
 }
 
@@ -50,5 +50,7 @@ const deleteXs = (s) => {
     return 0
   } else if (s[0] === 'x') {
     deleteXs(s.slice(1))
-  } else s[0] + deleteXs(s.slice(1))
+  } else {
+    return s[0] + deleteXs(s.slice(1))
+  }
 }
