@@ -41,6 +41,6 @@ const power = (number, power) => {
   if (power === 0) {
     return 0
   }else {
-    return
+    return number*power((number*power-1))
   }
 }
