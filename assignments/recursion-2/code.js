@@ -47,10 +47,10 @@ const power = (number, exponent) => {
 
 const deleteXs = (s) => {
   if (s.length === 0) {
-    return ''
+    return s
   } else if (s[0] === 'x') {
     deleteXs(s.slice(1))
   } else {
-    return s[0] + deleteXs(s.slice(s.indexOf('x')))
+    return s[0] + deleteXs(s.slice)
   }
 }
