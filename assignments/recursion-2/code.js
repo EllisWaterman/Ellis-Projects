@@ -59,7 +59,7 @@ const countXs = (s) => {
   if (s.length === 0) {
     return 0
   } else if(s[0] === 'x') {
-    return countXs(s.indexOf('x'))
+    return countXs(s)
   } else {
     return countXs(s.slice(1))
   }
