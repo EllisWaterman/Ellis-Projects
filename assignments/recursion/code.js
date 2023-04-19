@@ -8,7 +8,7 @@ const factorial = (n) => {
 
 const triangular = (n) => {
   if (n == 0) { 
-    return 1
+    return 0
   } else {
     return n + triangular(n-1)
   }
