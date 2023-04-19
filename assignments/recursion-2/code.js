@@ -74,3 +74,13 @@ const every = (n, predicate) => {
     return every(n.slice(1), predicate)
   }
 }
+
+const some = (n, predicate) => {
+  if (n.length === 0) {
+    return true
+  } else if (predicate(n[0])) {
+    return true
+    } else {
+    return some(n.slice(1), predicate)
+  }
+}
