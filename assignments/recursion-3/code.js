@@ -7,7 +7,7 @@ const product = (n) => {
 }
 
 const sumSquares = (n) => {
-  if (n.length === 0) {
+  if (n === 0) {
     return 0
   }
 }
