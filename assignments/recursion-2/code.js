@@ -41,6 +41,6 @@ const power = (number, exponent) => {
   if (exponent === 0) {
     return 0
   }else {
-    return number^exponent
+    return number**exponent
   }
 }
