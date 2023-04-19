@@ -69,7 +69,7 @@ const every = (n, predicate) => {
   if (n.length === 0) {
     return true
   } else if (predicate(n[0])) {
-    return true
+    return false
     } else {
     return every(n.slice(1), predicate)
   }
