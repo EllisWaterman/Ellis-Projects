@@ -1,5 +1,5 @@
 const product = (n) => {
-  if(n.length === 0) {
+  if (n.length === 0) {
     return 1
   } else {
     return n[0] * product(n.slice(1))
@@ -10,7 +10,7 @@ const sumSquares = (n) => {
   if (n === 0) {
     return 0
   } else {
-    return n**2 + sumSquares(n-1)
+    return n ** 2 + sumSquares(n - 1)
   }
 }
 
@@ -27,5 +27,7 @@ const lucas = (n) => {
 const isAscending = (n) => {
   if (n.length === 0) {
     return false
-  } else return n[0] <= isAscending(n.slice(1))
+  } else if (n[0] <= isAscending(n.slice(1))) {
+    return true
+  }
 }
