@@ -68,7 +68,7 @@ const countXs = (s) => {
 const every = (n, predicate) => {
   if (predicate(n[0])) {
     return true
-  } else if (n.length === 0 {
+  } else if (n.length === 0) {
     return true
     } else {
     return every(n.slice(1), predicate)
