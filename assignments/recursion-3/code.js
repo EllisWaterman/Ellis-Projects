@@ -41,5 +41,7 @@ const isDescending = (n) => {
 }
 
 const sumNested = (n) => {
-  
+  if(n.length === 0) {
+    return 0
+  }
 }
