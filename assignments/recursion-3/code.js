@@ -27,7 +27,7 @@ const lucas = (n) => {
 const isAscending = (n) => {
   if (n.length === 1) {
     return true
-  } else if(!(n[0] <= isAscending(n.slice(1)))) {
-    return false
-  }
+  } else if(n[0] <= n[1]) {
+    return isAscending(n.slice(1))
+  } else return false
 }
