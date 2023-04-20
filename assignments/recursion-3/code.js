@@ -28,6 +28,6 @@ const isAscending = (n) => {
   if (n.length === 0) {
     return true
   } else if(!(n[0] <= isAscending(n.slice(1)))) {
-    return true
+    return false
   }
 }
