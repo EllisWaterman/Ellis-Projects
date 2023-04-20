@@ -43,5 +43,7 @@ const isDescending = (n) => {
 const sumNested = (n) => {
   if(n.length === 0) {
     return 0
+  } else if (isNumber(n[0])) {
+    return n[0] + sumNested(n.slice(1))
   }
 }
