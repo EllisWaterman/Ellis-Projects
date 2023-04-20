@@ -39,3 +39,7 @@ const isDescending = (n) => {
     return isDescending(n.slice(1))
   } else return false
 }
+
+const sumNested = (n) => {
+  
+}
