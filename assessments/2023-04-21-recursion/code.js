@@ -71,6 +71,6 @@ const treeMap = (tree,fn) => {
   if(isLeaf(tree)) {
     return fn(tree)
   } else {
-    return newTree.left = treeMap(tree.left.slice(1))
+    return newTree.left = treeMap(tree.slice(1))
   }
 }
