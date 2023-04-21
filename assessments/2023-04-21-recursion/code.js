@@ -36,39 +36,39 @@ const factorial = (n) => {
   if (n === 0) {
     return 1
   } else {
-    return n * factorial(n-1)
+    return n * factorial(n - 1)
   }
 }
 
 const fibonacci = (n) => {
-  if(n === 0) {
+  if (n === 0) {
     return 0
   } else if (n === 1) {
     return 1
-    }else {
-    return fibonacci(n-1) + fibonacci(n-2)
+  } else {
+    return fibonacci(n - 1) + fibonacci(n - 2)
   }
 }
 
 const sumSquares = (n) => {
-  if(n === 0) {
+  if (n === 0) {
     return 0
   } else {
-    return n**2 + sumSquares(n-1)
+    return n ** 2 + sumSquares(n - 1)
   }
 }
 
 const maximum = (n) => {
-  if(n.length === 0) {
+  if (n.length === 0) {
     return -Infinity
   } else {
     return Math.max(n[0], maximum(n.slice(1)))
   }
 }
 
-const treeMap = (tree,fn) => {
+const treeMap = (tree, fn) => {
   let newTree = tree
-  if(isLeaf(tree)) {
+  if (isLeaf(tree)) {
     return fn(tree)
   } else {
     newTree.left = treeMap(tree.left, fn)
@@ -80,17 +80,17 @@ const treeMap = (tree,fn) => {
 const sumPrimesBelow = (n) => {
   if (n === 1) {
     return 0
-  } else if(isPrime(n)) {
-    return n + sumPrimesBelow(n-1)
+  } else if (isPrime(n)) {
+    return n + sumPrimesBelow(n - 1)
   } else {
-    return sumPrimesBelow(n-1)
+    return sumPrimesBelow(n - 1)
   }
 }
 
 const nvwls = (s) => {
-  if(s.length === 0) {
+  if (s.length === 0) {
     return s
-  } else if (s[0] === 'a' || s[0] === 'e' || s[0] === 'i' || s[0] === 'o' || s[0] === 'u'){
-    return s[0] + nvwls()
+  } else if (s[0] === 'a' || s[0] === 'e' || s[0] === 'i' || s[0] === 'o' || s[0] === 'u') {
+    return nvwls(s.slice(1))
   }
 }
