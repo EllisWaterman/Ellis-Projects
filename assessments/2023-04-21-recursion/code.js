@@ -81,7 +81,7 @@ const sumPrimesBelow = (n) => {
   if (n === 1) {
     return 0
   } else if(isPrime(n)) {
-    return 1 + sumPrimesBelow(n-1)
+    return n + sumPrimesBelow(n-1)
   } else {
     return sumPrimesBelow(n-1)
   }
