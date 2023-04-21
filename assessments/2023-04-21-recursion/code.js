@@ -57,3 +57,11 @@ const sumSquares = (n) => {
     return n**2 + sumSquares(n-1)
   }
 }
+
+const maximum = (n) => {
+  if(n.length === 0) {
+    return -Infinty
+  } else {
+    return Math.max(n[0], maximum(n.slice(1)))
+  }
+}
