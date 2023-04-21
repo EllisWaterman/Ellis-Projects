@@ -76,3 +76,13 @@ const treeMap = (tree,fn) => {
   }
   return newTree
 }
+
+const sumPrimesBelow = (n) => {
+  if (n === 0) {
+    return 0
+  } else if(isPrime(n)) {
+    return 1 + sumPrimesBelow(n-1)
+  } else {
+    return sumPrimesBelow(n-1)
+  }
+}
