@@ -119,7 +119,7 @@ const toList = (n) => {
 const map = (list, fn) => {
   let newList = list
   if (newList.rest === null) {
-    return newList.rest
+    return newList
   } else {
     newList.first = fn(newList.first)
     newList.rest = map(newList.rest,fn)
