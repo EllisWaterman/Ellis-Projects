@@ -118,6 +118,6 @@ const toList = (n) => {
 
 const map = (list, fn) => {
   if (list.length === 0) {
-    return null
+    return 0
   }
 }
