@@ -121,8 +121,8 @@ const map = (list, fn) => {
   if (list.length === 0) {
     return 0
   } else {
-    console.log(newList.first)
     newList.first = fn(newList.first)
+    newList.rest = fn(newList.first)
   }
   return newList
 }
