@@ -120,6 +120,7 @@ const map = (list, fn) => {
   if (list.length === 0) {
     return 0
   } else {
-    return fn(list.first)
+     fn(list.first)
   }
+  return list
 }
