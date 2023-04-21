@@ -65,3 +65,10 @@ const maximum = (n) => {
     return Math.max(n[0], maximum(n.slice(1)))
   }
 }
+
+const treeMap = (tree,fn) => {
+  let newTree = {}
+  if(isLeaf(tree)) {
+    return fn(tree)
+  } 
+}
