@@ -117,10 +117,11 @@ const toList = (n) => {
 }
 
 const map = (list, fn) => {
+  let newList = list
   if (list.length === 0) {
     return 0
   } else {
      fn(list.first)
   }
-  return list
+  return newList
 }
