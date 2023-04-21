@@ -111,6 +111,7 @@ const toList = (n) => {
     return null
   } else {
      listFormat.first = n[0]
-     return listFormat
+     listFormat.rest = toList(n.slice(1))
   }
+   return listFormat
 }
