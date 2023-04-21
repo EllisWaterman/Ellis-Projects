@@ -119,5 +119,7 @@ const toList = (n) => {
 const map = (list, fn) => {
   if (list.length === 0) {
     return 0
+  } else {
+    return fn(list.first)
   }
 }
