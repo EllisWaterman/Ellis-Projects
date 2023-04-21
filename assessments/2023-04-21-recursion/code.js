@@ -101,6 +101,6 @@ const caesar = (s, key) => {
   if (s.length === 0) {
     return s 
   } else {
-    return caesar(rotate(s,key))
+    return caesar(rotate(s[0],key))
   }
 }
