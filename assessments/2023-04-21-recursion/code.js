@@ -122,7 +122,7 @@ const map = (list, fn) => {
     return 0
   } else {
     console.log(newList.first)
-     fn(newList.first)
+    newList.first = fn(newList.first)
   }
   return newList
 }
