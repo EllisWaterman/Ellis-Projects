@@ -122,7 +122,7 @@ const map = (list, fn) => {
     return newList
   } else {
     newList.first = fn(newList.first)
-    newList.rest = fn(map(newList.rest,fn))
+    newList.rest = map(newList.rest,fn)
   }
   return newList
 }
