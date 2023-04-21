@@ -110,6 +110,6 @@ const toList = (n) => {
   if (n.length === 0) {
     return null
   } else {
-    return 
+    return listFormat.first = n[0]
   }
 }
