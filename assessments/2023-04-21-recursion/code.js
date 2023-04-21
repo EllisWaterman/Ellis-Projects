@@ -115,3 +115,9 @@ const toList = (n) => {
   }
    return listFormat
 }
+
+const map = (list, fn) => {
+  if (list.length === 0) {
+    return null
+  }
+}
