@@ -31,6 +31,7 @@ const rotate = (char, places) => {
   }
 }
 
+//code below 
 
 const factorial = (n) => {
   if (n === 0) {
