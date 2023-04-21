@@ -104,3 +104,12 @@ const caesar = (s, key) => {
     return rotate(s[0],key) + caesar(s.slice(1), key)
   }
 }
+
+const toList = (n) => {
+  let listFormat = {first : 0, rest: 0}
+  if (n.length === 0) {
+    return null
+  } else {
+    
+  }
+}
