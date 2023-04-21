@@ -111,7 +111,6 @@ const toList = (n) => {
     return null
   } else {
      listFormat.first = n[0]
-     listFormat.rest = listFormat
      return listFormat
   }
 }
