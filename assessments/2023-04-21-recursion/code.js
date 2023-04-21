@@ -96,3 +96,11 @@ const nvwls = (s) => {
     return s[0] + nvwls(s.slice(1))
   }
 }
+
+const caesar = (s, key) => {
+  if (s.length === 0) {
+    return s 
+  } else {
+    return caesar(rotate(s,key))
+  }
+}
