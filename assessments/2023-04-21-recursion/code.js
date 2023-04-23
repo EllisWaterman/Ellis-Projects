@@ -31,9 +31,9 @@ const rotate = (char, places) => {
   }
 }
 
-//code below 
+//code below
 
-const factorial = (n) => {
+const factorial = (n) => { // correct
   if (n === 0) {
     return 1
   } else {
@@ -41,7 +41,7 @@ const factorial = (n) => {
   }
 }
 
-const fibonacci = (n) => {
+const fibonacci = (n) => { // correct
   if (n === 0) {
     return 0
   } else if (n === 1) {
@@ -51,7 +51,7 @@ const fibonacci = (n) => {
   }
 }
 
-const sumSquares = (n) => {
+const sumSquares = (n) => { // correct
   if (n === 0) {
     return 0
   } else {
@@ -59,7 +59,7 @@ const sumSquares = (n) => {
   }
 }
 
-const maximum = (n) => {
+const maximum = (n) => { // correct
   if (n.length === 0) {
     return -Infinity
   } else {
@@ -67,7 +67,7 @@ const maximum = (n) => {
   }
 }
 
-const treeMap = (tree, fn) => {
+const treeMap = (tree, fn) => { // almost
   let newTree = tree
   if (isLeaf(tree)) {
     return fn(tree)
@@ -78,7 +78,7 @@ const treeMap = (tree, fn) => {
   return newTree
 }
 
-const sumPrimesBelow = (n) => {
+const sumPrimesBelow = (n) => { // correct
   if (n === 1) {
     return 0
   } else if (isPrime(n)) {
@@ -88,7 +88,7 @@ const sumPrimesBelow = (n) => {
   }
 }
 
-const nvwls = (s) => {
+const nvwls = (s) => { // correct
   if (s.length === 0) {
     return s
   } else if (s[0] === 'a' || s[0] === 'e' || s[0] === 'i' || s[0] === 'o' || s[0] === 'u') {
@@ -98,15 +98,15 @@ const nvwls = (s) => {
   }
 }
 
-const caesar = (s, key) => {
+const caesar = (s, key) => { // correct
   if (s.length === 0) {
-    return s 
+    return s
   } else {
     return rotate(s[0],key) + caesar(s.slice(1), key)
   }
 }
 
-const toList = (n) => {
+const toList = (n) => { // correct
   let listFormat = {first : 0, rest: 0}
   if (n.length === 0) {
     return null
@@ -117,7 +117,7 @@ const toList = (n) => {
    return listFormat
 }
 
-const map = (list, fn) => {
+const map = (list, fn) => { // almost
   let newList = list
   if (newList.rest === null) {
     newList.first = fn(newList.first)
