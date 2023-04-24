@@ -62,7 +62,7 @@ const drawBoard = () => {
   let rowsize = 8;
   for (let rows = 0; rows < rowsize; rows++) {
     for (let cols = 0; cols < colsize + 1; cols++) {
-      let color = cols % 2 === 0 ? "grey" : "white";
+      let color = cols % 2 === 0 ? "#C4A484" : "white";
       drawFilledRect(
         rows * SQUARE_SIZE,
         cols * SQUARE_SIZE - SQUARE_SIZE * (rows % 2 === 0 ? 0 : 1),
@@ -100,7 +100,7 @@ const placePieces = () => {
   pieces.forEach(placePiece);
 };
 const emptySpace = (piece) => {
-  let color = (piece.col + piece.row) % 2 === 0 ? "grey" : "white";
+  let color = (piece.col + piece.row) % 2 === 0 ? "#C4A484" : "white";
   drawFilledRect(
     piece.col * SQUARE_SIZE,
     piece.row * SQUARE_SIZE,
@@ -148,11 +148,14 @@ const capturePiece = (selected, row, col) => {
 };
 
 const endTheGame = (KingColor) => {
+  //redirect to another page that says "White or Black wins"
+  // and has a "play again button or a exit button"
   if(KingColor === 'black') {
   console.log('White Wins')
-  drawText("White Wins!", width / 4, height / 2, 'White', 10);  
+  drawFilledRect(0,0, canvas.width, canvas.height, 'Black')
+  drawText("White Wins!", canvas.width / 4, canvas.height / 2, 'White', 50);  
 } else {
-  drawText("Black Wins!", width / 4, height / 2, 'White', 10);  
+  drawText("Black Wins!", canvas.width / 4, canvas.height / 2, 'White', 50);  
     console.log("Black Wins")
   }
 }
