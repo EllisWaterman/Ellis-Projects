@@ -68,7 +68,7 @@ const maximum = (n) => { // correct
 }
 
 const treeMap = (tree, fn) => { // almost
-  let newTree = tree
+  let newTree = {...tree}
   if (isLeaf(tree)) {
     return fn(tree)
   } else {
