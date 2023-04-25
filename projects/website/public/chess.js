@@ -1,4 +1,11 @@
-import { setCanvas, drawFilledRect, drawText, clear, drawRect, height } from "./graphics.js";
+import {
+  setCanvas,
+  drawFilledRect,
+  drawText,
+  clear,
+  drawRect,
+  height,
+} from "./graphics.js";
 const canvas = document.getElementById("screen");
 setCanvas(canvas);
 // const im I= document.createElement('img')
@@ -19,8 +26,8 @@ const BLACK_PAWN = "♟";
 const SQUARE_SIZE = 62.5;
 
 // Example of drawing one of the pieces
-
-const pieces = [
+let gameStatus = "ONGOING";
+let pieces = [
   { team: "white", kind: "king", icon: WHITE_KING, row: 7, col: 4 },
   { team: "white", kind: "knight", icon: WHITE_KNIGHT, row: 7, col: 6 },
   { team: "white", kind: "knight", icon: WHITE_KNIGHT, row: 7, col: 1 },
@@ -54,6 +61,7 @@ const pieces = [
   { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 6, moves: 0 },
   { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 7, moves: 0 },
 ];
+
 let pieceSelected = null;
 let turn = "white";
 
@@ -79,7 +87,7 @@ const placePiece = (piece) => {
   board[piece.col][piece.row] = piece;
 };
 
-const board = new Array(8).fill(0).map(() => new Array(8).fill(0));
+let board = new Array(8).fill(0).map(() => new Array(8).fill(0));
 
 const drawPiece = (icon, col, row, color = "black") => {
   let displacement = 3;
@@ -127,10 +135,10 @@ const movePiece = (selected, row, col) => {
 };
 
 const capturePiece = (selected, row, col) => {
-  console.log(board[col][row])
-  if(board[col][row].kind === "king") {
-    console.log('GAME ENDED')
-    return endTheGame(board[col][row].team)
+  console.log(board[col][row]);
+  if (board[col][row].kind === "king") {
+    console.log("GAME ENDED");
+    return endTheGame(board[col][row].team);
   }
   emptySpace(selected);
   board[selected.col][selected.row] = 0;
@@ -148,17 +156,33 @@ const capturePiece = (selected, row, col) => {
 };
 
 const endTheGame = (KingColor) => {
-  //redirect to another page that says "White or Black wins"
-  // and has a "play again button or a exit button"
-  if(KingColor === 'black') {
-  console.log('White Wins')
-  drawFilledRect(0,0, canvas.width, canvas.height, 'Black')
-  drawText("White Wins!", canvas.width / 4, canvas.height / 2, 'White', 50);  
-} else {
-  drawText("Black Wins!", canvas.width / 4, canvas.height / 2, 'White', 50);  
-    console.log("Black Wins")
+  gameStatus = "ENDED";
+  // has a "play again button or a exit button"
+  if (KingColor === "black") {
+    console.log("White Wins");
+    drawFilledRect(0, 0, canvas.width, canvas.height, "White");
+    drawText("White Wins!", canvas.width / 3, canvas.height / 2, "Black", 50);
+    drawText(
+      "Click Anywhere To Play Again",
+      canvas.width / 4,
+      canvas.height / 1.3,
+      "White",
+      30
+    );
+  } else {
+    drawFilledRect(0, 0, canvas.width, canvas.height, "Black");
+    drawText("Black Wins!", canvas.width / 3, canvas.height / 3, "White", 50);
+    drawText(
+      "Click Anywhere To Play Again",
+      canvas.width / 4,
+      canvas.height / 1.3,
+      "White",
+      30
+    );
+
+    console.log("Black Wins");
   }
-}
+};
 
 const pawnMoveIsLegal = (piece, col, row) => {
   const pawnDirection = piece.icon === WHITE_PAWN ? -1 : 1;
@@ -207,29 +231,20 @@ const promotePawn = (piece) => {
   }
 };
 const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-  if (srcCol === dstCol) {
-    if (srcRow < dstRow) {
-      for (let i = srcRow + 1; i < dstRow; i++) {
-        if (board[srcCol][i] !== 0) return true;
-      }
-    } else {
-      for (let i = srcRow - 1; i > dstRow; i--) {
-        if (board[srcCol][i] !== 0) return true;
-      }
-    }
-  } else {
-    if (srcCol < dstCol) {
-      for (let i = srcCol + 1; i < dstCol; i++) {
-        if (board[i][srcRow] !== 0) return true;
-      }
-    } else {
-      for (let i = srcCol - 1; i > dstCol; i--) {
-        if (board[i][srcRow] !== 0) return true;
-      }
-    }
-    return false;
+  const dr = Math.sign(dstRow - srcRow);
+  const dc = Math.sign(dstCol - srcCol);
+
+  let r = srcRow + dr;
+  let c = srcCol + dc;
+
+  while (r !== dstRow || c !== dstCol) {
+    if (board[c][r] !== 0) return true;
+    r += dr;
+    c += dc;
   }
+  return false;
 };
+
 
 const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   if (srcCol < dstCol && srcRow > dstRow) {
@@ -260,7 +275,6 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
     let col = srcCol + 1;
     let row = srcRow + 1;
     for (let i = dstCol - srcCol - 1; i > 0; i--) {
-      console.log("checking: " + col + ", " + row);
       if (board[col][row] !== 0) return true;
       col++;
       row++;
@@ -299,8 +313,8 @@ const bishopMoveIsLegal = (piece, col, row) => {
 
 const queenMoveIsLegal = (piece, col, row) => {
   if (col === piece.col || row === piece.row) {
-    return rookMoveIsLegal(piece,col,row);
-  } else return bishopMoveIsLegal(piece,col,row);
+    return rookMoveIsLegal(piece, col, row);
+  } else return bishopMoveIsLegal(piece, col, row);
 };
 
 const kingMoveIsLegal = (piece, col, row) => {
@@ -351,9 +365,7 @@ const moveIsLegal = (piece, col, row) => {
   return false;
 };
 
-const checkIfCheck = (piece,col,row) => {
-
-}
+const checkIfCheck = (piece, col, row) => {};
 drawBoard();
 placePieces();
 
@@ -363,29 +375,72 @@ canvas.onclick = (e) => {
   let y = offsetY;
   let col = Math.floor(x / SQUARE_SIZE);
   let row = Math.floor(y / SQUARE_SIZE);
-  if (pieceSelected === null) {
-    if (board[col][row] !== 0 /* && board[col][row].team === turn*/) {
-      pieceSelected = board[col][row];
-      highlightPeice(pieceSelected.icon, col, row, "blue");
-    }
-  } else {
-    if (board[col][row] === 0) {
-      if (moveIsLegal(pieceSelected, col, row)) {
-        movePiece(pieceSelected, row, col);
+  if (gameStatus === "ONGOING") {
+    if (pieceSelected === null) {
+      if (board[col][row] !== 0 /* && board[col][row].team === turn*/) {
+        pieceSelected = board[col][row];
+        highlightPeice(pieceSelected.icon, col, row, "blue");
       }
-      return;
-    }
-    if (pieceSelected.team !== board[col][row].team) {
-      if (moveIsLegal(pieceSelected, col, row)) {
-        capturePiece(pieceSelected, row, col);
+    } else {
+      if (board[col][row] === 0) {
+        if (moveIsLegal(pieceSelected, col, row)) {
+          movePiece(pieceSelected, row, col);
+        }
+        return;
       }
-      return;
+      if (pieceSelected.team !== board[col][row].team) {
+        if (moveIsLegal(pieceSelected, col, row)) {
+          capturePiece(pieceSelected, row, col);
+        }
+        return;
+      }
+      if (board[col][row] === pieceSelected) {
+        highlightPeice(pieceSelected.icon, col, row, "black");
+        pieceSelected = null;
+        return;
+      }
     }
-    if (board[col][row] === pieceSelected) {
-      highlightPeice(pieceSelected.icon, col, row, "black");
-      pieceSelected = null;
-      return;
-    }
+  } else if ((gameStatus = "ENDED")) {
+    board = new Array(8).fill(0).map(() => new Array(8).fill(0));
+    clear();
+    pieces = [
+      { team: "white", kind: "king", icon: WHITE_KING, row: 7, col: 4 },
+      { team: "white", kind: "knight", icon: WHITE_KNIGHT, row: 7, col: 6 },
+      { team: "white", kind: "knight", icon: WHITE_KNIGHT, row: 7, col: 1 },
+      { team: "white", kind: "bishop", icon: WHITE_BISHOP, row: 7, col: 2 },
+      { team: "white", kind: "bishop", icon: WHITE_BISHOP, row: 7, col: 5 },
+      { team: "white", kind: "rook", icon: WHITE_ROOK, row: 7, col: 0 },
+      { team: "white", kind: "rook", icon: WHITE_ROOK, row: 7, col: 7 },
+      { team: "white", kind: "queen", icon: WHITE_QUEEN, row: 7, col: 3 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 0, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 1, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 2, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 3, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 4, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 5, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 6, moves: 0 },
+      { team: "white", kind: "pawn", icon: WHITE_PAWN, row: 6, col: 7, moves: 0 },
+      { team: "black", kind: "king", icon: BLACK_KING, row: 0, col: 4 },
+      { team: "black", kind: "knight", icon: BLACK_KNIGHT, row: 0, col: 6 },
+      { team: "black", kind: "knight", icon: BLACK_KNIGHT, row: 0, col: 1 },
+      { team: "black", kind: "bishop", icon: BLACK_BISHOP, row: 0, col: 2 },
+      { team: "black", kind: "bishop", icon: BLACK_BISHOP, row: 0, col: 5 },
+      { team: "black", kind: "rook", icon: BLACK_ROOK, row: 0, col: 0 },
+      { team: "black", kind: "rook", icon: BLACK_ROOK, row: 0, col: 7 },
+      { team: "black", kind: "queen", icon: BLACK_QUEEN, row: 0, col: 3 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 0, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 1, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 2, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 3, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 4, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 5, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 6, moves: 0 },
+      { team: "black", kind: "pawn", icon: BLACK_PAWN, row: 1, col: 7, moves: 0 },
+    ];
+    pieceSelected = null;
+    drawBoard();
+    placePieces();
+    gameStatus = "ONGOING";
   }
 };
 
