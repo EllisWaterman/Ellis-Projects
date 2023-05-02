@@ -25,7 +25,7 @@ const BLACK_KNIGHT = "♞";
 const BLACK_PAWN = "♟";
 const SQUARE_SIZE = 62.5;
 
-class pawn {
+class Pawn {
   constructor(color, col) {
     this.team = color;
     this.col = col;
@@ -39,179 +39,179 @@ class pawn {
       this.icon = WHITE_PAWN;
     }
   }
-  isMoveLegal(piece, col, row) {
-    const pawnDirection = piece.icon === WHITE_PAWN ? -1 : 1;
-    if (piece.moves === 0) {
+  isMoveLegal(col, row) {
+    const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
+    if (this.moves === 0) {
       if (
-        col === piece.col &&
-        (row === piece.row + pawnDirection ||
-          row === piece.row + pawnDirection * 2)
+        col === this.col &&
+        (row === this.row + pawnDirection ||
+          row === this.row + pawnDirection * 2)
       ) {
-        piece.moves++;
+        this.moves++;
         if (row === 7 || row === 0) {
-          promotePawn(piece);
+          promotePawn(this);
         }
         return true;
       }
-    } else if (col === piece.col && row === piece.row + pawnDirection) {
-      piece.moves++;
+    } else if (col === this.col && row === this.row + pawnDirection) {
+      this.moves++;
       if (row === 7 || row === 0) {
-        promotePawn(piece);
+        promotePawn(this);
       }
       return true;
     } else {
       return false;
     }
-  };
+  }
 }
 
-class rook {
+class Rook {
   constructor(color, row, col) {
-    this.row = row
-    this.col = col
-    this.color = color
-    this.kind = 'rook'
-    if(color === 'black') {
-      this.icon = BLACK_ROOK
+    this.row = row;
+    this.col = col;
+    this.color = color;
+    this.kind = "rook";
+    if (color === "black") {
+      this.icon = BLACK_ROOK;
     } else {
-      this.icon = WHITE_ROOK
+      this.icon = WHITE_ROOK;
     }
   }
-  isMoveLegal(piece,col,row) {
+  isMoveLegal(col, row) {
     return (
-      (col === piece.col || row === piece.row) &&
-      !isMoveBlocked(piece, piece.col, piece.row, col, row)
+      (col === this.col || row === this.row) &&
+      !isMoveBlocked(this, this.col, this.row, col, row)
     );
   }
 }
 
-class knight {
+class Knight {
   constructor(color, row, col) {
-    this.row = row
-    this.col = col
-    this.color = color
-    this.kind = 'knight'
-    if(color === 'black') {
-      this.icon = BLACK_KNIGHT
+    this.row = row;
+    this.col = col;
+    this.color = color;
+    this.kind = "knight";
+    if (color === "black") {
+      this.icon = BLACK_KNIGHT;
     } else {
-      this.icon = WHITE_KNIGHT
+      this.icon = WHITE_KNIGHT;
     }
   }
-   moveIsLegal (piece, col, row){
+  moveIsLegal(col, row) {
     return (
-      (row === piece.row + 1 && col === piece.col + 2) ||
-      (row === piece.row - 1 && col === piece.col - 2) ||
-      (row === piece.row + 1 && col === piece.col - 2) ||
-      (row === piece.row - 1 && col === piece.col + 2) ||
-      (row === piece.row + 2 && col === piece.col + 1) ||
-      (row === piece.row + 2 && col === piece.col - 1) ||
-      (row === piece.row - 2 && col === piece.col + 1) ||
-      (row === piece.row - 2 && col === piece.col - 1)
+      (row === this.row + 1 && col === this.col + 2) ||
+      (row === this.row - 1 && col === this.col - 2) ||
+      (row === this.row + 1 && col === this.col - 2) ||
+      (row === this.row - 1 && col === this.col + 2) ||
+      (row === this.row + 2 && col === this.col + 1) ||
+      (row === this.row + 2 && col === this.col - 1) ||
+      (row === this.row - 2 && col === this.col + 1) ||
+      (row === this.row - 2 && col === this.col - 1)
     );
-  };
+  }
 }
 
-class bishop {
+class Bishop {
   constructor(color, row, col) {
-    this.row = row
-    this.col = col
-    this.color = color
-    this.kind = 'bishop'
-    if(color === 'black') {
-      this.icon = BLACK_BISHOP
+    this.row = row;
+    this.col = col;
+    this.color = color;
+    this.kind = "bishop";
+    if (color === "black") {
+      this.icon = BLACK_BISHOP;
     } else {
-      this.icon = WHITE_BISHOP
+      this.icon = WHITE_BISHOP;
     }
   }
-   moveIsLegal (piece, col, row) {
+  moveIsLegal(col, row) {
     return (
-      Math.abs(col - piece.col) === Math.abs(row - piece.row) &&
-      !isMoveBlocked(piece, piece.col, piece.row, col, row)
+      Math.abs(col - this.col) === Math.abs(row - this.row) &&
+      !isMoveBlocked(this, this.col, this.row, col, row)
     );
-  };
+  }
 }
 
-class king {
+class King {
   constructor(color, row, col) {
-    this.row = row
-    this.col = col
-    this.color = color
-    this.kind = 'king'
-    if(color === 'black') {
-      this.icon = BLACK_KING
+    this.row = row;
+    this.col = col;
+    this.color = color;
+    this.kind = "king";
+    if (color === "black") {
+      this.icon = BLACK_KING;
     } else {
-      this.icon = WHITE_KING
+      this.icon = WHITE_KING;
     }
   }
-   moveIsLegal(piece, col, row) {
+  moveIsLegal(col, row) {
     return (
-      (row === piece.row + 1 && col === piece.col) ||
-      (row === piece.row - 1 && col === piece.col) ||
-      (col === piece.col - 1 && row === piece.row) ||
-      (col === piece.col + 1 && row === piece.row) ||
-      (col === piece.col + 1 && row === piece.row + 1) ||
-      (col === piece.col - 1 && row === piece.row - 1) ||
-      (col === piece.col + 1 && row === piece.row - 1) ||
-      (col === piece.col - 1 && row === piece.row + 1)
+      (row === this.row + 1 && col === this.col) ||
+      (row === this.row - 1 && col === this.col) ||
+      (col === this.col - 1 && row === this.row) ||
+      (col === this.col + 1 && row === this.row) ||
+      (col === this.col + 1 && row === this.row + 1) ||
+      (col === this.col - 1 && row === this.row - 1) ||
+      (col === this.col + 1 && row === this.row - 1) ||
+      (col === this.col - 1 && row === this.row + 1)
     );
-  };
+  }
 }
 
-class queen {
+class Queen {
   constructor(color, row, col) {
-    this.row = row
-    this.col = col
-    this.color = color
-    this.kind = 'rook'
-    if(color === 'black') {
-      this.icon = BLACK_QUEEN
+    this.row = row;
+    this.col = col;
+    this.color = color;
+    this.kind = "rook";
+    if (color === "black") {
+      this.icon = BLACK_QUEEN;
     } else {
-      this.icon = WHITE_QUEEN
+      this.icon = WHITE_QUEEN;
     }
   }
-   moveIsLegal (piece, col, row) {
-    if (col === piece.col || row === piece.row) {
-      return rook.moveIsLegal(piece, col, row);
-    } else return bishop.moveIsLegal(piece, col, row);
-  };
+  moveIsLegal(col, row) {
+    if (col === this.col || row === this.row) {
+      return Rook.moveIsLegal(this, col, row);
+    } else return Bishop.moveIsLegal(this, col, row);
+  }
 }
 
 // Example of drawing one of the pieces
 let gameStatus = "ONGOING";
 const MakeStartingPieces = () => {
   return [
-    new king('white', 7, 4),
-    new knight('white', 7, 6),
-    new knight('white',7,1),
-    new bishop('white', 7,2),
-    new bishop('white',7,5),
-    new rook('white', 7, 0),
-    new rook('white', 7,7),
-    new queen ('white',7,3),
-    new pawn("white", 0),
-    new pawn("white", 1),
-    new pawn("white", 2),
-    new pawn("white", 3),
-    new pawn("white", 4),
-    new pawn("white", 5),
-    new pawn("white", 6),
-    new pawn("white", 7),
-    new king('black', 0, 4),
-    new knight('black', 0, 6),
-    new knight('black',0,1),
-    new bishop('black', 0,2),
-    new bishop('black',0,5),
-    new rook('black', 0, 0),
-    new rook('black', 0,7),
-    new queen ('black',0,3),
-    new pawn("black", 0),
-    new pawn("black", 1),
-    new pawn("black", 2),
-    new pawn("black", 3),
-    new pawn("black", 4),
-    new pawn("black", 5),
-    new pawn("black", 6),
-    new pawn("black", 7),
+    new King("white", 7, 4),
+    new Knight("white", 7, 6),
+    new Knight("white", 7, 1),
+    new Bishop("white", 7, 2),
+    new Bishop("white", 7, 5),
+    new Rook("white", 7, 0),
+    new Rook("white", 7, 7),
+    new Queen("white", 7, 3),
+    new Pawn("white", 0),
+    new Pawn("white", 1),
+    new Pawn("white", 2),
+    new Pawn("white", 3),
+    new Pawn("white", 4),
+    new Pawn("white", 5),
+    new Pawn("white", 6),
+    new Pawn("white", 7),
+    new King("black", 0, 4),
+    new Knight("black", 0, 6),
+    new Knight("black", 0, 1),
+    new Bishop("black", 0, 2),
+    new Bishop("black", 0, 5),
+    new Rook("black", 0, 0),
+    new Rook("black", 0, 7),
+    new Queen("black", 0, 3),
+    new Pawn("black", 0),
+    new Pawn("black", 1),
+    new Pawn("black", 2),
+    new Pawn("black", 3),
+    new Pawn("black", 4),
+    new Pawn("black", 5),
+    new Pawn("black", 6),
+    new Pawn("black", 7),
   ];
 };
 console.log(MakeStartingPieces());
@@ -378,11 +378,10 @@ const pawnCaptureIsLegal = (piece, col, row) => {
 
 const promotePawn = (piece) => {
   if (piece.icon === WHITE_PAWN) {
-    piece.icon = WHITE_QUEEN;
-    piece.kind = "queen";
+   new Queen('white', piece.row,piece.col)
   } else {
-    piece.icon = BLACK_QUEEN;
-    piece.kind = "queen";
+    new Queen('white', piece.row,piece.col)
+
   }
 };
 const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
@@ -497,26 +496,28 @@ const knightMoveIsLegal = (piece, col, row) => {
   );
 };
 const moveIsLegal = (piece, col, row) => {
-  if (
-    piece.kind === "pawn" &&
-    board[col][row] !== 0 &&
-    board[col][row].team !== piece.team
-  ) {
-    return pawnCaptureIsLegal(piece, col, row);
-  } else if (piece.kind === "pawn") {
-    return piece.isMoveLegal(piece, col, row);
-  } else if (piece.kind === "rook") {
-    return rookMoveIsLegal(piece, col, row);
-  } else if (piece.kind === "bishop") {
-    return bishopMoveIsLegal(piece, col, row);
-  } else if (piece.kind === "queen") {
-    return queenMoveIsLegal(piece, col, row);
-  } else if (piece.kind === "king") {
-    return kingMoveIsLegal(piece, col, row);
-  } else if (piece.kind === "knight") {
-    return knightMoveIsLegal(piece, col, row);
-  }
-  return false;
+  console.log(piece);
+  return piece.moveIsLegal(col, row);
+  // if (
+  //   piece.kind === "pawn" &&
+  //   board[col][row] !== 0 &&
+  //   board[col][row].team !== piece.team
+  // ) {
+  //   return pawnCaptureIsLegal(piece, col, row);
+  // } else if (piece.kind === "pawn") {
+  //   return piece.isMoveLegal(piece, col, row);
+  // } else if (piece.kind === "rook") {
+  //   return rookMoveIsLegal(piece, col, row);
+  // } else if (piece.kind === "bishop") {
+  //   return bishopMoveIsLegal(piece, col, row);
+  // } else if (piece.kind === "queen") {
+  //   return queenMoveIsLegal(piece, col, row);
+  // } else if (piece.kind === "king") {
+  //   return kingMoveIsLegal(piece, col, row);
+  // } else if (piece.kind === "knight") {
+  //   return knightMoveIsLegal(piece, col, row);
+  // }
+  // return false;
 };
 
 const checkIfCheck = (piece) => {
