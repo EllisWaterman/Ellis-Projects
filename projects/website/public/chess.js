@@ -39,7 +39,25 @@ class Pawn {
       this.icon = WHITE_PAWN;
     }
   }
-  isMoveLegal(col, row) {
+  pawnCaptureIsLegal(col, row) {
+    const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
+    if (
+      (row === this.row + pawnDirection && col === this.col + 1) ||
+      (row === this.row + pawnDirection && col === this.col - 1)
+    ) {
+      if (row === 7 || row === 0) {
+        promotePawn(this);
+      }
+      return true;
+    }
+  };
+  
+  moveIsLegal(col, row) {
+    if(board[col][row] !== 0) {
+      console.log(board[col][row])
+      return pawnCaptureIsLegal(col,row)
+    }
+    else {
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
     if (this.moves === 0) {
       if (
@@ -64,12 +82,13 @@ class Pawn {
     }
   }
 }
+}
 
 class Rook {
   constructor(color, row, col) {
     this.row = row;
     this.col = col;
-    this.color = color;
+    this.team = color;
     this.kind = "rook";
     if (color === "black") {
       this.icon = BLACK_ROOK;
@@ -77,10 +96,10 @@ class Rook {
       this.icon = WHITE_ROOK;
     }
   }
-  isMoveLegal(col, row) {
+  moveIsLegal(col, row) {
     return (
       (col === this.col || row === this.row) &&
-      !isMoveBlocked(this, this.col, this.row, col, row)
+      !rookMoveIsBlocked(this.col, this.row, col, row)
     );
   }
 }
@@ -89,7 +108,7 @@ class Knight {
   constructor(color, row, col) {
     this.row = row;
     this.col = col;
-    this.color = color;
+    this.team = color;
     this.kind = "knight";
     if (color === "black") {
       this.icon = BLACK_KNIGHT;
@@ -115,7 +134,7 @@ class Bishop {
   constructor(color, row, col) {
     this.row = row;
     this.col = col;
-    this.color = color;
+    this.team = color;
     this.kind = "bishop";
     if (color === "black") {
       this.icon = BLACK_BISHOP;
@@ -123,10 +142,11 @@ class Bishop {
       this.icon = WHITE_BISHOP;
     }
   }
+  
   moveIsLegal(col, row) {
     return (
       Math.abs(col - this.col) === Math.abs(row - this.row) &&
-      !isMoveBlocked(this, this.col, this.row, col, row)
+      !bishopMoveIsBlocked(this, this.col, this.row, col, row)
     );
   }
 }
@@ -135,7 +155,7 @@ class King {
   constructor(color, row, col) {
     this.row = row;
     this.col = col;
-    this.color = color;
+    this.team = color;
     this.kind = "king";
     if (color === "black") {
       this.icon = BLACK_KING;
@@ -158,12 +178,12 @@ class King {
 }
 
 class Queen {
-  constructor(color, row, col) {
+  constructor(team, row, col) {
     this.row = row;
     this.col = col;
-    this.color = color;
-    this.kind = "rook";
-    if (color === "black") {
+    this.team = team;
+    this.kind = "queen";
+    if (team === "black") {
       this.icon = BLACK_QUEEN;
     } else {
       this.icon = WHITE_QUEEN;
@@ -171,8 +191,8 @@ class Queen {
   }
   moveIsLegal(col, row) {
     if (col === this.col || row === this.row) {
-      return Rook.moveIsLegal(this, col, row);
-    } else return Bishop.moveIsLegal(this, col, row);
+     return rookMoveIsLegal(this, col, row);
+    } else return bishopMoveIsLegal(this, col, row);
   }
 }
 
@@ -378,10 +398,9 @@ const pawnCaptureIsLegal = (piece, col, row) => {
 
 const promotePawn = (piece) => {
   if (piece.icon === WHITE_PAWN) {
-   new Queen('white', piece.row,piece.col)
+    new Queen("white", piece.row, piece.col);
   } else {
-    new Queen('white', piece.row,piece.col)
-
+    new Queen("white", piece.row, piece.col);
   }
 };
 const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
@@ -436,88 +455,25 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   return false;
 };
 
-const queenMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-  if (srcCol === dstCol || srcRow === dstRow) {
-    return rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
-  } else return bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
-};
-const isMoveBlocked = (piece, srcCol, srcRow, dstCol, dstRow) => {
-  if (piece.kind === "rook") {
-    return rookMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
-  } else if (piece.kind === "bishop") {
-    return bishopMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
-  } else if (piece.kind === "queen") {
-    return queenMoveIsBlocked(srcCol, srcRow, dstCol, dstRow);
-  } else return false;
-};
+
+
 const rookMoveIsLegal = (piece, col, row) => {
   return (
     (col === piece.col || row === piece.row) &&
-    !isMoveBlocked(piece, piece.col, piece.row, col, row)
+    !rookMoveIsBlocked(piece.col, piece.row, col, row)
   );
 };
 
 const bishopMoveIsLegal = (piece, col, row) => {
   return (
     Math.abs(col - piece.col) === Math.abs(row - piece.row) &&
-    !isMoveBlocked(piece, piece.col, piece.row, col, row)
+    !bishopMoveIsBlocked(piece, piece.col, piece.row, col, row)
   );
 };
 
-const queenMoveIsLegal = (piece, col, row) => {
-  if (col === piece.col || row === piece.row) {
-    return rookMoveIsLegal(piece, col, row);
-  } else return bishopMoveIsLegal(piece, col, row);
-};
 
-const kingMoveIsLegal = (piece, col, row) => {
-  return (
-    (row === piece.row + 1 && col === piece.col) ||
-    (row === piece.row - 1 && col === piece.col) ||
-    (col === piece.col - 1 && row === piece.row) ||
-    (col === piece.col + 1 && row === piece.row) ||
-    (col === piece.col + 1 && row === piece.row + 1) ||
-    (col === piece.col - 1 && row === piece.row - 1) ||
-    (col === piece.col + 1 && row === piece.row - 1) ||
-    (col === piece.col - 1 && row === piece.row + 1)
-  );
-};
-
-const knightMoveIsLegal = (piece, col, row) => {
-  return (
-    (row === piece.row + 1 && col === piece.col + 2) ||
-    (row === piece.row - 1 && col === piece.col - 2) ||
-    (row === piece.row + 1 && col === piece.col - 2) ||
-    (row === piece.row - 1 && col === piece.col + 2) ||
-    (row === piece.row + 2 && col === piece.col + 1) ||
-    (row === piece.row + 2 && col === piece.col - 1) ||
-    (row === piece.row - 2 && col === piece.col + 1) ||
-    (row === piece.row - 2 && col === piece.col - 1)
-  );
-};
 const moveIsLegal = (piece, col, row) => {
-  console.log(piece);
   return piece.moveIsLegal(col, row);
-  // if (
-  //   piece.kind === "pawn" &&
-  //   board[col][row] !== 0 &&
-  //   board[col][row].team !== piece.team
-  // ) {
-  //   return pawnCaptureIsLegal(piece, col, row);
-  // } else if (piece.kind === "pawn") {
-  //   return piece.isMoveLegal(piece, col, row);
-  // } else if (piece.kind === "rook") {
-  //   return rookMoveIsLegal(piece, col, row);
-  // } else if (piece.kind === "bishop") {
-  //   return bishopMoveIsLegal(piece, col, row);
-  // } else if (piece.kind === "queen") {
-  //   return queenMoveIsLegal(piece, col, row);
-  // } else if (piece.kind === "king") {
-  //   return kingMoveIsLegal(piece, col, row);
-  // } else if (piece.kind === "knight") {
-  //   return knightMoveIsLegal(piece, col, row);
-  // }
-  // return false;
 };
 
 const checkIfCheck = (piece) => {
