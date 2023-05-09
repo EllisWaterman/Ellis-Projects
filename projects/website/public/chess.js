@@ -40,6 +40,7 @@ class Pawn {
     }
   }
   pawnCaptureIsLegal(col, row) {
+    console.log('pawn Capture')
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
     if (
       (row === this.row + pawnDirection && col === this.col + 1) ||
@@ -55,7 +56,7 @@ class Pawn {
   moveIsLegal(col, row) {
     if(board[col][row] !== 0) {
       console.log(board[col][row])
-      return pawnCaptureIsLegal(col,row)
+      return this.pawnCaptureIsLegal(col,row)
     }
     else {
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
@@ -117,6 +118,7 @@ class Knight {
     }
   }
   moveIsLegal(col, row) {
+    console.log(this.checkIfCheck())
     return (
       (row === this.row + 1 && col === this.col + 2) ||
       (row === this.row - 1 && col === this.col - 2) ||
@@ -128,6 +130,18 @@ class Knight {
       (row === this.row - 2 && col === this.col - 1)
     );
   }
+  checkIfCheck() {
+    return (
+      (board[this.row+1][this.col+2].icon === BLACK_KING) ||
+      (board[this.row-1][this.col-2].icon === BLACK_KING) ||
+      (board[this.row+1][this.col-2].icon === BLACK_KING) ||
+      (board[this.row-1][this.col+2].icon === BLACK_KING) ||
+      (board[this.row+2][this.col+1].icon === BLACK_KING) ||
+      (board[this.row+2][this.col-1].icon === BLACK_KING) ||
+      (board[this.row-2][this.col+1].icon === BLACK_KING) ||
+      (board[this.row-2][this.col-1].icon === BLACK_KING)
+    )
+}
 }
 
 class Bishop {
@@ -146,7 +160,7 @@ class Bishop {
   moveIsLegal(col, row) {
     return (
       Math.abs(col - this.col) === Math.abs(row - this.row) &&
-      !bishopMoveIsBlocked(this, this.col, this.row, col, row)
+      !bishopMoveIsBlocked(this.col, this.row, col, row)
     );
   }
 }
@@ -332,7 +346,6 @@ const capturePiece = (selected, row, col) => {
 
 const endTheGame = (KingColor) => {
   gameStatus = "ENDED";
-  // has a "play again button or a exit button"
   if (KingColor === "black") {
     console.log("White Wins");
     drawFilledRect(0, 0, canvas.width, canvas.height, "White");
@@ -359,30 +372,6 @@ const endTheGame = (KingColor) => {
   }
 };
 
-const pawnMoveIsLegal = (piece, col, row) => {
-  const pawnDirection = piece.icon === WHITE_PAWN ? -1 : 1;
-  if (piece.moves === 0) {
-    if (
-      col === piece.col &&
-      (row === piece.row + pawnDirection ||
-        row === piece.row + pawnDirection * 2)
-    ) {
-      piece.moves++;
-      if (row === 7 || row === 0) {
-        promotePawn(piece);
-      }
-      return true;
-    }
-  } else if (col === piece.col && row === piece.row + pawnDirection) {
-    piece.moves++;
-    if (row === 7 || row === 0) {
-      promotePawn(piece);
-    }
-    return true;
-  } else {
-    return false;
-  }
-};
 const pawnCaptureIsLegal = (piece, col, row) => {
   const pawnDirection = piece.icon === WHITE_PAWN ? -1 : 1;
   if (
@@ -419,6 +408,7 @@ const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
 };
 
 const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
+  //console.log('Starting Col ' + srcCol, 'Srarting Row ' + srcRow, 'End Col ' + dstCol, 'End Row ' + dstRow)
   if (srcCol < dstCol && srcRow > dstRow) {
     let col = srcCol + 1;
     let row = srcRow - 1;
@@ -452,6 +442,7 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
       row++;
     }
   }
+  console.log('false')
   return false;
 };
 
