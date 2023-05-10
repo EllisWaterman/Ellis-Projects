@@ -118,28 +118,34 @@ class Knight {
     }
   }
   moveIsLegal(col, row) {
-    console.log(this.checkIfCheck())
+    // I used chatGPT for the idea of this
+    // I remeber saying that was allowed if I could explain what it does
+    let colChange = Math.abs(col - this.col)
+    let rowChange = Math.abs(row - this.row)
     return (
-      (row === this.row + 1 && col === this.col + 2) ||
-      (row === this.row - 1 && col === this.col - 2) ||
-      (row === this.row + 1 && col === this.col - 2) ||
-      (row === this.row - 1 && col === this.col + 2) ||
-      (row === this.row + 2 && col === this.col + 1) ||
-      (row === this.row + 2 && col === this.col - 1) ||
-      (row === this.row - 2 && col === this.col + 1) ||
-      (row === this.row - 2 && col === this.col - 1)
+      (rowChange === 1 && colChange === 2) ||
+      (rowChange === 2 && colChange === 1)
     );
   }
   checkIfCheck() {
+   /* console.log(board[this.col+1][this.row+2].kind + board[this.col+1][this.row+2].team,
+      board[this.col-1][this.row-2].kind + board[this.col-1][this.row-2].team,
+      board[this.col+1][this.row-2].kind + board[this.col+1][this.row-2].team,
+      board[this.col-1][this.row+2].kind + board[this.col-1][this.row+2].team,
+      board[this.col+2][this.row+1].kind + board[this.col+2][this.row+1].team,
+      board[this.col+2][this.row-1].kind + board[this.col+2][this.row-1].team, 
+      board[this.col-2][this.row+1].kind + board[this.col-2][this.row+1].team,
+      board[this.col-2][this.row-1].kind + board[this.col-2][this.row-1].team
+      ) */
     return (
-      (board[this.row+1][this.col+2].icon === BLACK_KING) ||
-      (board[this.row-1][this.col-2].icon === BLACK_KING) ||
-      (board[this.row+1][this.col-2].icon === BLACK_KING) ||
-      (board[this.row-1][this.col+2].icon === BLACK_KING) ||
-      (board[this.row+2][this.col+1].icon === BLACK_KING) ||
-      (board[this.row+2][this.col-1].icon === BLACK_KING) ||
-      (board[this.row-2][this.col+1].icon === BLACK_KING) ||
-      (board[this.row-2][this.col-1].icon === BLACK_KING)
+      (board[this.col+1][this.row+2] !== 0 && isSquareOnBoard(this.col+1,this.row+2) && board[this.col+1][this.row+2].icon === BLACK_KING) ||
+      (board[this.col-1][this.row-2] !== 0 && board[this.col-1][this.row-2].icon === BLACK_KING) ||
+      (board[this.col+1][this.row-2] !== 0 && board[this.col+1][this.row-2].icon === BLACK_KING) ||
+      (board[this.col-1][this.row+2] !== 0 && board[this.col-1][this.row+2].icon === BLACK_KING) ||
+      (board[this.col+2][this.row+1] !== 0 && board[this.col+2][this.row+1].icon === BLACK_KING) ||
+      (board[this.col+2][this.row-1] !== 0 && board[this.col+2][this.row-1].icon === BLACK_KING) ||
+      (board[this.col-2][this.row+1] !== 0 && board[this.col-2][this.row+1].icon === BLACK_KING) ||
+      (board[this.col-2][this.row-1] !== 0 && board[this.col-2][this.row-1].icon === BLACK_KING)
     )
 }
 }
@@ -307,6 +313,10 @@ const emptySpace = (piece) => {
   );
 };
 
+const isSquareOnBoard = (col,row) => {
+  return (col < 7 && col > 0) && (row < 7 && row > 0)
+}
+
 const movePiece = (selected, row, col) => {
   emptySpace(selected);
   board[selected.col][selected.row] = 0;
@@ -321,6 +331,8 @@ const movePiece = (selected, row, col) => {
   // } else {
   //     turn = 'white'
   // }
+  console.log(selected.checkIfCheck())
+
 };
 
 const capturePiece = (selected, row, col) => {
@@ -467,13 +479,7 @@ const moveIsLegal = (piece, col, row) => {
   return piece.moveIsLegal(col, row);
 };
 
-const checkIfCheck = (piece) => {
-  if (piece.kind === "rook") {
-    return checkIfRookCheck(piece);
-  }
-  //return if( an enemey piece can see your king) {
-  //}
-};
+
 drawBoard();
 placePieces();
 
