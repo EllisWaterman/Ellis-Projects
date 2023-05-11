@@ -40,7 +40,7 @@ class Pawn {
     }
   }
   pawnCaptureIsLegal(col, row) {
-    console.log('pawn Capture')
+    console.log("pawn Capture");
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
     if (
       (row === this.row + pawnDirection && col === this.col + 1) ||
@@ -51,38 +51,37 @@ class Pawn {
       }
       return true;
     }
-  };
-  
+  }
+
   moveIsLegal(col, row) {
-    if(board[col][row] !== 0) {
-      console.log(board[col][row])
-      return this.pawnCaptureIsLegal(col,row)
-    }
-    else {
-    const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
-    if (this.moves === 0) {
-      if (
-        col === this.col &&
-        (row === this.row + pawnDirection ||
-          row === this.row + pawnDirection * 2)
-      ) {
+    if (board[col][row] !== 0) {
+      console.log(board[col][row]);
+      return this.pawnCaptureIsLegal(col, row);
+    } else {
+      const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
+      if (this.moves === 0) {
+        if (
+          col === this.col &&
+          (row === this.row + pawnDirection ||
+            row === this.row + pawnDirection * 2)
+        ) {
+          this.moves++;
+          if (row === 7 || row === 0) {
+            promotePawn(this);
+          }
+          return true;
+        }
+      } else if (col === this.col && row === this.row + pawnDirection) {
         this.moves++;
         if (row === 7 || row === 0) {
           promotePawn(this);
         }
         return true;
+      } else {
+        return false;
       }
-    } else if (col === this.col && row === this.row + pawnDirection) {
-      this.moves++;
-      if (row === 7 || row === 0) {
-        promotePawn(this);
-      }
-      return true;
-    } else {
-      return false;
     }
   }
-}
 }
 
 class Rook {
@@ -120,15 +119,22 @@ class Knight {
   moveIsLegal(col, row) {
     // I used chatGPT for the idea of this
     // I remeber saying that was allowed if I could explain what it does
-    let colChange = Math.abs(col - this.col)
-    let rowChange = Math.abs(row - this.row)
+    let colChange = Math.abs(col - this.col);
+    let rowChange = Math.abs(row - this.row);
     return (
       (rowChange === 1 && colChange === 2) ||
       (rowChange === 2 && colChange === 1)
     );
   }
   checkIfCheck() {
-   /* console.log(board[this.col+1][this.row+2].kind + board[this.col+1][this.row+2].team,
+    let opposingKing;
+    if(this.team = 'white') {
+     opposingKing = BLACK_KING
+    } else {
+       opposingKing = WHITE_KING
+    }
+    console.log(opposingKing)
+    /* console.log(board[this.col+1][this.row+2].kind + board[this.col+1][this.row+2].team,
       board[this.col-1][this.row-2].kind + board[this.col-1][this.row-2].team,
       board[this.col+1][this.row-2].kind + board[this.col+1][this.row-2].team,
       board[this.col-1][this.row+2].kind + board[this.col-1][this.row+2].team,
@@ -137,17 +143,18 @@ class Knight {
       board[this.col-2][this.row+1].kind + board[this.col-2][this.row+1].team,
       board[this.col-2][this.row-1].kind + board[this.col-2][this.row-1].team
       ) */
+
     return (
-      (board[this.col+1][this.row+2] !== 0 && isSquareOnBoard(this.col+1,this.row+2) && board[this.col+1][this.row+2].icon === BLACK_KING) ||
-      (board[this.col-1][this.row-2] !== 0 && board[this.col-1][this.row-2].icon === BLACK_KING) ||
-      (board[this.col+1][this.row-2] !== 0 && board[this.col+1][this.row-2].icon === BLACK_KING) ||
-      (board[this.col-1][this.row+2] !== 0 && board[this.col-1][this.row+2].icon === BLACK_KING) ||
-      (board[this.col+2][this.row+1] !== 0 && board[this.col+2][this.row+1].icon === BLACK_KING) ||
-      (board[this.col+2][this.row-1] !== 0 && board[this.col+2][this.row-1].icon === BLACK_KING) ||
-      (board[this.col-2][this.row+1] !== 0 && board[this.col-2][this.row+1].icon === BLACK_KING) ||
-      (board[this.col-2][this.row-1] !== 0 && board[this.col-2][this.row-1].icon === BLACK_KING)
-    )
-}
+      getPiece(this.col + 1, this.row + 2) === opposingKing ||
+      getPiece(this.col - 1, this.row - 2) === opposingKing ||
+      getPiece(this.col + 1, this.row - 2) === opposingKing ||
+      getPiece(this.col - 1, this.row + 2) === opposingKing ||
+      getPiece(this.col + 2, this.row + 1) === opposingKing ||
+      getPiece(this.col + 2, this.row - 1) === opposingKing ||
+      getPiece(this.col - 2, this.row + 1) === opposingKing ||
+      getPiece(this.col - 2, this.row - 1) === opposingKing
+    );
+  }
 }
 
 class Bishop {
@@ -162,7 +169,7 @@ class Bishop {
       this.icon = WHITE_BISHOP;
     }
   }
-  
+
   moveIsLegal(col, row) {
     return (
       Math.abs(col - this.col) === Math.abs(row - this.row) &&
@@ -211,7 +218,7 @@ class Queen {
   }
   moveIsLegal(col, row) {
     if (col === this.col || row === this.row) {
-     return rookMoveIsLegal(this, col, row);
+      return rookMoveIsLegal(this, col, row);
     } else return bishopMoveIsLegal(this, col, row);
   }
 }
@@ -313,10 +320,15 @@ const emptySpace = (piece) => {
   );
 };
 
-const isSquareOnBoard = (col,row) => {
-  return (col < 7 && col > 0) && (row < 7 && row > 0)
-}
+const isSquareOnBoard = (col, row) => {
+  return col < 7 && col >= 0 && row < 7 && row >= 0;
+};
 
+const getPiece = (col, row) => {
+  if (isSquareOnBoard(col, row) && board[col][row] !== 0) {
+    return board[col][row].icon;
+  }
+};
 const movePiece = (selected, row, col) => {
   emptySpace(selected);
   board[selected.col][selected.row] = 0;
@@ -331,8 +343,7 @@ const movePiece = (selected, row, col) => {
   // } else {
   //     turn = 'white'
   // }
-  console.log(selected.checkIfCheck())
-
+  console.log(selected.checkIfCheck());
 };
 
 const capturePiece = (selected, row, col) => {
@@ -381,19 +392,6 @@ const endTheGame = (KingColor) => {
     );
 
     console.log("Black Wins");
-  }
-};
-
-const pawnCaptureIsLegal = (piece, col, row) => {
-  const pawnDirection = piece.icon === WHITE_PAWN ? -1 : 1;
-  if (
-    (row === piece.row + pawnDirection && col === piece.col + 1) ||
-    (row === piece.row + pawnDirection && col === piece.col - 1)
-  ) {
-    if (row === 7 || row === 0) {
-      promotePawn(piece);
-    }
-    return true;
   }
 };
 
@@ -454,11 +452,9 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
       row++;
     }
   }
-  console.log('false')
+  console.log("false");
   return false;
 };
-
-
 
 const rookMoveIsLegal = (piece, col, row) => {
   return (
@@ -474,11 +470,9 @@ const bishopMoveIsLegal = (piece, col, row) => {
   );
 };
 
-
 const moveIsLegal = (piece, col, row) => {
   return piece.moveIsLegal(col, row);
 };
-
 
 drawBoard();
 placePieces();
