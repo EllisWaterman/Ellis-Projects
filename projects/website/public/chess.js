@@ -105,7 +105,7 @@ class Rook {
     let targetCol = board[this.col]
     let targetRow = board[this.row]
     return targetCol.some((n) => n.icon === opposingKing)
-      
+      //should work if the rook can see through peices.
     
  }
   moveIsLegal(col, row) {
