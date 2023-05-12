@@ -128,12 +128,11 @@ class Knight {
   }
   checkIfCheck() {
     let opposingKing;
-    if(this.team = 'white') {
+    if(this.team === 'white') {
      opposingKing = BLACK_KING
     } else {
        opposingKing = WHITE_KING
     }
-    console.log(opposingKing)
     /* console.log(board[this.col+1][this.row+2].kind + board[this.col+1][this.row+2].team,
       board[this.col-1][this.row-2].kind + board[this.col-1][this.row-2].team,
       board[this.col+1][this.row-2].kind + board[this.col+1][this.row-2].team,
@@ -171,10 +170,11 @@ class Bishop {
   }
 
   moveIsLegal(col, row) {
-    return (
-      Math.abs(col - this.col) === Math.abs(row - this.row) &&
-      !bishopMoveIsBlocked(this.col, this.row, col, row)
-    );
+    let stmt1 = Math.abs(col - this.col) === Math.abs(row - this.row)
+    let stmt2 = bishopMoveIsBlocked(this.col, this.row, col, row)
+    console.log("stmt1: " + stmt1)
+    console.log("stmt2: " + stmt2)
+    return ( stmt1 && !stmt2)
   }
 }
 
@@ -418,11 +418,12 @@ const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
 };
 
 const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-  //console.log('Starting Col ' + srcCol, 'Srarting Row ' + srcRow, 'End Col ' + dstCol, 'End Row ' + dstRow)
+  console.log('Starting Col ' + srcCol, 'Srarting Row ' + srcRow, 'End Col ' + dstCol, 'End Row ' + dstRow)
   if (srcCol < dstCol && srcRow > dstRow) {
     let col = srcCol + 1;
     let row = srcRow - 1;
     for (let i = dstCol - srcCol - 1; i > 0; i--) {
+      console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col++;
       row--;
@@ -430,7 +431,8 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   } else if (srcCol > dstCol && srcRow < dstRow) {
     let col = srcCol - 1;
     let row = srcRow + 1;
-    for (let i = srcCol - dstCol; i > 0; i--) {
+    for (let i = srcCol - dstCol-1; i > 0; i--) {
+      console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col--;
       row++;
@@ -438,7 +440,8 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   } else if (srcCol > dstCol && srcRow > dstRow) {
     let col = srcCol - 1;
     let row = srcRow - 1;
-    for (let i = srcCol - dstCol; i > 0; i--) {
+    for (let i = srcCol - dstCol-1; i > 0; i--) {
+      console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col--;
       row--;
@@ -447,6 +450,7 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
     let col = srcCol + 1;
     let row = srcRow + 1;
     for (let i = dstCol - srcCol - 1; i > 0; i--) {
+      console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col++;
       row++;
