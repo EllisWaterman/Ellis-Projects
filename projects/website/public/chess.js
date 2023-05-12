@@ -40,7 +40,6 @@ class Pawn {
     }
   }
   pawnCaptureIsLegal(col, row) {
-    console.log("pawn Capture");
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
     if (
       (row === this.row + pawnDirection && col === this.col + 1) ||
@@ -96,6 +95,19 @@ class Rook {
       this.icon = WHITE_ROOK;
     }
   }
+  checkIfCheck() {
+    let opposingKing;
+    if (this.team === "white") {
+      opposingKing = BLACK_KING
+    } else {
+      opposingKing = WHITE_KING
+    }
+    let targetCol = board[this.col]
+    let targetRow = board[this.row]
+    return targetCol.some((n) => n.icon === opposingKing)
+      
+    
+ }
   moveIsLegal(col, row) {
     return (
       (col === this.col || row === this.row) &&
@@ -343,7 +355,6 @@ const movePiece = (selected, row, col) => {
   // } else {
   //     turn = 'white'
   // }
-  console.log(selected.checkIfCheck());
 };
 
 const capturePiece = (selected, row, col) => {
@@ -397,9 +408,9 @@ const endTheGame = (KingColor) => {
 
 const promotePawn = (piece) => {
   if (piece.icon === WHITE_PAWN) {
-    new Queen("white", piece.row, piece.col);
+    board[piece.col][piece.row] = new Queen("white", piece.row, piece.col); 
   } else {
-    new Queen("white", piece.row, piece.col);
+    board[piece.col][piece.row] = new Queen("black", piece.row, piece.col);    
   }
 };
 const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
@@ -410,7 +421,9 @@ const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   let c = srcCol + dc;
 
   while (r !== dstRow || c !== dstCol) {
-    if (board[c][r] !== 0) return true;
+    if (board[c][r] !== 0) {
+      return true;
+    }
     r += dr;
     c += dc;
   }
@@ -473,6 +486,8 @@ const bishopMoveIsLegal = (piece, col, row) => {
     !bishopMoveIsBlocked(piece, piece.col, piece.row, col, row)
   );
 };
+
+
 
 const moveIsLegal = (piece, col, row) => {
   return piece.moveIsLegal(col, row);
