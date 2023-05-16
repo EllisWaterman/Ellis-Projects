@@ -104,7 +104,7 @@ class Rook {
     }
     let targetCol = board[this.col]
     let targetRow = board[this.row]
-    return targetCol.some((n) => n.icon === opposingKing)
+    return targetCol
       //should work if the rook can see through peices.
     
  }
@@ -129,8 +129,7 @@ class Knight {
     }
   }
   moveIsLegal(col, row) {
-    // I used chatGPT for the idea of this
-    // I remeber saying that was allowed if I could explain what it does
+
     let colChange = Math.abs(col - this.col);
     let rowChange = Math.abs(row - this.row);
     return (
@@ -234,12 +233,13 @@ class Queen {
     } else return bishopMoveIsLegal(this, col, row);
   }
 }
-
+const whiteKing = new King("white", 7, 4);
+const blackKing = new King("black", 0, 4)
 // Example of drawing one of the pieces
 let gameStatus = "ONGOING";
 const MakeStartingPieces = () => {
   return [
-    new King("white", 7, 4),
+    whiteKing,
     new Knight("white", 7, 6),
     new Knight("white", 7, 1),
     new Bishop("white", 7, 2),
@@ -255,7 +255,7 @@ const MakeStartingPieces = () => {
     new Pawn("white", 5),
     new Pawn("white", 6),
     new Pawn("white", 7),
-    new King("black", 0, 4),
+    blackKing ,
     new Knight("black", 0, 6),
     new Knight("black", 0, 1),
     new Bishop("black", 0, 2),
@@ -350,11 +350,11 @@ const movePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  // if (turn === 'white') {
-  //     turn = 'black'
-  // } else {
-  //     turn = 'white'
-  // }
+  if (turn === 'white') {
+      turn = 'black'
+  } else {
+      turn = 'white'
+  }
 };
 
 const capturePiece = (selected, row, col) => {
@@ -371,11 +371,11 @@ const capturePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  // if (turn === 'white') {
-  //     turn = 'black'
-  // } else {
-  //     turn = 'white'
-  // }
+  if (turn === 'white') {
+      turn = 'black'
+  } else {
+      turn = 'white'
+  }
 };
 
 const endTheGame = (KingColor) => {
@@ -493,6 +493,10 @@ const moveIsLegal = (piece, col, row) => {
   return piece.moveIsLegal(col, row);
 };
 
+
+const isCurrentKingInCheck = (currentKing) => {
+  
+}
 drawBoard();
 placePieces();
 
@@ -504,7 +508,7 @@ canvas.onclick = (e) => {
   let row = Math.floor(y / SQUARE_SIZE);
   if (gameStatus === "ONGOING") {
     if (pieceSelected === null) {
-      if (board[col][row] !== 0 /* && board[col][row].team === turn*/) {
+      if (board[col][row] !== 0 && board[col][row].team === turn) {
         pieceSelected = board[col][row];
         highlightPeice(pieceSelected.icon, col, row, "blue");
       }
@@ -541,6 +545,7 @@ canvas.onclick = (e) => {
 
 // make the a1 square actually 1,1 in row and col
 // Show the legal moves of a peice when it is selected
+//promotion
 // checks and checkmates
 // make a home screen
 // make a chess engine that plays a random move
