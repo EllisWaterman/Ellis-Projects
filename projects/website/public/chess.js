@@ -51,7 +51,23 @@ class Pawn {
       return true;
     }
   }
-
+  checkIfCheck() {
+    let opposingKing;
+    if (this.team === "white") {
+      opposingKing = BLACK_KING;
+    } else {
+      opposingKing = WHITE_KING;
+    }
+    const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
+    if (
+      board[this.col + 1][this.row + pawnDirection].icon === opposingKing ||
+      board[this.col - 1][this.row + pawnDirection].icon === opposingKing
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   moveIsLegal(col, row) {
     if (board[col][row] !== 0) {
       console.log(board[col][row]);
@@ -96,18 +112,42 @@ class Rook {
     }
   }
   checkIfCheck() {
+    let possibleCheckedKing = 0;
     let opposingKing;
     if (this.team === "white") {
-      opposingKing = BLACK_KING
+      opposingKing = BLACK_KING;
     } else {
-      opposingKing = WHITE_KING
+      opposingKing = WHITE_KING;
     }
-    let targetCol = board[this.col]
-    let targetRow = board[this.row]
-    return targetCol
-      //should work if the rook can see through peices.
-    
- }
+    let targetCol = board[this.col];
+    let targetRow = [];
+    for (let i = 0; i < 8; i++) {
+      targetRow.push(board[i][this.row]);
+    }
+
+    targetCol.forEach((element) => {
+      if (element.icon === opposingKing) {
+        possibleCheckedKing = element;
+      }
+    });
+    if (possibleCheckedKing === 0) {
+      targetRow.forEach((element) => {
+        if (element.icon === opposingKing) {
+          possibleCheckedKing = element;
+        }
+      });
+    }
+    if (possibleCheckedKing !== 0) {
+      return !rookMoveIsBlocked(
+        this.col,
+        this.row,
+        possibleCheckedKing.col,
+        possibleCheckedKing.row
+      );
+    }
+  }
+
+  //should work if the rook can see through peices.
   moveIsLegal(col, row) {
     return (
       (col === this.col || row === this.row) &&
@@ -129,7 +169,6 @@ class Knight {
     }
   }
   moveIsLegal(col, row) {
-
     let colChange = Math.abs(col - this.col);
     let rowChange = Math.abs(row - this.row);
     return (
@@ -139,10 +178,10 @@ class Knight {
   }
   checkIfCheck() {
     let opposingKing;
-    if(this.team === 'white') {
-     opposingKing = BLACK_KING
+    if (this.team === "white") {
+      opposingKing = BLACK_KING;
     } else {
-       opposingKing = WHITE_KING
+      opposingKing = WHITE_KING;
     }
     /* console.log(board[this.col+1][this.row+2].kind + board[this.col+1][this.row+2].team,
       board[this.col-1][this.row-2].kind + board[this.col-1][this.row-2].team,
@@ -181,11 +220,11 @@ class Bishop {
   }
 
   moveIsLegal(col, row) {
-    let stmt1 = Math.abs(col - this.col) === Math.abs(row - this.row)
-    let stmt2 = bishopMoveIsBlocked(this.col, this.row, col, row)
-    console.log("stmt1: " + stmt1)
-    console.log("stmt2: " + stmt2)
-    return ( stmt1 && !stmt2)
+    let stmt1 = Math.abs(col - this.col) === Math.abs(row - this.row);
+    let stmt2 = bishopMoveIsBlocked(this.col, this.row, col, row);
+    console.log("stmt1: " + stmt1);
+    console.log("stmt2: " + stmt2);
+    return stmt1 && !stmt2;
   }
 }
 
@@ -234,7 +273,7 @@ class Queen {
   }
 }
 const whiteKing = new King("white", 7, 4);
-const blackKing = new King("black", 0, 4)
+const blackKing = new King("black", 0, 4);
 // Example of drawing one of the pieces
 let gameStatus = "ONGOING";
 const MakeStartingPieces = () => {
@@ -255,7 +294,7 @@ const MakeStartingPieces = () => {
     new Pawn("white", 5),
     new Pawn("white", 6),
     new Pawn("white", 7),
-    blackKing ,
+    blackKing,
     new Knight("black", 0, 6),
     new Knight("black", 0, 1),
     new Bishop("black", 0, 2),
@@ -350,11 +389,12 @@ const movePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  if (turn === 'white') {
-      turn = 'black'
-  } else {
-      turn = 'white'
-  }
+  // if (turn === 'white') {
+  //     turn = 'black'
+  // } else {
+  //     turn = 'white'
+  // }
+  console.log(selected.checkIfCheck());
 };
 
 const capturePiece = (selected, row, col) => {
@@ -371,11 +411,12 @@ const capturePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  if (turn === 'white') {
-      turn = 'black'
-  } else {
-      turn = 'white'
-  }
+  // if (turn === 'white') {
+  //     turn = 'black'
+  // } else {
+  //     turn = 'white'
+  // }
+  console.log(selected.checkIfCheck());
 };
 
 const endTheGame = (KingColor) => {
@@ -408,9 +449,9 @@ const endTheGame = (KingColor) => {
 
 const promotePawn = (piece) => {
   if (piece.icon === WHITE_PAWN) {
-    board[piece.col][piece.row] = new Queen("white", piece.row, piece.col); 
+    board[piece.col][piece.row] = new Queen("white", piece.row, piece.col);
   } else {
-    board[piece.col][piece.row] = new Queen("black", piece.row, piece.col);    
+    board[piece.col][piece.row] = new Queen("black", piece.row, piece.col);
   }
 };
 const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
@@ -431,12 +472,12 @@ const rookMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
 };
 
 const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
-  console.log('Starting Col ' + srcCol, 'Srarting Row ' + srcRow, 'End Col ' + dstCol, 'End Row ' + dstRow)
+  //console.log('Starting Col ' + srcCol, 'Srarting Row ' + srcRow, 'End Col ' + dstCol, 'End Row ' + dstRow)
   if (srcCol < dstCol && srcRow > dstRow) {
     let col = srcCol + 1;
     let row = srcRow - 1;
     for (let i = dstCol - srcCol - 1; i > 0; i--) {
-      console.log('check square' + i)
+      //console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col++;
       row--;
@@ -444,8 +485,8 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   } else if (srcCol > dstCol && srcRow < dstRow) {
     let col = srcCol - 1;
     let row = srcRow + 1;
-    for (let i = srcCol - dstCol-1; i > 0; i--) {
-      console.log('check square' + i)
+    for (let i = srcCol - dstCol - 1; i > 0; i--) {
+      //console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col--;
       row++;
@@ -453,8 +494,8 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
   } else if (srcCol > dstCol && srcRow > dstRow) {
     let col = srcCol - 1;
     let row = srcRow - 1;
-    for (let i = srcCol - dstCol-1; i > 0; i--) {
-      console.log('check square' + i)
+    for (let i = srcCol - dstCol - 1; i > 0; i--) {
+      // console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col--;
       row--;
@@ -463,7 +504,7 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
     let col = srcCol + 1;
     let row = srcRow + 1;
     for (let i = dstCol - srcCol - 1; i > 0; i--) {
-      console.log('check square' + i)
+      //console.log('check square' + i)
       if (board[col][row] !== 0) return true;
       col++;
       row++;
@@ -487,16 +528,11 @@ const bishopMoveIsLegal = (piece, col, row) => {
   );
 };
 
-
-
 const moveIsLegal = (piece, col, row) => {
   return piece.moveIsLegal(col, row);
 };
 
-
-const isCurrentKingInCheck = (currentKing) => {
-  
-}
+const isCurrentKingInCheck = (currentKing) => {};
 drawBoard();
 placePieces();
 
@@ -508,7 +544,7 @@ canvas.onclick = (e) => {
   let row = Math.floor(y / SQUARE_SIZE);
   if (gameStatus === "ONGOING") {
     if (pieceSelected === null) {
-      if (board[col][row] !== 0 && board[col][row].team === turn) {
+      if (board[col][row] !== 0 /* && board[col][row].team === turn */) {
         pieceSelected = board[col][row];
         highlightPeice(pieceSelected.icon, col, row, "blue");
       }
