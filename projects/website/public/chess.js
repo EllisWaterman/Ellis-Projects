@@ -218,14 +218,35 @@ class Bishop {
       this.icon = WHITE_BISHOP;
     }
   }
+  checkIfCheck () {
+    let possibleCheckedKing = 0;
+    let targetUpRight = []
+    let targetDownRight = []
+    let targetUpLeft = []
+    let targetDownLeft = []
+    for(let i = 0; i < 0; i++)
+
+    possibleCheckedKing = findKing(targetDownRight) || findKing(targetUpRight) || findKing(targetDownLeft) || findKing(targetUpLeft)
+  
+      
+  }
 
   moveIsLegal(col, row) {
     let stmt1 = Math.abs(col - this.col) === Math.abs(row - this.row);
     let stmt2 = bishopMoveIsBlocked(this.col, this.row, col, row);
-    console.log("stmt1: " + stmt1);
-    console.log("stmt2: " + stmt2);
+    //console.log("stmt1: " + stmt1);
+    //console.log("stmt2: " + stmt2);
     return stmt1 && !stmt2;
   }
+}
+
+const findKing = (array) => {
+  array.forEach(element => {
+    if (element.icon === opposingKing) {
+      possibleCheckedKing = element
+      return possibleCheckedKing
+    }
+  });
 }
 
 class King {
@@ -583,5 +604,6 @@ canvas.onclick = (e) => {
 // Show the legal moves of a peice when it is selected
 //promotion
 // checks and checkmates
+//castling and en passant
 // make a home screen
 // make a chess engine that plays a random move
