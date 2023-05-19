@@ -60,8 +60,8 @@ class Pawn {
     }
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
     if (
-      board[this.col + 1][this.row + pawnDirection].icon === opposingKing ||
-      board[this.col - 1][this.row + pawnDirection].icon === opposingKing
+      isSquareOnBoard(this.col + 1,this.row + pawnDirection) && board[this.col + 1][this.row + pawnDirection].icon === opposingKing ||
+      isSquareOnBoard(this.col - 1,this.row + pawnDirection) && board[this.col - 1][this.row + pawnDirection].icon === opposingKing
     ) {
       return true;
     } else {
@@ -70,7 +70,6 @@ class Pawn {
   }
   moveIsLegal(col, row) {
     if (board[col][row] !== 0) {
-      console.log(board[col][row]);
       return this.pawnCaptureIsLegal(col, row);
     } else {
       const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
@@ -124,20 +123,10 @@ class Rook {
     for (let i = 0; i < 8; i++) {
       targetRow.push(board[i][this.row]);
     }
-
-    targetCol.forEach((element) => {
-      if (element.icon === opposingKing) {
-        possibleCheckedKing = element;
-      }
-    });
-    if (possibleCheckedKing === 0) {
-      targetRow.forEach((element) => {
-        if (element.icon === opposingKing) {
-          possibleCheckedKing = element;
-        }
-      });
-    }
-    if (possibleCheckedKing !== 0) {
+    possibleCheckedKing =
+      findKing(targetCol, opposingKing, possibleCheckedKing) ||
+      findKing(targetRow, opposingKing, possibleCheckedKing);
+    if (possibleCheckedKing) {
       return !rookMoveIsBlocked(
         this.col,
         this.row,
@@ -145,8 +134,8 @@ class Rook {
         possibleCheckedKing.row
       );
     }
+    return false
   }
-
   //should work if the rook can see through peices.
   moveIsLegal(col, row) {
     return (
@@ -183,15 +172,6 @@ class Knight {
     } else {
       opposingKing = WHITE_KING;
     }
-    /* console.log(board[this.col+1][this.row+2].kind + board[this.col+1][this.row+2].team,
-      board[this.col-1][this.row-2].kind + board[this.col-1][this.row-2].team,
-      board[this.col+1][this.row-2].kind + board[this.col+1][this.row-2].team,
-      board[this.col-1][this.row+2].kind + board[this.col-1][this.row+2].team,
-      board[this.col+2][this.row+1].kind + board[this.col+2][this.row+1].team,
-      board[this.col+2][this.row-1].kind + board[this.col+2][this.row-1].team, 
-      board[this.col-2][this.row+1].kind + board[this.col-2][this.row+1].team,
-      board[this.col-2][this.row-1].kind + board[this.col-2][this.row-1].team
-      ) */
 
     return (
       getPiece(this.col + 1, this.row + 2) === opposingKing ||
@@ -218,17 +198,24 @@ class Bishop {
       this.icon = WHITE_BISHOP;
     }
   }
-  checkIfCheck () {
+  checkIfCheck() {
     let possibleCheckedKing = 0;
-    let targetUpRight = []
-    let targetDownRight = []
-    let targetUpLeft = []
-    let targetDownLeft = []
-    for(let i = 0; i < 0; i++)
-
-    possibleCheckedKing = findKing(targetDownRight) || findKing(targetUpRight) || findKing(targetDownLeft) || findKing(targetUpLeft)
-  
-      
+    let targetUpRight = [];
+    let targetDownRight = [];
+    let targetUpLeft = [];
+    let targetDownLeft = [];
+    for (let i = 0; i < 0; i++)
+      possibleCheckedKing =
+        findKing(targetDownRight) ||
+        findKing(targetUpRight) ||
+        findKing(targetDownLeft) ||
+        findKing(targetUpLeft);
+    return bishopMoveIsBlocked(
+      this.col,
+      this.row,
+      possibleCheckedKing.col,
+      possibleCheckedKing.row
+    );
   }
 
   moveIsLegal(col, row) {
@@ -240,14 +227,14 @@ class Bishop {
   }
 }
 
-const findKing = (array) => {
-  array.forEach(element => {
+const findKing = (kingArray, opposingKing, possibleCheckedKing) => {
+  kingArray.forEach((element) => {
     if (element.icon === opposingKing) {
-      possibleCheckedKing = element
-      return possibleCheckedKing
+      possibleCheckedKing = element;
     }
   });
-}
+  return possibleCheckedKing;
+};
 
 class King {
   constructor(color, row, col) {
@@ -333,7 +320,7 @@ const MakeStartingPieces = () => {
     new Pawn("black", 7),
   ];
 };
-console.log(MakeStartingPieces());
+//console.log(MakeStartingPieces());
 
 let pieces = MakeStartingPieces();
 let pieceSelected = null;
@@ -419,9 +406,9 @@ const movePiece = (selected, row, col) => {
 };
 
 const capturePiece = (selected, row, col) => {
-  console.log(board[col][row]);
+  //console.log(board[col][row]);
   if (board[col][row].kind === "king") {
-    console.log("GAME ENDED");
+    //console.log("GAME ENDED");
     return endTheGame(board[col][row].team);
   }
   emptySpace(selected);
@@ -443,7 +430,7 @@ const capturePiece = (selected, row, col) => {
 const endTheGame = (KingColor) => {
   gameStatus = "ENDED";
   if (KingColor === "black") {
-    console.log("White Wins");
+    //console.log("White Wins");
     drawFilledRect(0, 0, canvas.width, canvas.height, "White");
     drawText("White Wins!", canvas.width / 3, canvas.height / 2, "Black", 50);
     drawText(
@@ -464,7 +451,7 @@ const endTheGame = (KingColor) => {
       30
     );
 
-    console.log("Black Wins");
+    // console.log("Black Wins");
   }
 };
 
@@ -531,7 +518,7 @@ const bishopMoveIsBlocked = (srcCol, srcRow, dstCol, dstRow) => {
       row++;
     }
   }
-  console.log("false");
+  //console.log("false");
   return false;
 };
 
@@ -599,11 +586,26 @@ canvas.onclick = (e) => {
     gameStatus = "ONGOING";
   }
 };
-
+const checkifCheckButton = document.querySelector('.checkButton')
+checkifCheckButton.onclick = (e) => {
+  let currentPossibleChecks = []
+  board.forEach(element => {
+    element.forEach(element1 => {
+      if(element1.kind === 'rook' || element1.kind === 'pawn' || element1 === 'knight') {
+        currentPossibleChecks.push(element1)
+      }
+    });
+  });
+ currentPossibleChecks.forEach(element => {
+  console.log(element.checkIfCheck())
+ });
+}
+//TO DO LIST (not in any order)
 // make the a1 square actually 1,1 in row and col
 // Show the legal moves of a peice when it is selected
 //promotion
 // checks and checkmates
+//checkButton
 //castling and en passant
 // make a home screen
-// make a chess engine that plays a random move
+// make a chess engine that plays a random move (do last obv)
