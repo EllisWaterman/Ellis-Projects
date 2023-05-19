@@ -588,6 +588,7 @@ canvas.onclick = (e) => {
 };
 const checkifCheckButton = document.querySelector('.checkButton')
 checkifCheckButton.onclick = (e) => {
+  let isCheck = false;
   let currentPossibleChecks = []
   board.forEach(element => {
     element.forEach(element1 => {
@@ -597,8 +598,11 @@ checkifCheckButton.onclick = (e) => {
     });
   });
  currentPossibleChecks.forEach(element => {
-  console.log(element.checkIfCheck())
+  if (element.checkIfCheck()) {
+    isCheck = true
+  }
  });
+ console.log(isCheck)
 }
 //TO DO LIST (not in any order)
 // make the a1 square actually 1,1 in row and col
