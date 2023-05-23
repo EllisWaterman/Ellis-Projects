@@ -60,12 +60,14 @@ class Pawn {
     }
     const pawnDirection = this.icon === WHITE_PAWN ? -1 : 1;
     if (
-      isSquareOnBoard(this.col + 1,this.row + pawnDirection) && board[this.col + 1][this.row + pawnDirection].icon === opposingKing ||
-      isSquareOnBoard(this.col - 1,this.row + pawnDirection) && board[this.col - 1][this.row + pawnDirection].icon === opposingKing
+      (isSquareOnBoard(this.col + 1, this.row + pawnDirection) &&
+        board[this.col + 1][this.row + pawnDirection].icon === opposingKing) ||
+      (isSquareOnBoard(this.col - 1, this.row + pawnDirection) &&
+        board[this.col - 1][this.row + pawnDirection].icon === opposingKing)
     ) {
-      return {isCheck: true,opposingKing: opposingKing};
+      return { isCheck: true, opposingKing: opposingKing };
     } else {
-      return {isCheck: false,opposingKing: opposingKing};
+      return { isCheck: false, opposingKing: opposingKing };
     }
   }
   moveIsLegal(col, row) {
@@ -127,16 +129,18 @@ class Rook {
       findKing(targetCol, opposingKing, possibleCheckedKing) ||
       findKing(targetRow, opposingKing, possibleCheckedKing);
     if (possibleCheckedKing) {
-      if (!rookMoveIsBlocked(
-        this.col,
-        this.row,
-        possibleCheckedKing.col,
-        possibleCheckedKing.row
-      )) {
-        return {isCheck: true,opposingKing: opposingKing};
+      if (
+        !rookMoveIsBlocked(
+          this.col,
+          this.row,
+          possibleCheckedKing.col,
+          possibleCheckedKing.row
+        )
+      ) {
+        return { isCheck: true, opposingKing: opposingKing };
       }
     }
-    return {isCheck: false,opposingKing: opposingKing};
+    return { isCheck: false, opposingKing: opposingKing };
   }
   //should work if the rook can see through peices.
   moveIsLegal(col, row) {
@@ -185,9 +189,9 @@ class Knight {
       getPiece(this.col - 2, this.row + 1) === opposingKing ||
       getPiece(this.col - 2, this.row - 1) === opposingKing
     ) {
-      return {isCheck: true,opposingKing: opposingKing};
+      return { isCheck: true, opposingKing: opposingKing };
     } else {
-      return {isCheck: false,opposingKing: opposingKing};
+      return { isCheck: false, opposingKing: opposingKing };
     }
   }
 }
@@ -403,11 +407,11 @@ const movePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  // if (turn === 'white') {
-  //     turn = 'black'
-  // } else {
-  //     turn = 'white'
-  // }
+  if (turn === "white") {
+    turn = "black";
+  } else {
+    turn = "white";
+  }
   console.log(selected.checkIfCheck());
 };
 
@@ -425,11 +429,11 @@ const capturePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  // if (turn === 'white') {
-  //     turn = 'black'
-  // } else {
-  //     turn = 'white'
-  // }
+  if (turn === "white") {
+    turn = "black";
+  } else {
+    turn = "white";
+  }
   console.log(selected.checkIfCheck());
 };
 
@@ -550,6 +554,48 @@ const isCurrentKingInCheck = (currentKing) => {};
 drawBoard();
 placePieces();
 
+const isCheck = () => {
+  let opposingKing;
+  let isCheck = false;
+  let currentPossibleChecks = [];
+  board.forEach((element) => {
+    element.forEach((element1) => {
+      if (
+        element1.kind === "rook" ||
+        element1.kind === "pawn" ||
+        element1.kind === "knight"
+      ) {
+        currentPossibleChecks.push(element1);
+      }
+    });
+  });
+  currentPossibleChecks.forEach((element) => {
+    if (element.checkIfCheck().isCheck) {
+      isCheck = true;
+      opposingKing = element.checkIfCheck().opposingKing;
+    }
+  });
+  console.log(isCheck, opposingKing);
+  if (isCheck === true) {
+    return opposingKing;
+  }
+};
+
+const isCheckMate = () => {
+  let squaresToCheck = []
+  let king = turn === "white" ? blackKing : whiteKing;
+  if (isCheck() === king) {
+    squaresToCheck.push(board[king.col][king.row+1],
+      board[king.col][king.row-1],
+      board[king.col-1][king.row],
+      board[king.col+1][king.row],
+      board[king.col+1][king.row+1],
+      board[king.col-1][king.row-1],
+      board[king.col+1][king.row-1],
+      board[king.col-1][king.row+1],)
+  }
+  return squaresToCheck
+};
 canvas.onclick = (e) => {
   const { offsetX, offsetY } = e;
   let x = offsetX;
@@ -558,7 +604,7 @@ canvas.onclick = (e) => {
   let row = Math.floor(y / SQUARE_SIZE);
   if (gameStatus === "ONGOING") {
     if (pieceSelected === null) {
-      if (board[col][row] !== 0 /* && board[col][row].team === turn */) {
+      if (board[col][row] !== 0 && board[col][row].team === turn) {
         pieceSelected = board[col][row];
         highlightPeice(pieceSelected.icon, col, row, "blue");
       }
@@ -592,27 +638,12 @@ canvas.onclick = (e) => {
     gameStatus = "ONGOING";
   }
 };
-const checkifCheckButton = document.querySelector('.checkButton')
+
+const checkifCheckButton = document.querySelector(".checkButton");
 checkifCheckButton.onclick = (e) => {
-  let opposingKing;
-  let isCheck = false;
-  let currentPossibleChecks = []
-  board.forEach(element => {
-    element.forEach(element1 => {
-      if(element1.kind === "rook" || element1.kind === "pawn" || element1.kind === "knight") {
-        currentPossibleChecks.push(element1)
-      }
-    });
-  });
- currentPossibleChecks.forEach(element => {
-  
-  if (element.checkIfCheck().isCheck) {
-    isCheck = true
-    opposingKing = element.checkIfCheck().opposingKing
-  }
- });
- console.log(isCheck,opposingKing)
-}
+  isCheck();
+  console.log(isCheckMate());
+};
 //TO DO LIST (not in any order)
 // make the a1 square actually 1,1 in row and col
 // Show the legal moves of a peice when it is selected
