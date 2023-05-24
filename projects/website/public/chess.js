@@ -407,11 +407,11 @@ const movePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  if (turn === "white") {
-    turn = "black";
-  } else {
-    turn = "white";
-  }
+  // if (turn === "white") {
+  //   turn = "black";
+  // } else {
+  //   turn = "white";
+  // }
   console.log(selected.checkIfCheck());
 };
 
@@ -429,11 +429,11 @@ const capturePiece = (selected, row, col) => {
   pieceSelected = null;
   emptySpace(selected);
   drawPiece(selected.icon, col, row);
-  if (turn === "white") {
-    turn = "black";
-  } else {
-    turn = "white";
-  }
+  // if (turn === "white") {
+  //   turn = "black";
+  // } else {
+  //   turn = "white";
+  // }
   console.log(selected.checkIfCheck());
 };
 
@@ -577,14 +577,14 @@ const isCheck = () => {
   });
   console.log(isCheck, opposingKing);
   if (isCheck === true) {
-    return opposingKing;
+    return true;
   }
 };
 
-const isCheckMate = () => {
+const isCheckMate = (king) => {
   let squaresToCheck = []
-  let king = turn === "white" ? blackKing : whiteKing;
-  if (isCheck() === king) {
+  
+  if (isCheck() === true) {
     squaresToCheck.push(board[king.col][king.row+1],
       board[king.col][king.row-1],
       board[king.col-1][king.row],
@@ -604,7 +604,7 @@ canvas.onclick = (e) => {
   let row = Math.floor(y / SQUARE_SIZE);
   if (gameStatus === "ONGOING") {
     if (pieceSelected === null) {
-      if (board[col][row] !== 0 && board[col][row].team === turn) {
+      if (board[col][row] !== 0 /*&& board[col][row].team === turn */) {
         pieceSelected = board[col][row];
         highlightPeice(pieceSelected.icon, col, row, "blue");
       }
@@ -642,7 +642,7 @@ canvas.onclick = (e) => {
 const checkifCheckButton = document.querySelector(".checkButton");
 checkifCheckButton.onclick = (e) => {
   isCheck();
-  console.log(isCheckMate());
+  console.log(isCheckMate(blackKing));
 };
 //TO DO LIST (not in any order)
 // make the a1 square actually 1,1 in row and col
