@@ -330,6 +330,7 @@ const MakeStartingPieces = () => {
     new Pawn("black", 7),
   ];
 };
+t
 //console.log(MakeStartingPieces());
 
 let pieces = MakeStartingPieces();
@@ -550,7 +551,7 @@ const moveIsLegal = (piece, col, row) => {
   return piece.moveIsLegal(col, row);
 };
 
-const isCurrentKingInCheck = (currentKing) => {};
+const isCurrentKingInCheck = (currentKing) => { };
 drawBoard();
 placePieces();
 
@@ -583,16 +584,16 @@ const isCheck = () => {
 
 const isCheckMate = (king) => {
   let squaresToCheck = []
-  
+
   if (isCheck() === true) {
-    squaresToCheck.push(board[king.col][king.row+1],
-      board[king.col][king.row-1],
-      board[king.col-1][king.row],
-      board[king.col+1][king.row],
-      board[king.col+1][king.row+1],
-      board[king.col-1][king.row-1],
-      board[king.col+1][king.row-1],
-      board[king.col-1][king.row+1],)
+    squaresToCheck.push(board[king.col][king.row + 1],
+      board[king.col][king.row - 1],
+      board[king.col - 1][king.row],
+      board[king.col + 1][king.row],
+      board[king.col + 1][king.row + 1],
+      board[king.col - 1][king.row - 1],
+      board[king.col + 1][king.row - 1],
+      board[king.col - 1][king.row + 1],)
   }
   return squaresToCheck
 };
@@ -644,6 +645,12 @@ checkifCheckButton.onclick = (e) => {
   isCheck();
   console.log(isCheckMate(blackKing));
 };
+//BUGS:
+//Queen Bishop moves not being blocked
+//Kings not resetting after game restarts.
+
+
+
 //TO DO LIST (not in any order)
 // make the a1 square actually 1,1 in row and col
 // Show the legal moves of a peice when it is selected
